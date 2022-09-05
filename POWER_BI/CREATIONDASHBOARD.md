@@ -134,5 +134,22 @@
             - Volet visualisation 
                 - Choix graphique empilée 
                     - Choix des données des axes 
+3. Ajout de bordure 
 
 [Voir doc pour type autre type de visualisarion](https://docs.microsoft.com/fr-fr/power-bi/visuals/power-bi-visualization-types-for-reports-and-q-and-a#visualizations-in-power-bi)
+
+4. Nomination de la page 
+
+### Enregistrement et publication 
+- **Enregistrement**
+    - Fichier 
+        - Enregistrer sous 
+            - Format PBIX
+- **Publication**
+    - Se connecter (Un compte pro)
+        - Fichier 
+            - Publier 
+                - Publier sur Power BI 
+                    - Par defaut : on click sur mon espace de travail
+                        - **Ouvrir ..... dans Power BI**
+        
