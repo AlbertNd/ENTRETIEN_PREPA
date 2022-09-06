@@ -69,6 +69,18 @@
     - Afficher 
         - Zone option de page
             - **Cocher Quadrillage**
+    - **Pour une bonne pratique**
+        - Nommer la page
+        - Arriere plan gris, transparance 0%
+        - Tout d'abord commencer par le cadre generale, la ou on va place les elements, le graphique que l'on veut y place etc ... 
+            - prendre des formers
+                - Onglet **insertion**
+                    - Formes 
+                        - Mise en forme 
+                            - Former 
+                                - Style ....
+                        - Disposer les forme a l'aide des cales
+                            - [Voir demo](https://www.youtube.com/watch?v=_P2m9GZvBh4) 
 2. **Insertion des element du rapport**
     - **Titre** 
         - Onglet Aceuil : Zone insert **Zone de texte**
