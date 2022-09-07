@@ -55,3 +55,31 @@
     - Permet de saisir les couts associés au projet et ainsi que les avantages escomptés afin de justifier l retour sur investissement du projet.
 
 ### Comment rediger un BRD
+
+1. Prendre et examinner de projet reussi, enterieurement, dans l'organisation. Examiner la documentation et utiliser ses connaissance pour définir les grandes lignes du BRD
+    - Les element a prendre en compte pour examiner les documentation enterieur: 
+        1. Ce qui a fonctionner
+        2. Ce qui n'a pas fonctionner 
+        3. Les obstacles que les équipe ont du surmanter 
+        4. Les dépence pouvant affecter le projet actuel 
+        5. LEs méthodes d'incitation utiliser pendant la phase de collecte de besoin
+2. Saisir les exigences 
+    - Les exigence des haut niveau et les exigences techniques de toutes les partie prenentes du projet.
+        1. Le brainstorming:
+            - Reunir les partie dans le but de prendre les idées et les themes pour le projet afin, si possible, d'obtenir differentes solutions pour le projet.
+        2. Analyse des documents: 
+            - Examination de l'ensemble des documentations pertinentes existantes pour le projet y compris les documentations de projet anterieur reussis.
+        3. Groupes de discussion: 
+            - Identification des parties prenantes afin de receuillir leurs avis à une echelle plus reduite.
+        4. Analyse d'interface: 
+            - Méthode permettant de determiner les solutions logicielles et ainsi les interactions des utilisateurs avec une application.
+        5. Entretiens :
+            - Les entretiens individuelle representent un bon moyen de receuillir les informations sur les exigences du projet, de preciser les pensées et les perspectives des parties prenantes et ainsi que les solution potentielles.
+        6. Obervation:
+            - Méthode utile pour la refonte d'un processus ou d'un flux de travail. 
+        7. Prototypage: 
+            - Permet de s'assurer que les exigences actuelles répondent aux besoins de toutes les partie prenantes. Ils illustre le fonctionnement d'une solution et aide à determiner si les exigences doivent etre modifier.
+        8. Atelier sur les exigence: 
+            - Atelier de collaboration avec les parties prenentes pour definir ensembles les exigences.
+
+
