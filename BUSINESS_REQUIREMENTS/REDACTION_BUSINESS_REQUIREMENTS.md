@@ -91,6 +91,17 @@
 
 ### Les informations à reprendre dans un BRD 
 
+- Il y a 8 facteur à prendre en compte: 
+    1. Un résumé exécutif
+    2. Les objectifs du projet
+    3. Déclarations des besoin 
+    4. La portée du projet
+    5. Les exigences 
+    6. Les principales parties prenentes
+    7. Calendrier, échéance, date butoire
+    8. Analyse des couts et avantage
+
+
 1. **Un resumé exécuif** 
     - Réalisé en fin du developpent du BRD, il résule es contenu du BRD
 2. **Les objectifs du projet**
@@ -119,8 +130,8 @@
             - Objectif concidérer comme un outils pour l'organisation ou le client
         - **T**ime-bound (***Limité dans le temps***)
             - Les objectif doivent etre assorti d'une échéance claire et d'une fin definis.
-3. **Une énoncé du projet**
-    - Expliquer pour les projet est necessaire, donner une justification en lien avec le soutien des parties prenantes et des employés avant de plonger dans le reste du projet.
+3. **Déclaration des besoins**
+    - Expliquer pourquoi le projet est necessaire, donner une justification en lien avec le soutien des parties prenantes et des employés avant de plonger dans le reste du projet.
 4. **La portée du projet** 
     - Une definition claire de l'etendue du projet permet d'eviter les dérives, d'identifier les aspect clés d'un projet sous forme d'un tableau facile à lire. 
     - Il doit au minimum contenir: 
