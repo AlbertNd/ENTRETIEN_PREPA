@@ -3,8 +3,8 @@
 
 # Comment rediger un document sur les besoin d'une entreprise (Business Requirements)
 
-##### [Les informations à reprendre dans un BRD](#les-informations-à-reprendre-dans-un-brd)
-##### [COmment](#comment-rediger-un-brd)
+1. [Les informations à reprendre dans un BRD](#les-informations-à-reprendre-dans-un-brd)
+2. [Comment rediger un BRD](#comment-rediger-un-brd)
 
 - **Business requirement (BRD) :**
     - On peut le definir par le **"QUOI"** càd ***ce que une organisation veut faire a l'issue d'un projet***
@@ -12,6 +12,7 @@
     - Il releve toute les **ambiuites** et decrit tout ce qui est necessaire pour atteindre les **objectif d'un projet**.
 
 ##### Exemple de BRD
+
 ```
 1. Résumé executif
 
