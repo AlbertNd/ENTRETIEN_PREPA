@@ -46,12 +46,12 @@
     
         Travailler avec les principales parties prenantes pour définir toutes les exigences :
 
-        - Gestion des objectifs pour le suivi des progrès
-        - Évaluation des performances pour les examens de performance de milieu et de fin d'année
-        - Cheminement de carrière et planification de la succession
-        - Reporting
-        - Analyse des performances
-        - Possibilités de coaching et de mentorat
+            - Gestion des objectifs pour le suivi des progrès
+            - Évaluation des performances pour les examens de performance de milieu et de fin d'année
+            - Cheminement de carrière et planification de la succession
+            - Reporting
+            - Analyse des performances
+            - Possibilités de coaching et de mentorat
 
 6. Parties prenantes clés
 
@@ -79,10 +79,10 @@
 
         Effectuer une analyse coûts-avantages :
 
-        - Coûts de la rotation des employés par équipe en glissement annuel
-        - Coûts des ressources nécessaires à l'équipe de projet pour mettre en œuvre le système 
-        - Avantages d'avoir des employés alignés sur les objectifs de l'entreprise
-        - Avantages de la protection juridique en cas de licenciement
+            - Coûts de la rotation des employés par équipe en glissement annuel
+            - Coûts des ressources nécessaires à l'équipe de projet pour mettre en œuvre le système 
+            - Avantages d'avoir des employés alignés sur les objectifs de l'entreprise
+            - Avantages de la protection juridique en cas de licenciement
 ```
 
 ### Les informations à reprendre dans un BRD 
