@@ -1,9 +1,89 @@
+
+
+
 # Comment rediger un document sur les besoin d'une entreprise (Business Requirements)
 
 - **Business requirement (BRD) :**
     - On peut le definir par le **"QUOI"** càd ***ce que une organisation veut faire a l'issue d'un projet***
     - Il definis tout ce qu'implique un projet, prend en compte ses **facettes** y compris les **resultats attendus** et les **elements essentiel pour assurer l'alignement entre toutes les paries concernées**. 
     - Il releve toute les **ambiuites** et decrit tout ce qui est necessaire pour atteindre les **objectif d'un projet**.
+
+##### Exemple de BRD
+```
+1. Résumé executif
+
+        Notre organisation est à la recherche d'un système de gestion des performances pour suivre les performances globales de nos employés, stimuler la rétention et le moral, et accroître la transparence entre les gestionnaires et les employés.
+
+        Nous souhaitons que ce système soit lancé au cours du deuxième trimestre et nous évaluerons les systèmes, mettrons en œuvre le système et fournirons une formation adéquate aux managers et aux employés d'ici le 1er juin 2023. 
+
+        Nous cherchons à satisfaire un certain nombre d'exigences, notamment la cartographie des parcours professionnels, les rapports et les analyses, ainsi que la gestion des objectifs. Un certain nombre de parties prenantes seront impliquées dans la sélection et la mise en œuvre de ce système, notamment un chef de projet, les ressources humaines, les chefs de service, les cadres, les managers et les employés. 
+
+        Ce document détaille la sélection de ce système, les objectifs, les besoins, la portée, les exigences, les parties prenantes, le calendrier et l'analyse coûts-avantages. 
+
+2. Objectif du projet
+
+        Utilisez le système SMART pour les objectifs de votre projet :
+
+        Les 500 employés seront formés à l'utilisation de notre nouveau système de gestion des performances d'ici le 1er juin 2023.
+
+3. Déclaration des besoins
+
+        Appuyer la déclaration sur des données et des recherches, si possible :
+
+            Un système de gestion de la performance est nécessaire pour augmenter le taux de rétention de nos employés, maintenir une cohérence dans les parcours de développement des employés, renforcer notre position financière par la mise à niveau de nos talents, et motiver et récompenser les employés. Le roulement du personnel coûte en moyenne 35 000 $ à notre organisation, et la mise en œuvre de ce système nous permettra d'économiser de l'argent en retenant nos employés.
+
+4.  Portée du projet
+        
+        Définir clairement le travail qui entre dans le cadre du projet :
+
+        Dans le champ d'application :
+            - Évaluation et sélection d'un système de gestion des performances
+            - Mise en œuvre du système de gestion des performances
+            - Former les managers au système
+            - Former les employés au système
+
+5. Exigences 
+    
+        Travailler avec les principales parties prenantes pour définir toutes les exigences :
+
+        - Gestion des objectifs pour le suivi des progrès
+        - Évaluation des performances pour les examens de performance de milieu et de fin d'année
+        - Cheminement de carrière et planification de la succession
+        - Reporting
+        - Analyse des performances
+        - Possibilités de coaching et de mentorat
+
+6. Parties prenantes clés
+
+        Identifiez les principales parties prenantes et définissez leurs rôles et responsabilités :
+
+            - Chef de projet : responsable du respect du calendrier du projet par toutes les parties.
+            - Ressources humaines : recherche de systèmes de gestion de la performance, collecte des besoins, recommandation aux dirigeants pour approbation, séances de formation des gestionnaires et des employés.
+            - Chefs de service : partagent les besoins souhaités avec les RH pour obtenir une liste complète des exigences. 
+            - Cadres : ils sont responsables de l'approbation du système de gestion de la performance sélectionné.
+            - Les managers : seront formés au système
+            - Employés : seront formés au système
+
+7. Calendrier
+
+        Décrivez les différentes phases du projet et indiquez la date limite de chaque phase :
+
+            - Phase I : Terminer la collecte des besoins avec toutes les parties prenantes d'ici le 31 mars 2023.
+            - Phase II : Sélectionner un système de gestion des performances à recommander aux cadres avant le 7 avril 2023. 
+            - Phase III : intégrer l'équipe des RH au nouveau système de gestion de la performance avant le 26 avril 2023.
+            - Phase IV : Terminer le matériel de formation pour les gestionnaires et les employés d'ici le 3 mai 2023.
+            - Phase V : Organiser la formation des gestionnaires le 10 mai 2023. 
+            - Phase VI : Organiser la formation des employés le 17 mai 2023. 
+
+8. Analyse coûts-avantages
+
+        Effectuer une analyse coûts-avantages :
+
+        - Coûts de la rotation des employés par équipe en glissement annuel
+        - Coûts des ressources nécessaires à l'équipe de projet pour mettre en œuvre le système 
+        - Avantages d'avoir des employés alignés sur les objectifs de l'entreprise
+        - Avantages de la protection juridique en cas de licenciement
+```
 
 ### Les informations à reprendre dans un BRD 
 1. **Un resumé exécuif** 
@@ -81,5 +161,18 @@
             - Permet de s'assurer que les exigences actuelles répondent aux besoins de toutes les partie prenantes. Ils illustre le fonctionnement d'une solution et aide à determiner si les exigences doivent etre modifier.
         8. Atelier sur les exigence: 
             - Atelier de collaboration avec les parties prenentes pour definir ensembles les exigences.
+        9. Enquete et questionnement:
+            - Permet d'avoir un retour d'information d'un groupe plus important de parties prenentes.
+                -  La conception et la maniere de poser les question sont tres importantes dans la recolte d'informations.
+        - ***NB : Il n'est pas essentiel d'utiliser toutes les technique repris ci dessus. il faut identifier celle qui s'adaptent au mieux au produit ou projet. 
+3. Utilisation d'un langage clair, sans jargon:
+    - En efftet le document (BRD) sera consulte par des nombreuses parties prenantes occupant des roles different et tout le monde ne comprend pas les texte technique.
+        - ***Au mieux,inclure un glossaire à la fin du document afin de retrouver facilement les termes techniques et d'éviter les malentendus.***
+4. Ajout des element visuel pour rendre le contenu plus digestif: 
+    - Permet d'acroitre l'efficacité du plan et de briser les marceaux d'information lourds en texte.
+        - ***Ex: un diagramme de processus d'affaires est un élément visuel typique d'un BRD. La représentation des processus métier dans leur état actuel par rapport à l'état futur proposé peut aider à communiquer les exigences avec facilité.***
+5. Demander aux membres de l'équipe de reviser le documen:
+    - Ca permet de confirmer la capture toutes les exigences en conséquence et permet aux parties prenentes de fournir des commentaires et apporter des modification avant le debut du projet.
+ 
 
 
