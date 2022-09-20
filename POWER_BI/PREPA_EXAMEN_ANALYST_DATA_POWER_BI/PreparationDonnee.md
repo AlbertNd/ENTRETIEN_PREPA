@@ -26,6 +26,7 @@
     - ***SharePoint - Site d'équipe***:
         - L’enregistrement des fichiers Power BI Desktop sur des sites d’équipe SharePoint est similaire à un enregistrement sur OneDrive Entreprise. La principale différence est dans la façon de se connecter au fichier depuis Power BI. il faut spécifier une URL ou se  connecter au dossier racine.
         - ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-local-vs-cloud-c.png)
+        
 ***NB : L’utilisation d’une option cloud, comme OneDrive ou des sites d’équipe SharePoint, est le moyen le plus efficace de conserver la synchronisation des fichiers avec le jeu de données, les rapports et les tableaux de bord dans Power BI. Cependant, si les données ne changent pas régulièrement, l’enregistrement de fichiers sur un ordinateur local est une option appropriée.***
 
 2. **Se connecter aux données d'un fichier**
