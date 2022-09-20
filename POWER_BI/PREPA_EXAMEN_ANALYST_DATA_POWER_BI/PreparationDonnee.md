@@ -33,7 +33,6 @@
 
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-get-data-excel-ssm.png)
 
-
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-excel-save-data-ssm.png)
 
 3. **Selection des données du fichier à importer**
@@ -55,6 +54,9 @@
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-excel-data-source-settings-ssm.png#lightbox)
 
     -   ```
-            Si on change un chemin de fichier, il faut veiller à se reconnecter au même fichier avec la même structure de fichier. Toute modification structurelle apportée à un fichier, comme la suppression ou le renommage des colonnes dans le fichier source, interrompt le bon fonctionnement du modèle de génération de rapports.
+            Si on change un chemin de fichier, il faut veiller à se reconnecter au même fichier
+            avec la même structure de fichier. Toute modification structurelle apportée à un
+            fichier, comme la suppression ou le renommage des colonnes dans le fichier source
+            interrompt le bon fonctionnement du modèle de génération de rapports.
         ```
 #### Obtention des données de sources de données relationnelles 
