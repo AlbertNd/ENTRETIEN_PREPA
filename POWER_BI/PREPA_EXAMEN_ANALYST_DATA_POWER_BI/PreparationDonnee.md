@@ -31,8 +31,10 @@
 
 2. **Se connecter aux données d'un fichier**
 ____
+
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-get-data-excel-ssm.png)
 ____
+
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-excel-save-data-ssm.png)
 ____
 3. **Selection des données du fichier à importer**
