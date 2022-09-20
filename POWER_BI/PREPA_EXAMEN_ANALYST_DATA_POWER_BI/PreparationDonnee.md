@@ -64,6 +64,7 @@
 
 1. **Se connecter aux données d’une base de données relationnelle**
     - Utilisation de la fonctionnalité Obtenir les données dans Power BI Desktop et sélection de l’option applicable pour votre base de données relationnelle. 
+    
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/3-get-data-sql-server-dropdown-ssm..png)
 
     - Introduire le nom du serveur de base de données et un nom de base de données dans la fenêtre **Base de données SQL Server**. Les deux options du mode de connectivité aux données sont les suivantes : 
