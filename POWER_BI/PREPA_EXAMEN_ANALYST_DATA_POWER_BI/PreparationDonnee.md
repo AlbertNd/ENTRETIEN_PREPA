@@ -30,9 +30,11 @@
 ***NB : L’utilisation d’une option cloud, comme OneDrive ou des sites d’équipe SharePoint, est le moyen le plus efficace de conserver la synchronisation des fichiers avec le jeu de données, les rapports et les tableaux de bord dans Power BI. Cependant, si les données ne changent pas régulièrement, l’enregistrement de fichiers sur un ordinateur local est une option appropriée.***
 
 2. **Se connecter aux données d'un fichier**
+____
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-get-data-excel-ssm.png)
+____
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/2-excel-save-data-ssm.png)
-
+____
 3. **Selection des données du fichier à importer**
     - Une fois le fichier connecté à Power BI Desktop, la fenêtre du Navigateur s’ouvre. 
         - Elle montre les données qui sont disponibles dans la source de données
