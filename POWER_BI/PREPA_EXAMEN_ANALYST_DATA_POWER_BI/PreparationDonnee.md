@@ -106,3 +106,45 @@
 ##### Écrire une instruction SQL
 - SQL permet de charger seulement le jeu de données nécessaire en spécifiant certaines colonnes et certaines tables dans les instruction SQL en les important dans le modèle de données.
 - Il est égaliment possible de joindre différentes tables, effectuer des calculs spécifiques, créer des instructions logiques et filtrer les données dans les requêtes SQL.
+
+#### Obtenir des données d'une base de données NoSQL
+- Une base de données NoSQL (également appelée non-SQL, pas seulement SQL ou non relationnelle) est un type de base de données flexible qui n’utilise pas de tables pour stocker les données. 
+
+1. **Se connecter à une base de données NoSQL**
+    - Utilisation dela fonctionnalité **Obtenir les données** dans Power BI Desktop. Selection de l'option **plus**
+    - Dansl'exemple ci dessous on selectionne la catégorie **Azure** => **Azure Cosmos DB** => **Se connecter**
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/4-get-data-cosmos-ssm.png)
+
+    - *NB: Dans la fenêtre* **Connecteur en préversion** *, sélection* **Continuer**
+        - *Introduire les informations d’identification de la base de données.*
+        - *Introduire les détails de la base de données.* 
+        - *Spécifier l’URL du point de terminaison du compte Azure Cosmos DB à partir duquel on obtient les données (Possibilité d'obtenir l’URL dans le panneau Clés du portail Azure).*
+        - *Ou alors introduire le nom de la base de données, le nom de la collection, ou utiliser le navigateur pour sélectionner la base de données et la collection afin d’identifier la source de données.*
+        - ***Si une premiere connection introduire la clé du compte. ette clé se trouve dans la zone Clé principale du panneau Clés en lecture seule de votre Portail Azure.***
+2. **Importation d'un fichier JSON**
+    - Les enregistrements de type JSON doivent être extraits et normalisés avant de pouvoir produire des rapports à partir de ceux-ci : ***il faut donc transformer les données avant de les charger dans Power BI Desktop.***
+    - Une fois que connecté au compte de base de données, la fenêtre  **Navigateur** s’ouvre et affiche la liste des bases de données sous ce compte. 
+        - Sélection de la table que l'ont souhaite importer. 
+            - Le volet de visualisation montre seulement les éléments **Enregistrement**, car tous les enregistrements du document sont représentés en tant que type Enregistrement dans Power BI.
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/4-cosmos-navigator-ss.png#lightbox)
+
+        - Click sur **Modifier** pour ouvrir les enregistrements dans Power Query.
+            - Dans Power Query:
+                - Bouton **Développeur** sur le côté droit de l’en-tête **Colonne1**, ce qui affichera le menu contextuel avec une liste de champs. 
+                    - Sélection des champs à charger dans Power BI Desktop, décoche de la case **Utiliser le nom de la colonne d’origine comme préfixe**, puis **OK**.
+                ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/4-expand-record-ssm.png#lightbox)
+
+                - Vérification des données sélectionnées pour etre sur qu’elles conviennent, puis sélection **Fermer et appliquer** pour charger les données dans Power BI Desktop.
+
+                ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/4-cosmos-results-ssm.png)
+
+                - Les données de Cosmos DB peuvent maintenant être liées à des données provenant d’autres sources de données et être finalement utilisées dans un rapport Power BI.
+#### Obtenir des données de services en ligne
+
+- Power BI peut combiner les données de plusieurs applications logiciel pour produire des [insights](https://learn.microsoft.com/fr-fr/power-bi/create-reports/insights) et des rapports plus significatifs.
+    - SharePoint
+    - OneDrive 
+    - Dynamics 365 
+    - Google Analytics
+    - etc...
+1. **Se connecter aux données d’une application**
