@@ -148,3 +148,32 @@
     - Google Analytics
     - etc...
 1. **Se connecter aux données d’une application**
+    - Selection de la fonction **Obtenir les données** => **service en ligne** => ...
+2. **Choisir les données d'application à importer** 
+    - Une fois que Power BI a établi la connexion, la fenêtre **Navigateur** apparaît, comme c’est le cas pour d’autres sources de données. La fenêtre affiche les tables et les entités. 
+        - Sélection de la liste à charger dans Power BI Desktop. 
+        - Option **charger** automatiquement les données dans le modèle Power BI ou **transformer vos données** avant de les charger.
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/5-navigator-window-view-tables-ss.png#lightbox)
+
+#### Selection d'un mode de stockage
+[Voir Doc](https://learn.microsoft.com/fr-fr/power-bi/transform-model/desktop-storage-mode)
+- Il y a trois types de mode de stockage :
+    1. Importer
+    2. DirectQuery
+    3. Double (Composite)
+- On accede aux modes de stockage en passant à la vue **MOdele**, selection d'une table de données, dans le volet **Proppriété**, selection du mode sohaitédans la liste déroulante **Mode de stockage**
+![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/6-storage-mode-ssm.png#lightbox)
+
+1. **Mode Importation** 
+    - Le mode Importation permet de créer une copie Power BI locale des jeux de données à partir de la source de données. 
+    - On peut utiliser toutes les fonctionnalités du service Power BI avec ce mode de stockage, y compris Questions et réponses et Quick Insights. 
+    - Les actualisations de données peuvent être planifiées ou à la demande. 
+    - ***C'est le mode par défaut pour la création de rapports Power BI.***
+2. **Mode DirectQuery**
+    - L’option DirectQuery est utile lorsque l'on ne souhaite pas enregistrer des copies locales des données, car les données ne seront pas mises en cache. Au lieu de cela, on peut interroger les tables spécifiques dont on souaite en utilisant des requêtes Power BI natives, et les données nécessaires seront récupérées auprès de la source de données sous-jacente. En fait, on crée une connexion directe à la source de données. 
+    - L’utilisation de ce modèle garantit que l'on est toujours les données les plus récentes et que toutes les exigences de sécurité sont satisfaites. 
+    - ***Ce mode convient lorsue l'on a des gros jeux de données d’où on doit extraire des données. Au lieu de ralentir les performances en chargeant de grandes quantités de données dans Power BI, on peut utiliser DirectQuery pour créer une connexion à la source et résoudre ainsi les problèmes de latence des données.
+3. **Mode Double (Mode Composite)**
+    - En mode Double permet indiquer que certaines données doivent être importées directement et que d’autres doivent faire l’objet d’une requête. 
+    - Toute table introduite dans le rapport est un produit à la fois du mode Importation et du mode DirectQuery. 
+    - ***L’utilisation du mode Double permet à Power BI de choisir la forme de récupération de données la plus efficace.***
