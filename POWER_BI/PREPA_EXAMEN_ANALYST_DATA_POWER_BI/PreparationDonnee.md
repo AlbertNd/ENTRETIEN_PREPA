@@ -200,7 +200,11 @@
             1. **Importer**
             2. **Connexion directe**
                 ```
-                    Connexion directe est une nouvelle option d’Azure Analysis Services. Azure Analysis Services utilise le modèle tabulaire et DAX pour créer des calculs, d’une façon similaire à Power BI. Ces modèles sont compatibles les uns avec les autres. L’utilisation de l’option Connexion directe vous permet de conserver les données et les calculs DAX à leur emplacement d’origine, sans devoir les importer dans Power BI. Azure Analysis Services peut avoir une planification d’actualisation rapide, ce qui signifie que quand les données sont actualisées dans le service, les rapports Power BI sont immédiatement mis à jour, sans qu’il soit nécessaire de lancer une planification d’actualisation Power BI. Ce processus peut améliorer le caractère à jour des données dans le rapport.
+                    Connexion directe est une nouvelle option d’Azure Analysis Services. 
+                    Azure Analysis Services utilise le modèle tabulaire et DAX pour créer des calculs, d’une façon similaire à Power BI. 
+                    Ces modèles sont compatibles les uns avec les autres. L’utilisation de l’option Connexion directe vous permet de conserver les données et les calculs DAX à leur emplacement d’origine, sans devoir les importer dans Power BI.
+                    Azure Analysis Services peut avoir une planification d’actualisation rapide, ce qui signifie que quand les données sont actualisées dans le service, les rapports Power BI sont immédiatement mis à jour, sans qu’il soit nécessaire de lancer une planification d’actualisation Power BI. 
+                    Ce processus peut améliorer le caractère à jour des données dans le rapport.
                 ```
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/7-analysis-services-connection-ss.png)
 
