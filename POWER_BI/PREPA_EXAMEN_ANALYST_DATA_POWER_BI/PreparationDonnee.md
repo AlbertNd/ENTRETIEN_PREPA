@@ -139,6 +139,7 @@
                 ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/4-cosmos-results-ssm.png)
 
                 - Les données de Cosmos DB peuvent maintenant être liées à des données provenant d’autres sources de données et être finalement utilisées dans un rapport Power BI.
+
 #### Obtenir des données de services en ligne
 
 - Power BI peut combiner les données de plusieurs applications logiciel pour produire des [insights](https://learn.microsoft.com/fr-fr/power-bi/create-reports/insights) et des rapports plus significatifs.
@@ -177,3 +178,29 @@
     - En mode Double permet indiquer que certaines données doivent être importées directement et que d’autres doivent faire l’objet d’une requête. 
     - Toute table introduite dans le rapport est un produit à la fois du mode Importation et du mode DirectQuery. 
     - ***L’utilisation du mode Double permet à Power BI de choisir la forme de récupération de données la plus efficace.***
+
+#### Se connecter aux donner d'Azure Analysis Service
+[Voir doc](https://learn.microsoft.com/fr-fr/azure/analysis-services/analysis-services-connect-pbi)
+- Azure Analysis Services permet d’ingérer des données provenant de plusieurs sources de données, de créer des relations entre les données et de créer des calculs sur les données. 
+    - Les calculs sont créés avec des expressions **DAX (Data Analysis Expressions)**.
+    - Il est est similaire à la technologie de modélisation et de stockage des données de Power BI.
+- L’obtention de données depuis des cubes Azure Analysis Services cubes est similaire à l’obtention de données depuis **SQL Server**, dans la mesure où vous pouvez :
+    - Vous authentifier auprès du serveur.
+    - Sélectionner le cube que vous voulez utiliser.
+    - Sélectionner les tables dont vous avez besoin.
+- ***NB : Les différences notables entre les cubes Azure Analysis Services et SQL Server sont les suivantes :***
+    - ***Les cubes Analysis Services intègrent déjà des calculs.***
+    - ***Lorsque l'on a pas besoin de la totalité d’une table, on peut interroger les données directement.*** 
+        - ***Au lieu d’utiliser Transact-SQL (T-SQL) pour interroger les données, comme on le ferait dans SQL Server,on peut utiliser des expressions MDX (Multidimensional Expressions) ou DAX (Data Analysis Expressions).***
+1. **Se connecter à des données dans Azure Analysis Services**
+    - Fonction **Obtenir des données** => Selection **Analsis Services**
+    - Introduction de l’adresse du serveur et le nom de la base de données
+        - Deux option: 
+            1. **Importer**
+            2. **Connexion directe**
+                ```
+                    Connexion directe est une nouvelle option d’Azure Analysis Services. Azure Analysis Services utilise le modèle tabulaire et DAX pour créer des calculs, d’une façon similaire à Power BI. Ces modèles sont compatibles les uns avec les autres. L’utilisation de l’option Connexion directe vous permet de conserver les données et les calculs DAX à leur emplacement d’origine, sans devoir les importer dans Power BI. Azure Analysis Services peut avoir une planification d’actualisation rapide, ce qui signifie que quand les données sont actualisées dans le service, les rapports Power BI sont immédiatement mis à jour, sans qu’il soit nécessaire de lancer une planification d’actualisation Power BI. Ce processus peut améliorer le caractère à jour des données dans le rapport.
+                ```
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/7-analysis-services-connection-ss.png)
+
+**NB:** ***Une alternative acceptable est d’importer toutes les autres données souhaitées (depuis Excel, SQL Server, etc.) dans le modèle Azure Analysis Services, puis à utiliser une connexion active. Avec cette approche, la modélisation des données et les mesures DAX sont toutes effectuées à un même emplacement, et il s’agit d’un moyen beaucoup plus simple et plus facile de gérer les solution***
