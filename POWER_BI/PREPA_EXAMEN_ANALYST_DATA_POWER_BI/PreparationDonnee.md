@@ -236,6 +236,7 @@
             - Toutes les sources de données en mode de stockage DirectQuery et Double doivent avoir les capacités de traitement du serveur back-end pour créer une connexion directe, ce qui signifie que Query Folding est une fonctionnalité automatique que l'on peut utiliser. Si toutes les transformations peuvent être réduites à une seule instruction Select, le Query Folding peut être effectué.
         
     - ***Le scénario suivant montre le Query Folding en action. Dans ce scénario, on applique un ensemble de requêtes à plusieurs tables. Une fois que l'on a ajouté une nouvelle source de données avec Power Query et que l'on est dirigé vers l’éditeur Power Query, on accéde au volet*** **Paramètres de la requête*****, où on peut cliquer avec le bouton droit sur la dernière étape appliquée, comme illustré dans la figure ci-dessous.***
+    
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/8-view-native-query-ss.png)
 
     - ***Si l’option*** **Afficher la requête native** ***n’est pas disponible (non affichée en gras), le Query Folding n’est pas possible pour cette étape. Il faut alors revenir en arrière dans*** **Étapes appliquées** ***jusqu’à l’étape où*** **Afficher la requête native** ***est disponible (affichée en gras). Ce processus va révéler la requête native utilisée pour transformer le jeu de données.***
