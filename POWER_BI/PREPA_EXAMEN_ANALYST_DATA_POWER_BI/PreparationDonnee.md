@@ -173,7 +173,7 @@
 2. **Mode DirectQuery**
     - L’option DirectQuery est utile lorsque l'on ne souhaite pas enregistrer des copies locales des données, car les données ne seront pas mises en cache. Au lieu de cela, on peut interroger les tables spécifiques dont on souaite en utilisant des requêtes Power BI natives, et les données nécessaires seront récupérées auprès de la source de données sous-jacente. En fait, on crée une connexion directe à la source de données. 
     - L’utilisation de ce modèle garantit que l'on est toujours les données les plus récentes et que toutes les exigences de sécurité sont satisfaites. 
-    - ***Ce mode convient lorsue l'on a des gros jeux de données d’où on doit extraire des données. Au lieu de ralentir les performances en chargeant de grandes quantités de données dans Power BI, on peut utiliser DirectQuery pour créer une connexion à la source et résoudre ainsi les problèmes de latence des données.
+    - ***Ce mode convient lorsue l'on a des gros jeux de données d’où on doit extraire des données. Au lieu de ralentir les performances en chargeant de grandes quantités de données dans Power BI, on peut utiliser DirectQuery pour créer une connexion à la source et résoudre ainsi les problèmes de latence des données.              
 3. **Mode Double (Mode Composite)**
     - En mode Double permet indiquer que certaines données doivent être importées directement et que d’autres doivent faire l’objet d’une requête. 
     - Toute table introduite dans le rapport est un produit à la fois du mode Importation et du mode DirectQuery. 
@@ -204,3 +204,43 @@
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/7-analysis-services-connection-ss.png)
 
 **NB:** ***Une alternative acceptable est d’importer toutes les autres données souhaitées (depuis Excel, SQL Server, etc.) dans le modèle Azure Analysis Services, puis à utiliser une connexion active. Avec cette approche, la modélisation des données et les mesures DAX sont toutes effectuées à un même emplacement, et il s’agit d’un moyen beaucoup plus simple et plus facile de gérer les solution***
+
+#### Résoudre les problèmes de performances
+- Power BI fournit l’outil Analyseur de performances pour aider à résoudre les problèmes et à rationaliser le processus.
+    - Par exemple 
+        ```
+            Quand lorsque l'on crée des visuels et des filtres préliminaires, et que l'on remarque que l’interrogation de certaines tables est plus rapide que pour d’autres, et que certains filtres prennent plus de temps à être traités que d’autres filtres.
+        ```
+1. **Optimisation des performances dans Power Query**
+    - Les performances de Power Query dépendent des performances au niveau de la source de données. La variété de sources de données offertes par Power Query est très grande et les techniques d’optimisation des performances pour chaque source sont également très variées. 
+        - Exemple 
+        ```
+            Si on extrait des données d’un serveur Microsoft SQL Server, on doit suivre les instructions d’optimisation des performances pour le produit. Les bonnes techniques d’optimisation des performances de SQL Server incluent la création d’index, les mises à niveau du matériel, l’optimisation des plans d’exécution et la compression des données.
+        ```
+    - Power Query tire parti des bonnes performances de la source de données via une technique appelée « **Query Folding** ».
+2. **Query Folding**
+    - Le Query Folding est le processus par lequel les transformations et les modifications que l'on apporte dans l’éditeur Power Query sont suivies simultanément en tant que requêtes natives, ou en tant que simples instructions SQL Select, pendant que l'on effectue activement des transformations. La raison de l’implémentation de ce processus est de garantir que ces transformations peuvent avoir lieu dans le serveur de la source de données d’origine et ne pas surcharger les ressources informatiques de Power BI.
+    - ***On peut utiliser Power Query pour charger des données dans Power BI. Avec l’éditeur Power Query, on peut ensuite effectuer des transformations sur les données, comme renommer ou supprimer des colonnes, ajouter, décomposer, filtrer ou regrouper les données.***
+        ```
+            Imaginons un scénario où on a renommé quelques colonnes dans les données des ventes, et où on a fusionné une colonne Ville et Département selon un format « Ville Département ». Pendant cette opération, la fonctionnalité Query Folding effectue le suivi de ces modifications dans les requêtes natives. Ensuite, quand on charge les données, les transformations s’effectuent indépendamment dans la source d’origine, ce qui garantit l’optimisation des performances dans Power BI.
+        ```
+    - **Les avantages du Query Folding :**
+        1. ***Plus d’efficacité dans l’actualisation des données et les actualisations incrémentielles.***
+            - Quand on importe des tables de données en utilisant le Query Folding, Power BI est plus à même d’allouer des ressources et d’actualiser les données plus rapidement, car Power BI n’a pas besoin d’exécuter chaque transformation localement.
+        2. ***Compatibilité automatique avec les modes de stockage DirectQuery et Double.***
+            - Toutes les sources de données en mode de stockage DirectQuery et Double doivent avoir les capacités de traitement du serveur back-end pour créer une connexion directe, ce qui signifie que Query Folding est une fonctionnalité automatique que l'on peut utiliser. Si toutes les transformations peuvent être réduites à une seule instruction Select, le Query Folding peut être effectué.
+        
+    - ***Le scénario suivant montre le Query Folding en action. Dans ce scénario, on applique un ensemble de requêtes à plusieurs tables. Une fois que l'on a ajouté une nouvelle source de données avec Power Query et que l'on est dirigé vers l’éditeur Power Query, on accéde au volet*** **Paramètres de la requête*****, où on peut cliquer avec le bouton droit sur la dernière étape appliquée, comme illustré dans la figure ci-dessous.***
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/8-view-native-query-ss.png)
+
+    - ***Si l’option*** **Afficher la requête native** ***n’est pas disponible (non affichée en gras), le Query Folding n’est pas possible pour cette étape. Il faut alors revenir en arrière dans*** **Étapes appliquées** ***jusqu’à l’étape où*** **Afficher la requête native** ***est disponible (affichée en gras). Ce processus va révéler la requête native utilisée pour transformer le jeu de données.***
+        - NB: Les requêtes natives ne sont pas possibles pour les transformations suivantes :
+            - Ajout d’une colonne d’index
+            - Fusion et ajout de colonnes de différentes tables avec deux sources différentes
+            - Modification du type de données d’une colonne
+    -   ```
+            Une bonne règle à mémoriser est que si on peut traduire une transformation en une instruction SQL Select qui comprend des opérateurs et des clauses comme GROUP BY, SORT BY, WHERE, UNION ALL et JOIN, il faut utiliser le Query Folding.
+        ```
+    - Si le Query Folding est une option permettant d’optimiser les performances lors de la récupération, de l’importation et de la préparation des données, une autre option est d’effectuer des **diagnostics de requête**.
+
+3. **Diagnostics de requête**  
