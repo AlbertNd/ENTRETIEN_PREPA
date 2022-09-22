@@ -163,6 +163,7 @@
     2. DirectQuery
     3. Double (Composite)
 - On accede aux modes de stockage en passant à la vue **MOdele**, selection d'une table de données, dans le volet **Proppriété**, selection du mode sohaitédans la liste déroulante **Mode de stockage**
+
 ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/6-storage-mode-ssm.png#lightbox)
 
 1. **Mode Importation** 
