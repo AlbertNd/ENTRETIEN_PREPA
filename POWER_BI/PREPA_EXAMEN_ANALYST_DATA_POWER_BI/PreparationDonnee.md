@@ -224,6 +224,8 @@
         ```
     - Power Query tire parti des bonnes performances de la source de données via une technique appelée « **Query Folding** ».
 2. **Query Folding**
+- [Voir Doc  Aide sur le Query Folding ](https://learn.microsoft.com/fr-fr/power-bi/guidance/power-query-folding) et [Doc Query Folding](https://learn.microsoft.com/fr-fr/power-query/power-query-folding)
+
     - Le Query Folding est le processus par lequel les transformations et les modifications que l'on apporte dans l’éditeur Power Query sont suivies simultanément en tant que requêtes natives, ou en tant que simples instructions SQL Select, pendant que l'on effectue activement des transformations. La raison de l’implémentation de ce processus est de garantir que ces transformations peuvent avoir lieu dans le serveur de la source de données d’origine et ne pas surcharger les ressources informatiques de Power BI.
     - ***On peut utiliser Power Query pour charger des données dans Power BI. Avec l’éditeur Power Query, on peut ensuite effectuer des transformations sur les données, comme renommer ou supprimer des colonnes, ajouter, décomposer, filtrer ou regrouper les données.***
         ```
@@ -236,7 +238,7 @@
             - Toutes les sources de données en mode de stockage DirectQuery et Double doivent avoir les capacités de traitement du serveur back-end pour créer une connexion directe, ce qui signifie que Query Folding est une fonctionnalité automatique que l'on peut utiliser. Si toutes les transformations peuvent être réduites à une seule instruction Select, le Query Folding peut être effectué.
         
     - ***Le scénario suivant montre le Query Folding en action. Dans ce scénario, on applique un ensemble de requêtes à plusieurs tables. Une fois que l'on a ajouté une nouvelle source de données avec Power Query et que l'on est dirigé vers l’éditeur Power Query, on accéde au volet*** **Paramètres de la requête*****, où on peut cliquer avec le bouton droit sur la dernière étape appliquée, comme illustré dans la figure ci-dessous.***
-    
+
     ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/8-view-native-query-ss.png)
 
     - ***Si l’option*** **Afficher la requête native** ***n’est pas disponible (non affichée en gras), le Query Folding n’est pas possible pour cette étape. Il faut alors revenir en arrière dans*** **Étapes appliquées** ***jusqu’à l’étape où*** **Afficher la requête native** ***est disponible (affichée en gras). Ce processus va révéler la requête native utilisée pour transformer le jeu de données.***
@@ -250,3 +252,25 @@
     - Si le Query Folding est une option permettant d’optimiser les performances lors de la récupération, de l’importation et de la préparation des données, une autre option est d’effectuer des **diagnostics de requête**.
 
 3. **Diagnostics de requête**  
+    - Cette fonctionnalité permet de déterminer les goulots d’étranglement (le cas échéant) qui se produisent lors du chargement et de la transformation de vos données, lors de l’actualisation de vos données dans Power Query, lors de l’exécution des instructions SQL dans l’éditeur de requête, etc.
+    - Pour accéder aux diagnostics de requête dans l’éditeur Power Query, 
+        - **Aceuil** => **Outils**. 
+            - Lorsqu'on est prêt à commencer la transformation des données ou à effectuer d’autres modifications dans l’éditeur Power Query, on sélectionne **Démarrer les diagnostics** dans la section **Diagnostics de la session**. 
+                - Une fois terminer => **Arrêter les diagnostics**.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/8-navigating-query-diagnostics-ss.png)
+    
+    - La sélection de Diagnostiquer l’étape vous montre la durée nécessaire à l’exécution de cette étape
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/8-applying-query-diagnostics-ss.png)
+
+    - ***Cette sélection peut vous indiquer si une étape prend plus de temps que d’autres, ce qui sert ensuite de point de départ pour un examen plus approfondi.***
+    ```
+        Cet outil est pratique quand vous voulez analyser les performances du côté Power Query pour des tâches comme le chargement de jeux de données, l’exécution d’actualisations de données ou l’exécution d’autres tâches de transformation.
+    ```
+#### Autres techniques pour optimiser les performances 
+
+- ***Traiter autant de données que possible dans la source de données d’origine*** *Power Query et l’éditeur Power Query permettent de traiter les données ; cependant, la puissance de traitement nécessaire pour effectuer cette tâche peut réduire les performances pour d’autres aspects du rapports.*
+- ***Utiliser des requêtes SQL natives*** *Quand on utilise **DirectQuery** pour des bases de données SQL, on veuille à ne pas extraire des données de procédures stockées ou d’expressions de table communes.*
+- ***Séparer la date et l’heure si elles sont stockées ensemble.*** *Si les tables ont des colonnes qui combinent la date et l’heure, il faut les séparer en colonnes distinctes avant de les importer dans Power BI. Cette approche augmente les capacités de compression.*
+
