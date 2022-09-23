@@ -286,3 +286,67 @@ ____
 - ***Séparer la date et l’heure si elles sont stockées ensemble.*** *Si les tables ont des colonnes qui combinent la date et l’heure, il faut les séparer en colonnes distinctes avant de les importer dans Power BI. Cette approche augmente les capacités de compression.*
 
 #### Résoudre les erreurs d’importation de données
+- Lors de l’importation de données dans Power BI, on peut rencontrer des erreurs résultant de facteurs tels que :
+    - Power BI importe depuis un grand nombre de sources de données.
+    - Chaque source de données peut avoir des dizaines (et parfois des centaines) de messages d’erreur différents.
+    - D’autres composants peuvent provoquer des erreurs, comme les disques durs, les réseaux, les services logiciels et les systèmes d’exploitation.
+    - Les données peuvent souvent ne pas être conformes à un schéma spécifique.
+
+##### Les messages d'erreurs les plus courant dans Power BI
+
+1. **Dépassement du délai d’expiration de la requête**
+    - Les systèmes sources relationnels sont souvent utilisés par de nombreuses personnes simultanément, qui travaillent sur les mêmes données dans la même base de données. Certains systèmes relationnels et leurs administrateurs cherchent à limiter la monopolisation par un utilisateur de toutes les ressources matérielles en définissant un délai d’expiration des requêtes. Ces délais d’expiration peuvent être configurés sur n’importe quel intervalle de temps, de cinq secondes jusqu’à 30 minutes ou plus.
+        - Par exemple, si on extrait des données du serveur SQL Server d'une organisation, on peut voir l’erreur montrée dans la figure suivante.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/9-data-import-query-timeout-ss.png)
+
+2. **Erreur de requête Power BI : Dépassement du délai d’expiration**
+    - Cette erreur indique qu'on a extrait trop de données en fonction des stratégies de l'organisation.
+        - *Les administrateurs intègrent cette stratégie pour éviter de ralentir une autre application ou suite d’applications qui pourrait également utiliser cette base de données.*
+    - On peut résoudre cette erreur en extrayant moins de colonnes ou de lignes d’une même table. 
+        - *Dans l’écriture des instructions SQL, ***inclure des regroupements et des agrégations*** peut être une pratique courante*. 
+        - *On peut également ***joindre plusieurs tables dans une même instruction SQL***. 
+        - *On peut effectuer des ***sous-requêtes complexes et des requêtes imbriquées dans une même instruction***. Ces complexités s’ajoutent aux exigences de traitement des requêtes du système relationnel et peuvent allonger de beaucoup le temps d’implémentation nécessaire*.
+        -   ```
+                En cas de besoin des lignes, des colonnes et de la complexité, on peut envisager de prendre de petits blocs
+                de données, puis les réassembler en utilisant Power Query. 
+                Par exemple, On peut combiner la moitié des colonnes dans une requête et l’autre moitié dans une autre requête. Power Query peut fusionner ces deux requêtes ensemble une fois que l'on a terminé. 
+            ```
+3. **Nous n’avons trouvé aucune donnée sous forme de tableau**
+    - Il est possible de rencontrer cette erreur lors de l’importation de données depuis Microsoft Excel. Heureusement, cette erreur est explicite. ***Power BI s’attend à trouver des données sous forme de tableau dans Excel**. L’événement d’erreur indique la résolution. 
+    - Etapes de résolution de ce problème :
+        1. Ouvrir classeur Excel et mettre en surbrillance les données que l'on veut importer.
+        2. Appuyer sur le raccourci clavier **Ctrl+T**. La première ligne sera probablement less en-têtes de colonne.
+        3. Vérifier que les en-têtes de colonne reflètent la façon dont on souhaite nommer les colonnes. 
+        4. Réessayer d’importer les données depuis Excel.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/9-format-as-table-excel-ss.png)
+
+4. **Fichier introuvable**
+    - Lors de l’importation de données depuis un fichier, on peut rencontrer cette erreur
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/9-file-location-ss.png)
+
+    - En général, cette erreur est provoquée par un déplacement de l’emplacement du fichier ou par un changement des autorisations sur le fichier. 
+        - Dans le cas de la première de ces causes, rechercher le fichier et modifier les paramètres de la source.
+            1. Ouvrir Power Query en sélectionnant le bouton Transformer les données dans Power BI.
+            2. Mettre en surbrillance la requête qui provoque l’erreur.
+            3. Sur la gauche, sous Paramètres de la requête, sélectionner l’icône d’engrenage en regard de Source.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/9-query-changes-ss.png#lightbox)
+
+            4. Remplacer l’emplacement du fichier par le nouvel emplacement.  
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/9-file-location-new-location-ss.png)
+
+5. **Erreurs de type de données**
+    - Parfois, lorsque l'on importe des données dans Power BI, les colonnes apparaissent vides. Cette situation se produit en raison d’une erreur lors de l’interprétation du type de données dans Power BI. 
+    - ***La résolution de cette erreur est propre à la source de données***. 
+        - Par exemple, si on importe des données depuis SQL Server et que l'on voit des colonnes vides, on peut essayer de convertir vers le type de données approprié dans la requête.
+            - Au lieu d’utiliser cette requête :
+                - `SELECT CustomerPostalCode FROM Sales.Customers`
+            - On utilise celle ci : 
+                - `SELECT CAST(CustomerPostalCode as varchar(10)) FROM Sales.Customers`
+            - ***En spécifiant le type approprié au niveau de la source de données, on élimine un grand nombre de ces erreurs de source de données courantes.***
+
+**NB:** ***On  peut rencontrer différents types d’erreurs dans Power BI qui sont provoquées par les différents systèmes de source de données où se trouvent les données. Si il y a une erreur qui n’a pas été abordée dans les sections précédentes, il faut rechercher le message d’erreur dans la documentation Microsoft pour trouver la résolution.***
