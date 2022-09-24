@@ -350,3 +350,42 @@ ____
             - ***En spécifiant le type approprié au niveau de la source de données, on élimine un grand nombre de ces erreurs de source de données courantes.***
 
 **NB:** ***On  peut rencontrer différents types d’erreurs dans Power BI qui sont provoquées par les différents systèmes de source de données où se trouvent les données. Si il y a une erreur qui n’a pas été abordée dans les sections précédentes, il faut rechercher le message d’erreur dans la documentation Microsoft pour trouver la résolution.***
+
+
+#### Controle des données dans les tables 
+1. **Decouverte d'information pertinents**
+    1. **Qualité des colonnes** 
+        - Sous l'onglet de ruban **Affichage**, dans le groupe **Apercu des données**, => **Qualité de la colonne**.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/lab-021.png)
+
+        - La qualité de la colonne permet de déterminer le pourcentage de **valeur valides**, en **erreur** ou en **vide** 
+
+    2. **Distribution des colonnes** 
+        - Sous l'onglet **Affichage**, dans le groupe **Apercu des données**, => **Distribution des données**.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/lab-003.png)
+
+        - Apercus des valeurs 
+            1. **Distinct** 
+            2. **Unique** 
+            ```
+                Quand les nombres de valeurs distinctes et uniques sont identiques, cela signifie que la colonne contient des valeurs uniques. Lors de la modélisation, il est important que certaines tables contiennent des colonnes uniques. On peut utiliser ces colonnes uniques pour créer des relations un-à-plusieurs.
+            ```
+
+    3. **Profilage de colonne et  evaluation de la qualité des données**
+        - Sous l'onglet de ruban **Affichage**, dans le groupe **Apercu des données**, => **Profil de colonne** 
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/lab-028.png)
+
+        - Un nouveau volet s'ouvre sous le volet apercu des données 
+            - Les statistiques et la distribution des valeurs de la colonne
+                - Placer le curseur sur une bar pour avoir les informations supplémetaire. 
+
+2. **Information d'un table**
+    - Selection d'une table dans le volet **Requetes** de **l'Editeur Power Query**
+    - Voir en bas à gauche, dans la bar d'etat , pour voir les staistique des la table
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/get-data/media/lab-020.png)
+
+
