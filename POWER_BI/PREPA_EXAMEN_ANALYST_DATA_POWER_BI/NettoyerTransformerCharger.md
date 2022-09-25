@@ -175,3 +175,47 @@
 
 #### Combiner plusieurs tables en une seule table
 
+[Voir Doc Mettre en forme et combiner les données](https://learn.microsoft.com/fr-fr/power-bi/connect-data/desktop-shape-and-combine-data)
+- La possibilité de combiner des requêtes permet d’**ajouter** ou de **fusionner** différentes **tables** ou **requêtes**. 
+- On peut combiner des tables en une seule table dans les circonstances telle que :
+    - Lorqu'il existe trop de tables, ce qui rend difficile la navigation dans un modèle de données trop complexe.
+    - Lorsque plusieurs tables ont un rôle similaire.
+    - Lorsque une table n’a qu’une ou deux colonnes qui peuvent être transférées dans une autre table.
+    - Lorsque l'on peut utiliser plusieurs colonnes de différentes tables dans une colonne personnalisée.
+- Il est possible de combiner des tables de deux mieres differentes: 
+    1. **Ajouter des requêtes**:
+        - Lorsu'on ajoute des requêtes, on ajoute des lignes de données à une autre table ou une autre requête. Par exemple, on peut avoir deux tables, une avec 300 lignes et une autre avec 100 lignes, et quand on ajoute une requête à l’autre, on obtient 400 lignes.
+    2. **Fusionner des requêtes**
+        - Lorsu'on fusionne des requêtes, on ajoute des colonnes d’une table (ou d’une requête) dans une autre table ou requête. Pour fusionner deux tables, il faut avoir une colonne qui est la clé entre les deux tables.
+- ***Avant de commencer à combiner des requêtes, il faut supprimer des tables les colonnes superflues dont on a pas besoin pour cette tâche. Pour effectuer cette tâche, mettre en forme chaque table de façon à ce qu’elle ne contiennent que des colonnes avec les informations pertinentes, puis renommer de façon à ce qu’elles aient toutes les mêmes en-têtes de colonnes:
+
+![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/05-reformatting-appending-ss.png)
+
+1. **Ajouter des requete**
+    - Onglet **Acceuil** => Liste deroulante => **Ajouter des requetes**
+        - **Ajouter les requetes comme etant nouvelles** : Le résultat de l’ajout aboutit à une nouvelle requête ou une nouvelle table,
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/05-append-new-window-ss.png)
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/05-appending-new-final-ss.png)
+
+        - **Ajouter des requetes** : Ajoute les lignes d’une table existante dans une autre.
+
+2. **Fusionner des requêtes**
+    - Onglet **Acceuil** => selection dans le menu deroulant **Fusionner des requetes** ou **Fusionner les requetes comme nouvelles** :
+        - Cette sélection ouvre une nouvelle fenêtre, où on peut choisir dans la liste déroulante les tables que l'on veut fusionner, puis sélectionner la colonne commune aux tables.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/05-merge-queries-new-ss.png)
+
+    - Lorsque l'on fusionne des requêtes, on combine les données de plusieurs tables en une seule, sur la base d’une **colonne commune entre les tables**. Ce processus est similaire à la clause **JOIN dans SQL**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/05-merging-tables-example-ss.png)
+
+    - *** La colonne qui est partagée entre ces deux tables est  OrderID.**
+    - Il est egalement possible de choisir comment joindre les deux tables, un processus qui est également similaire aux instructions **JOIN dans SQL**. Ces options de jointure incluent : 
+        1. **Externe gauche** : Affiche toutes les lignes de la première table et seulement les lignes correspondantes de la seconde.
+        2. **Externe entière** : Affiche toutes les lignes des deux tables.
+        3. **Interne** : Affiche les lignes correspondantes entre les deux tables.
+
+#### Profiler les données 
+
