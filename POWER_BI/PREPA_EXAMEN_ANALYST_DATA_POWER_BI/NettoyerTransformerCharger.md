@@ -218,4 +218,65 @@
         3. **Interne** : Affiche les lignes correspondantes entre les deux tables.
 
 #### Profiler les données 
+- Le profilage des données consiste à étudier les nuances des données : 
+    - Déterminer les anomalies 
+    - Examiner et développer les structures de données sous-jacentes 
+    - Interroger les statistiques des données:
+        - Le nombre de lignes 
+        - Les distributions des valeurs 
+        - Les valeurs minimales et maximales 
+        - Les moyennes 
+        - etc ...
+1. **Examination des structures de données** 
+    - Dans **Power BI Desktop**, il est possible de visueliser le de modele de donnée sous l'onglet **Modele**
+        - Sous l'onglet Modele: 
+            - Modification des proprietés de colonnes et des tables en les selectionnant 
+            - Transformation des données en utilisant le bouton **Transformer les données** => éditeur Power Query. 
+            - Suprimer des relations entre differentes tables => **Gérer les relations**  
 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/06-data-model-ribbon-ss.png)
+
+2. **Recherche d'anomalie et statistiques des données**
+    - Dans l'editeur **Power Query** = > Onglet **Affichage** => Zone **Apercus des données**:
+        1. **Distribution des colonnes**
+            -  montre la distribution des données dans la colonne, et le nombre de valeurs **distinctes** et **uniques**, qui peuvent vous donner des informations détaillées sur les comptages des données. 
+                1. Les **valeurs distinctes** sont toutes les valeurs différentes d’une colonne, y compris les ***doublons*** et les ***valeurs Null*** 
+                    - Il indique le nombre total de valeurs présentes
+                2. Les **valeurs uniques** n’incluent **pas** les **doublons** ni les **valeurs Null**.
+                    - Il  indique le nombre de ces valeurs qui n’apparaissent qu’une fois.
+        2. **Qualité de la colonne**
+            - Pourcentage des données:
+                1. **Valide**
+                2. **erronées**
+                3. **Vide**
+        3. **Profil de colonne** 
+            - Donne une analyse plus approfondie des statistiques des colonnes pour les 1 000 premières lignes de données. 
+                - Le nombre de lignes *(important pour vérifier que l’importation de vos données s’est faite correctement)*
+                - le nombre de lignes que Power BI a considéré comme étant des valeurs hors norme *(des lignes vides et des chaînes, et les valeurs minimale et maximale, qui vous indiquent respectivement la plus petite et la plus grande valeur d’une colonne)*
+                    - *Cette distinction est particulièrement importante dans le cas de données numériques, car elle indique immédiatement une valeur maximale qui est au-delà de ce que l'on identifie comme étant un « maximum*
+                    - Dans le cas où les données se trouvaient dans la colonne de texte, la valeur minimale est la première valeur et la valeur maximale est la dernière valeur dans l’ordre alphabétique.
+                - **le graphique Distribution de valeurs** indique le nombre de chacune des valeurs distinctes de cette colonne spécifique. ***dans le graphique ci-dessous on voit que « Anthony Grosse » apparaît le plus grand nombre de fois dans la colonne **SalesPerson**  et que « Lily Code » apparaît le plus petit nombre de fois.***
+                - Sur une colonne numérique, **Statistiques de colonnes** vont aussi inclure:
+                    - le nombre de valeurs zéro et Null
+                    - la valeur moyenne de la colonne, 
+                    - l’écart type des valeurs de la colonne, 
+                    - le nombre de valeurs paires et impaires de la colonne. 
+            - Par exemple, quand on examine des données de facturation, on remarque que le **graphique Distribution de valeurs** montre qu’un petit nombre de commerciaux de la colonne SalesPerson apparaissent ***le même nombre de fois*** dans les données. En outre, on remarque que la même situation s’est produite dans la colonne Profit ainsi que dans quelques autres tables. Au cours de l'investigation, on découvre que les données que l'on  utilisait étaient incorrectes et qu’elles devaient être actualisées : on effectue donc immédiatement l’actualisation.        
+
+    - Les anomalies des données sont des valeurs hors norme dans les données. 
+        - La détermination de ces anomalies permet d'identifier ce à quoi ressemble la distribution normale des données, et de déterminer s’il existe des points de données spécifiques à examiner de plus près. 
+    
+    ![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/06-column-statistics-ssm.png)
+
+    - **NB:** ***Par défaut, Power Query examine les 1 000 premières lignes du jeu de données. Pour modifier ce paramètre, on sélectionne **l’état du profilage dans la barre d’état**, puis sélectionnez **Profilage de colonne basé sur l'ensemble du jeu de données**.*** 
+#### Utilisation de léditeur avancé pour modifier les code M 
+- Chaque fois qu'on met en forme des données dans Power Query, on crée une étape dans le processus de Power Query.Ces étapes peuvent être réorganisées, supprimées et modifiées là où c’est pertinent. Chaque étape de nettoyage qu'on effectue est crée avec l’interface graphique, mais Power Query utilise le **langage M** en arrière-plan.Les étapes combinées sont disponibles pour être lues avec l’éditeur avancé Power Query.
+- Le langage M est toujours disponible pour être lu et modifié directement
+- Onglet **Affichage** => **Editeur avancé**.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/08-view-ribbon-advanced-button-ssm.png)
+
+![](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/media/08-m-code.png)
+
+- ***Chaque étape de Power Query va s’aligner en gros sur une ou deux lignes de code M***
+- **NB :** le code M est écrit de haut en bas. Les étapes ultérieures du processus peuvent référencer des étapes précédentes par le nom de la variable à gauche du signe égal. Écrir dans une étape de formule de requête en utilisant l’instruction **in** . En règle générale, la dernière étape de requête est utilisée comme résultat du **jeu de données final de l’instruction in**. 
