@@ -102,5 +102,81 @@
 
 #### Création d'un table de Dates
 - Power BI détecte automatiquement les colonnes et les tables de dates. Mais dans certains cas, il peut être nécessaire de prendre des mesures supplémentaires pour adapter le format des dates.
+```
+    Supposons que l'on veuille élaborez des rapports pour l’équipe commerciale de l'entreprise.
+    La base de données contient des tables pour les ventes, les commandes, les produits, etc. 
+    Et on remarque que la plupart de ces tables, dont les tables Ventes et Commandes, contiennent
+    leurs propres colonnes de dates, comme les colonnes DateExpédition et DateCommande des tables
+    Ventes et Commandes. On est chargé de créer une table contenant le total des ventes et des
+    commandes par année et par mois. Comment s'y prendre pour créer un visuel avec plusieurs
+    tables, chacune faisant référence à ses propres colonnes de dates ? 
 
+     => On crée une table de dates commune qui pourra être utilisée par plusieurs tables.
 
+```
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-data-model-excerpt-ssm.png)
+
+#### Créeation d'une table de dates commune
+- Les moyens disponible pour créer une table de date commune: 
+    1. Données source 
+    2. DAX
+    3. Power Query
+
+1. **Données sources** 
+    - Parfois, les bases de données sources et les entrepôts de données ont déjà leurs propres tables de dates. Si l’administrateur qui a conçu la base de données a fait un travail consciencieux, ces tables peuvent être utilisées pour effectuer les tâches suivantes :
+        - Identifier les jours de fermeture de la société
+        - Séparer l’année civile et l’année fiscale
+        - Identifier les week-ends et les jours de la semaine
+    - *Si les tables de données sources sont abouties et prêtes à être utilisées immédiatement, on l'intégre au modèle de données et on n’utilise pas les autres méthodes. Il est recommandé d’utiliser une table de dates source, car elle est probablement partagée avec d’autres outils qu'on utilise peut-être en plus de Power BI.*
+2. **DAX** 
+    - Il est possible d'utiliser les fonctions DAX **CALENDAR()** ou **CALENDARAUTO()** pour gerer la table de date commune.
+        - **CALENDAR()**: 
+            - Elle retourne une plage de dates voisines basée sur des dates de début et de fin entrées sous forme d’**arguments dans la fonction**.
+        - **CALENDARAUTO()**: 
+            - Elle peut aussi retourner une plage des dates voisines et complète de dates qui sont automatiquement déterminées à partir de votre jeu de données. *(La date de début choisie correspond à la date la plus ancienne dans le jeu de données, et la date de fin est la date la plus récente dans le jeu de données)*
+            - Il aussi possible de choisir d’inclure les données qui ont été remplies au **titre du mois fiscal** comme argument de la fonction **CALENDARAUTO()**.
+    - Dans **Power BI Desktop** => l’**onglet Table** sur le ruban => Sélection **Nouvelle table** => la formule DAX suivante :
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-dax-function-calendar-auto-01-ss.png)
+
+    - ***La fonction **CALENDAR()** a est utilisée, car le but est d’afficher uniquement les données sur 10 ans à compter du 31 mai 2011.***
+
+    - Si on souhaite recuperer les colonnes pour l’**année** uniquement, le **numéro du mois**, la **semaine de l’année** et le **jour de la semaine**. 
+        - => sélection **Nouvelle colonne** sur le ruban => équation DAX *(qui récupère l’année dans la table Date.)*
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-adding-columns-dax.png)
+
+        - => sélection **Nouvelle colonne** sur le ruban => équation DAX *(qui récupère le mois dans la table Date.)*
+            - `MonthNum = MONTH(Dates[Date])`
+        - => sélection **Nouvelle colonne** sur le ruban => équation DAX *(qui récupère le numero de la semaine dans la table Date.)*
+            - `WeekNum = WEEKNUM(Dates[Date])`
+        - => sélection **Nouvelle colonne** sur le ruban => équation DAX *(qui récupère le jour de la semaine dans la table Date.)*
+            - `DayoftheWeek = FORMAT(Dates[Date], "DDDD")`
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-final-columns-dax-table-2-ss.png)
+
+        - ***Une table de dates commune est créée avec DAX. Ce processus ne fait qu’ajouter une nouvelle table au modèle de données ; il reste encore à **établir des relations entre la table de dates et les tables Ventes et Commandes**, puis à **marquer la table comme étant la table de dates officielle** du modèle de données.***
+3. **Power Query**
+- Il est possible d'utiliser le langage de **développement M**, qui permet de créer des requêtes dans **Power Query** en vue de définir une table de données commune.
+    - Selection **Transformer les données** dans **Power BI Desktop** => **Power Query** => dans l'espace vide du volet **Requetes** de gauche => Click bouton droit => menu deroulant => selection **Nouvelle requete** => **Requete vide**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-new-query-common-date-table-03-ss.png)
+
+    - Dans la vue **Nouvelle requête** qui s’affiche, on entre la **formule M** suivante pour créer une table de calendrier :
+        - `= List.Dates(#date(2011,05,31), 365*10, #duration(1,0,0,0))`
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-m-query-common-data-table-04-ss.png)
+
+        - *Pour les données de vente, la date de début doit ici correspondre à la date la plus ancienne dans les données : le 31 mai 2011. On souhaite également afficher les dates pour les 11 prochaines années, notamment les dates dans le future. À mesure que les nouvelles données de ventes afflueront, on n’aura pas besoin de recréer cette table. Il est également possible de changer la durée. Dans ce cas, on veut un point de données pour chaque jour, mais il est également possible de définir des incréments par heures, minutes et secondes.*
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-list-power-query-11-ss.png)
+
+        - Ici on remarquera que les dates se présentent sous la forme d’une **liste** et non d’une table. Pour corriger cette erreur: l’**onglet Transformer** sur le ruban => sélection **Convertir** => **Dans une table**. Comme le nom l’indique, cette fonctionnalité convertit la liste en table. Il est aussi possible de renommer la colonne ColDate.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-converting-list-table-05-ssm.png)
+
+        - Si souhaite ajouter des colonnes à la nouvelle table pour afficher les dates par **année**, **mois**, **semaine** et **jour** de façon à pouvoir établir une hiérarchie dans le visuel. 
+            - => **Changer le type de colonne**. 
+                - Sélection **icône en regard du nom de la colonne** => dans le menu déroulant => sélection **Date**.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-change-type-date-3-ss.png)
