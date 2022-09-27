@@ -297,10 +297,43 @@
         - *Plus le nombre d’enregistrements utilisé est faible, plus les rapports et les visuels fonctionnent rapidement. Mais si l'utilisateur souhaitent explorer plus en détail chaque transaction, le fait de récapituler la précision va les empêcher d’y parvenir, ce qui peut avoir un impact négatif sur l’expérience utilisateur.*
         - **Il est donc important de négocier le niveau de précision des données avec les utilisateurs de rapports**
 2. **Changer la précision des données pour établir une relation entre deux tables** 
-    - 
+    - La précision des données peut également avoir un impact quand on crée des relations entre les tables.
+        - Par exemple : le niveau de détail le plus bas de la table Sales se situe au niveau journalier, par exemple 01/05/2020, 07/06/2020 et 18/06/2020. Le niveau de détail de la table Budget se situe uniquement au niveau mensuel, par exemple, les données de budget correspondent à 05/2020 et 06/2020. Ces tables ont des niveaux de précision différents qui doivent faire l’objet d’un rapprochement pour que vous puissiez créer une relation entre elles.
 
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-data-granularity-example-01-ss.png)
 
+        - Il manque donc une relation entre les tables **Budget** et **Date**. Il faut donc créer cette relation pour pouvoir générer le visuel. 
+            - NB: Si on transforme les colonnes **Year** et **Month** de la table Date dans une nouvelle colonne, puis que l'on effectue la même transformation dans la table Budget, on peut faire correspondre le format de la colonne Date dans la table Date. Et on peut ensuite établir une relation entre les deux colonnes. 
+                - Pour effectuer cette tâche, on concaténe les colonnes Year et Month, puis on change le format.
+            
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-budget-calendar-tables-9-ss.png)
 
+            1. Sélectionnez **Transformer les données**. Dans le volet droit, dans **Étapes appliquées**,click droit sur la dernière étape => sélection **Insérer l’étape après**.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-applied-steps-10-ss.png)
+
+            2. Sous **Ajouter une colonne** => sélection **Colonne personnalisée** introduire l’équation pour concaténer les colonnes Year et Month, puis ajoutez un tiret entre les noms de colonnes.
+                - `Column = Table.AddColumn(#"Renamed Columns", "Custom", each [Year] & "-" &[Month])`
+
+            3. On change le type de données en **type Date**, on renomme la colonne. 
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-custom-column-date-02-ssm.png)
+
+#### Créer une relation entre tables
+- **Gérer les relations** => **Nouvelle** => céation de la relation dans la colonne **Date**
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-establishing-relationships-03-ssm.png)
+
+- **NB: Ici on a vérifié que la précision est la même entre les différentes tables.**
+    - À présent, il faut créer des **mesures DAX** pour calculer **Total des ventes** et **Montant du budget**. 
+        - Volet Données sur Power BI Desktop => Sélection **Nouvelle mesure** => création de deux mesures avec les équations suivantes :
+            - `TotalSales = SUM(Sales[Total Sales])`
+            - `BudgetAmount = SUM (Budget[BudgetAmount])`
+    - Sélection du visuel de table dans le **volet Visualisation** => introduire les mesures ainsi que la Date dans le **champ Valeurs** => une matrice du total des ventes et des budgets dans le temps.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/05-matrix-visual-being-built-04-ssm.png)
+
+#### Relations et cardinalité
 
 
 
