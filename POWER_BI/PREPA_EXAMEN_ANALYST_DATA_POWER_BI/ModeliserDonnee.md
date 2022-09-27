@@ -217,3 +217,92 @@
     - Une fois terminé, on peut créer une table en retournant sous l’**onglet Visualisations** et en sélectionnant le **visuel Table**. Si on souhaite afficher le total des commandes et des ventes par année et mois, on inclue uniquement les colonnes Année et Mois de votre table de dates, la colonne **QtéCommandée** et la mesure **#TotalVentes**. Dans la section consacrée aux hiérarchies, il est également possible d’établir une hiérarchie pour une exploration au niveau du détail, de l’année au mois.
 
     ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-common-date-dax-5-ss.png)
+
+#### Utilisation des dimension 
+- Il est possible d'utiliser des **hiérarchies** comme source unique pour faciliter la recherche de détails dans les tables de dimension. Ces hiérarchies se forment via des segments naturels dans less données. 
+    - Par exemple, il peut exister une hiérarchie de dates dans laquelle les dates peuvent être segmentées en années, mois, semaines et jours. Les hiérarchies sont utiles, car elles permettent d’explorer les données au niveau du détail au lieu de les voir de manière globale.
+1. **Hiérarchies**
+    - Lorsqu'on crée des visuels, Power BI entre automatiquement les valeurs du type date sous forme de hiérarchie ***(à condition que la table n’a pas été marquée comme table de dates)***. 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-example-hierarchy-7-ss.png)
+
+    - Il est aussi possible de créer des hiérarchie manuellement.
+        - *Par exemple, supposez que l'on souhaite créer un graphique à barres empilées présentant le total des ventes par catégorie et sous-catégorie. Pour cela, on peut créer une hiérarchie dans la table **Produit** pour les **catégories** et les **sous-catégories***
+    - Volet **Champs** => Bouton droit sur la colonne souhaité pour la hiérarchie => selection **Nouvelle hiérarchie** 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-new-hierarchy-8-ss.png) 
+
+    - Ensuite on fait glisser la colonne de sous catégorie vers la nouvelle hierarchie 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-new-hierarchy-9-ss.png)
+
+    - Et enfin le visue en ajoutant Hiérarchie des noms de catégories dans le champ Axe et Total des ventes dans le champ Valeurs.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-hierarchy-visual-7-ss.png)
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-example-hierarchy-8-ss.png)
+
+#### Hiérarchie parent-enfant
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-example-hierarchy-1-ss.png)
+
+- Comme le montre l’image, plusieurs employés peuvent avoir un même responsable, ce qui indique qu’il existe une hiérarchie entre les responsables et les employés.
+    - Sachant que la hiérarchie est déterminée par la colonne manager, celle-ci représente le parent, alors que les « enfants » sont les employés
+
+1. **Aplatir la hiérarchie parent-enfant** 
+- Le fait d’afficher plusieurs niveaux enfants dépendant d’un parent de niveau supérieur revient à **aplatir la hiérarchie**.
+    - *Ce processus consiste à créer plusieurs colonnes dans une table pour afficher le chemin hiérarchique du parent à l’enfant dans le même enregistrement*
+    -  On utilise :
+        - **PATH()**, fonction **DAX** simple qui **retourne une version texte du chemin managérial de chaque employé**, 
+        - **PATHITEM()** pour décomposer ce chemin en différents niveaux de hiérarchie managérial.
+    - Dans la table, à l’**onglet Modélisation** => sélection **Nouvelle colonne**. 
+        - Dans la barre de formule qui s’affiche => la fonction suivante, qui crée le chemin texte entre l’employé et le responsable. Cette action crée une colonne calculée dans DAX.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-dax-measure-hierarchy-2-ss.png)
+
+        - Le chemin complet entre l’employé et le responsable apparaît dans la nouvelle colonne,
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-path-function-example-10-ss.png)
+
+        - ***Dans le cas de Roger M, le chemin d’ID est 1010 | 1011 | 1013, ce qui signifie qu’au niveau au-dessus de Roger M (ID 1013) se trouve son responsable, Pam H (ID 1011) et qu’au niveau au-dessus de Pam H se trouve son responsable Roy F (ID 1010). Dans cette ligne, Roger M se trouve au bas de la hiérarchie, au niveau enfant, et Roy F se trouve en haut de la hiérarchie, au niveau parent. Ce chemin est créé pour chaque employé. Pour aplatir la hiérarchie, on peut décomposer chaque niveau à l’aide de la fonction PATHITEM.***
+        - Pour afficher les trois niveaux de la hiérarchie séparément, on peut créer quatre colonnes, en entrant les équations suivantes. *(on va utiliser la fonction PATHITEM pour récupérer la valeur qui réside dans le niveau correspondant de votre hiérarchie)*.
+            - `Niveau 1 = PATHITEM(Employé[Chemin],1)`
+            - `Niveau 2 = PATHITEM(Employé[Chemin],2)`
+            - `Niveau 3 = PATHITEM(Employé[Chemin],3)`
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-path-item-function-12-ss.png)
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-parent-child-hierarchy-table-06-ssm.png)
+
+        - À présent, on peut créer une hiérarchie dans le **volet Champs**
+            - Click droit sur **Niveau 1**, car il s’agit du premier niveau de la hiérarchie,=> sélection **Nouvelle hiérarchie** => **glisser-déposer** du **Niveau 2** et du **Niveau 3** dans cette hiérarchie.
+        
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-employee-level-hierarchy-14-ss.png)
+
+#### Dimensions de rôle actif
+- Les dimensions de rôle actif ont plusieurs relations valides avec les tables de faits, ce qui signifie que la même dimension peut être utilisée pour filtrer plusieurs colonnes ou tables de données. Ainsi, on peut filtrer les données différemment en fonction des informations que l'on doit récupérer. L’utilisation de dimensions de rôle actif nécessite des fonctions DAX.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/04-role-playing-dimension-05-ss.png)
+
+- Le visuel montre les tables **Calendrier**, **Ventes** et **Commandes**. ***Calendrier est la table de dimension, alors que Sales et Order sont des tables de faits***. 
+    - La table de dimension a **deux relations** : Une avec **Ventes** et une autre avec **Commande**. 
+        - Cet exemple est une dimension de rôle actif, car la table Calendrier peut être utilisée pour regrouper des données à la fois dans Ventes et commandes. 
+    - ***Si on souhaite générer un visuel dans lequel la table Calendrier référence les tables Commandes et Ventes, la table Calendrier sert de dimension de rôle actif***.
+
+#### Définir la précision des données
+- La précision des données correspond à leur niveau de détail. Elle peut avoir un impact important sur le niveau de performance ainsi que sur l’efficacité d’utilisation des rapports et visuels Power BI.
+
+1. **Définition de la précision des données** 
+    - Prendre une approche suffisament acceptable pour effectuer le suivi.
+        - *Plus le nombre d’enregistrements utilisé est faible, plus les rapports et les visuels fonctionnent rapidement. Mais si l'utilisateur souhaitent explorer plus en détail chaque transaction, le fait de récapituler la précision va les empêcher d’y parvenir, ce qui peut avoir un impact négatif sur l’expérience utilisateur.*
+        - **Il est donc important de négocier le niveau de précision des données avec les utilisateurs de rapports**
+2. **Changer la précision des données pour établir une relation entre deux tables** 
+    - 
+
+
+
+
+
+
+
+ 
