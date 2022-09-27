@@ -335,6 +335,36 @@
 
 #### Relations et cardinalité
 
+1. **Les relations** 
+    - Les differents type de relations que l'on retourve dans Power BI
+        1.  Relation **plusieurs-à-un** ou **un-à-plusieurs** 
+            - Décrit une relation dans laquelle de nombreuses instances d’une valeur dans une colonne sont liées à une seule instance correspondante dans une autre colonne.
+            - Décrit la direction entre les tables de faits et de dimension.
+            - Ce type de direction, le plus courant, est utilisé par défaut dans Power BI quand on crée automatiquement des relations.
+        - ***Plusieurs territoires peuvent être associés à un seul pays.***
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-many-to-one-2-ss.png)
+
+        2. Relation **un-à-un**
+            - Décrit une relation dans laquelle une seule instance d’une valeur est commune à deux tables.
+            - Nécessite des valeurs uniques dans les deux tables.
+            - *Cette relation n’est pas recommandée, car elle stocke des informations redondantes et suggère que le modèle n’est pas correctement conçu. Il est préférable de **combiner les tables.***
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-one-to-one-example-12-ss.png)
+
+            - Si on a des **Produits** et des **ID produit** dans deux tables différentes, on a affaire à une **relation un-à-un**. ***La création d’une relation un-à-un est redondante et ces deux tables doivent être combinées.***
+        3. Relations **plusieurs à plusieurs**
+            - Décrit une relation dans laquelle de nombreuses valeurs sont communes à deux tables
+            - Elle ne nécessite pas de valeurs uniques dans l’une ou l’autre table de la relation
+            - **Elle n’est pas recommandée, car le manque de valeurs uniques introduit une certaine ambiguïté. De plus,les utilisateurs peuvent ne pas savoir à quoi font référence les colonnes de valeurs.*
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-many-to-many-4-ss.png)
+
+        
+            - ***Il y a ambiguïté car les deux tables peuvent avoir la même date de commande.***
+
+
+
 
 
 
