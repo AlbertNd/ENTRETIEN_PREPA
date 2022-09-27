@@ -363,6 +363,16 @@
         
             - ***Il y a ambiguïté car les deux tables peuvent avoir la même date de commande.***
 
+2. **Direction du filtre croisé**
+- Les données peuvent être filtrées d’un côté d’une relation ou des deux côtés.
+    1. **Avec une direction de filtre croisé unique :**
+        - Pour une relation **un-à-plusieurs** ou **plusieurs-à-un**, la direction du filtre croisé est du côté **« un »**, ce qui signifie que le ***filtrage s’effectue dans la table qui a des valeurs multiples.***
+        - *la Table 1 peut être filtrée par la Table 2, mais la Table 2 ne peut pas être filtrée par la Table 1.*
+    2. **Avec les deux directions du filtre croisé ou le filtrage croisé bidirectionnel :**
+        - Une table dans une relation peut être utilisée pour filtrer l’autre. Par exemple, une table de dimension peut être filtrée à l’aide de la table de faits et les tables de faits peuvent être filtrées à l’aide de la table de dimension.
+        - On peut obtenir des performances inférieures si on utilise le filtrage croisé bidirectionnel avec des relations **plusieurs-à-plusieurs**
+        - **NB : L’activation de cette option peut entraîner des ambiguïtés, un suréchantillonnage, des résultats inattendus et une détérioration potentielle des performances.**
+
 
 
 
