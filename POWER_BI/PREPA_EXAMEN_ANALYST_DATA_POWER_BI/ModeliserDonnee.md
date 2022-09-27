@@ -395,6 +395,23 @@
     ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-manage-relationships-04-ssm.png)
 
 #### Résolution des problèmes liés à la modélisation
+- La modélisation des données consiste à établir et gérer des relations pour permettre de visualiser efficacement les données sous la forme souhaitée. Au moment de créer ces relations, un écueil courant auquel on peut faire face est celui des relations circulaires.
+    -   ```
+            Par exemple, on est chargé d’élaborer des rapports pour l’équipe commerciale et
+            examiner les relations entre les tables. 
+            Dans un modèle de données mal conçu, la table 1 a une relation plusieurs-à-un 
+            avec une colonne de la table 2, mais la table 2 a une relation un-à-plusieurs 
+            avec la table 3 qui a sa propre relation avec la table 1. 
+            Cet ensemble de relations est difficile à gérer, et créer des visuels devient fastidieux dans le sens où il n’est plus évident de distinguer les relations existantes. 
+            Par conséquent, il est important de pouvoir identifier les relations circulaires pour rendre les données exploitables.
+        ```
+1. **Dépendances des relations**
+- Pour comprendre les relations circulaires, il faut d’abord comprendre les dépendances.
+    - Supposons que la table Ventes contient la colonne calculée Total suivante.
+        - `Ventes[‘CoûtTotal’] = Ventes[‘Quantité’] * Ventes[‘Prix’]`
+    - **CoûtTotal** dépend de **Quantité** et de **Prix**. Autrement dit, si la quantité ou le prix change, CoûtTotal change aussi. Cet exemple montre l’existence d’une dépendance entre une colonne et d’autres colonnes, mais il peut aussi exister des dépendances entre des mesures, des tables et des relations.
 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/07-dependencies-relationships-01-ssm.png)
 
- 
+    - ***Toute modification au niveau de Customer se répercutera sur Sales, qui se répercutera à son tour sur SalesPerson. Ces types de dépendance peuvent exister au sein de relations.***
+    
