@@ -180,3 +180,40 @@
                 - Sélection **icône en regard du nom de la colonne** => dans le menu déroulant => sélection **Date**.
 
             ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-change-type-date-3-ss.png)
+
+            - **Ajout des colonnes pour l’année, les mois, les semaines et les jours**
+                - => **Ajouter une colonne** => menu déroulant en dessous de **Date** => sélection **Année**
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-adding-columns-power-query-5-ss.png)
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-adding-columns-table-power-query-6-ss.png)
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-final-columns-using-power-query-7-ss.png)
+
+#### Marquer comme table de dates officielle
+-  Table dans le **volet Champs** => Click droit sur le nom de la table => sélectionn **Marquer comme table de dates**. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-mark-date-table-06-ss.png)
+
+- Ainsi , Power BI effectue des validations pour vérifier que les données ne comportent pas de valeurs null, qu’elles sont uniques et qu’elles contiennent des valeurs de date sur une période.
+
+- Il aussi possible de choisir de marquer certaines colonnes de la table en tant que date, ce qui peut s’avérer utile quand la table compte un grand nombre de colonnes. 
+    - Click droit sur la table => sélection **Marquer comme table de dates** => sélection **Paramètres de la table de dates** => choisir la colonne qui doit être marquée comme Date.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-mark-date-table-07-ss.png#lightbox)
+
+- **NB:** *Si on sélectionne **Marquer comme table de dates**, on supprime les **hiérarchies** générées automatiquement du champ Date de la table que on a marqué comme table de dates. Pour les autres champs de date, la hiérarchie automatique reste présente tant que on n’établit pas de relation entre ce champ et la table de dates ou que on ne désactive pas la fonctionnalité **Date/heure automatique**. On peut ajouter manuellement une hiérarchie à la table de dates commune en cliquant avec le bouton droit sur les colonnes année, mois, semaine ou jour dans le volet Champs, puis en sélectionnant Nouvelle hiérarchie.* 
+
+#### Création du visuel 
+- Pour créer le visuel entre les tables Ventes et Commandes, il faut établir une relation entre cette nouvelle table de dates commune et les tables Ventes et Commandes. On pourrait ainsi créer des visuels en utilisant la nouvelle table de dates. 
+    - **Onglet Modèle** de modèle => **Gérer les relations** *(où on peut créer des relations entre la table de dates commune et les tables Commandes et Ventes en utilisant la colonne DateCommande)*.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-create-relationship-8-ss.png)
+
+- Une fois les relations créée, on peut générer le visuel **Total des ventes et quantité commandée par période** avec la table de **dates commune** élaborées à l’aide de la méthode **DAX** ou **Power Query**. 
+    - Pour déterminer le total des ventes, il faut ajouter toutes les ventes, car la colonne Quantité de la table Ventes considère uniquement la recette de chaque vente, et non le chiffre d’affaires total. 
+        - Utilisez du calcul de mesure
+            - `#Total Sales = SUM(Sales[‘Amount’])`
+    - Une fois terminé, on peut créer une table en retournant sous l’**onglet Visualisations** et en sélectionnant le **visuel Table**. Si on souhaite afficher le total des commandes et des ventes par année et mois, on inclue uniquement les colonnes Année et Mois de votre table de dates, la colonne **QtéCommandée** et la mesure **#TotalVentes**. Dans la section consacrée aux hiérarchies, il est également possible d’établir une hiérarchie pour une exploration au niveau du détail, de l’année au mois.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/03-common-date-dax-5-ss.png)
