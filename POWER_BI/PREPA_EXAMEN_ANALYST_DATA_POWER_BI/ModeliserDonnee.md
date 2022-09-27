@@ -373,9 +373,28 @@
         - On peut obtenir des performances inférieures si on utilise le filtrage croisé bidirectionnel avec des relations **plusieurs-à-plusieurs**
         - **NB : L’activation de cette option peut entraîner des ambiguïtés, un suréchantillonnage, des résultats inattendus et une détérioration potentielle des performances.**
 
+3. **Cardinalité et direction du filtre croisé**
+- **Pour les relations un-à-un**:
+    - la seule option disponible est le filtrage croisé bidirectionnel. Les données peuvent être filtrées de chaque côté de cette relation et aboutir à une valeur distincte non ambiguë. Par exemple, on peut filtrer sur un ID produit et obtenir un produit unique, et on peut filtrer sur un produit et obtenir un ID produit unique.
 
+- **Pour les relations plusieurs-à-plusieurs**
+    - On peut choisir de filtrer dans une seule direction ou dans les deux à l’aide d’un filtrage croisé bidirectionnel. L’ambiguïté associée au filtrage croisé bidirectionnel est amplifiée dans une relation plusieurs-à-plusieurs en raison de la multitude de chemins entre les différentes tables. Si on crée une mesure, un calcul ou un filtre, des conséquences inattendues peuvent se produire. Ainsi, si les données sont filtrées, le résultat final peut être différent en fonction de la relation que le moteur Power BI choisit lors de l’application du filtre. Il en va de même pour les relations bidirectionnelles, et c’est donc pourquoi on doit faire preuve de prudence quand on les utilise.
 
+4. **Création des relations plusieurs-à-plusieurs**
 
+[Voir doc Relations plusieurs à plusieurs dans Power BI.](https://learn.microsoft.com/fr-fr/power-bi/transform-model/desktop-many-to-many-relationships)
+
+- Soit on doit créer un visuel qui examine les budgets des clients et les comptes. Comme on peut avoir plusieurs clients dans le même compte et plusieurs comptes avec le même client, il faut créer une relation plusieurs-à-plusieurs.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-many-to-many-relationship-01-ssm.png)
+
+- **Gerer les relations** => **Nouveau**
+    - Dans la fenêtre qui apparaît, on crée une relation entre la colonne **Customer ID** dans **CustomerTable** et **AccountTable**. La relation est **plusieurs-à-plusieurs** et le type de filtre est **bidirectionnel**. 
+        - ***On est averti qu'il faut utiliser ce type de relation que s’il est prévu qu’aucune des colonnes n’aura de valeurs uniques car on pourait obtenir des valeurs inattendues. Étant donné qu'on ne souhaite pas filtrer dans les deux directions, on choisi le filtrage croisé bidirectionnel.***
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/06-manage-relationships-04-ssm.png)
+
+#### Résolution des problèmes liés à la modélisation
 
 
  
