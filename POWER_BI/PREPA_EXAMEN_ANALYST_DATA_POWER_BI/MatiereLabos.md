@@ -64,7 +64,7 @@
             - Avancé 
                 - Totaliser par la moyenne 
         5. Mettre à jour en bloc les propriétés
-    3.  ***Examiner l’interface du modèle ***
+    3.  ***Examiner l’interface du modèle***
         - Vue rapport 
         - Volet chammps 
             - les colonnes 
@@ -75,6 +75,6 @@
         - Hierarchie date automatique 
         - desactivation de Date/heure automatique 
             - fichier => Option et paramettre => options => fichier actif => chargement des données => time intelligence => date/heure automatique.
-    4.  ***Création des mesures rapides ***
+    4.  ***Création des mesures rapides***
         1. Créer des mesures rapides
             - Click droit sur la tables => Nouvelle mesure rapide.
