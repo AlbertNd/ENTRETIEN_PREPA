@@ -1,8 +1,6 @@
 # La matière abordée dansles labos Microsoft Power BI 
 
-1. **Préparation des données dans Power BI** 
-
-[Labo Preparer les données dans Power BI Desktop](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
+1. **Préparation des données dans Power BI => [Labo](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)** 
 
     1. ***Enregistrer le fichier Power BI Desktop***
     2. ***Définir les options de Power BI Desktop***
