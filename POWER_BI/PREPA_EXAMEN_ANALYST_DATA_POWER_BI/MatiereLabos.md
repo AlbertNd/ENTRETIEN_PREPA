@@ -18,9 +18,12 @@
     5. ***Obtenir des données d’un fichier CSV***
         - Ajout d'une nouvelle requête
             - Acceuil => zone nouvelle requete => Nouvelle source => Texte/CSV 
-    6. ***Obtenir des données supplémentaires d’un fichier CSV***
+    6. ***Obtenir des données supplémentaires d’un fichier CSV***   
 
-2. ### Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
+2. ## Nettoyer, transformer et charger des données dans Power BI
+    - Chargement des données 
+
+3. ## Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
 
     1. ***Créer des relations de modèle***
         1. Demarrage
