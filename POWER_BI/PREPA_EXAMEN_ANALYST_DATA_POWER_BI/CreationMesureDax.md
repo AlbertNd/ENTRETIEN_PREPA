@@ -34,3 +34,23 @@
         1. Créez la colonne dans la requête source lorsque vous récupérez les données, par exemple en ajoutant le calcul à une vue dans une base de données relationnelle.
         2. Créez la colonne personnalisée dans Power Query.
         3. Créez une colonne calculée à l’aide de DAX dans Power BI Desktop.
+    1. **Creation dans la requete source**
+        - Il est possible de créer une colonne calculée lorsque on extrayait les données de la source. 
+            - Chaque source de données impose une technique spécifique pour effectuer cette action. 
+            - Par exemple, l’extraction de données d’une source de données relationnelle à l’aide d’une vue écrite dans le langage SQL se présenterait ainsi :
+            -   ```
+                    CREATE VIEW OrdersWithTotalPrice
+                    AS
+                    SELECT unitprice, qty, unitprice * qty as TotalPrice 
+                    FROM sales.salesorders
+                ```
+                - *Le langage SQL est un moyen efficace de créer une colonne, car c’est la source de données qui effectue les calculs. Dans Power BI, la colonne calculée apparaîtrait comme n’importe quelle autre colonne.*
+    2. **Création de la colonne dans Power Query** 
+        
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-custom-column-ss.png)
+
+        - *La boîte de dialogue Colonne personnalisée utilise le langage M pour créer la nouvelle colonne.*
+
+    3. **Cration d'ne colonne à l'aide de DAX** 
+        - 
+
