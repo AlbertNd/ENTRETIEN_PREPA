@@ -20,7 +20,7 @@
             - Acceuil => zone nouvelle requete => Nouvelle source => Texte/CSV 
     6. ***Obtenir des données supplémentaires d’un fichier CSV***   
 
-2. ## Nettoyer, transformer et charger des données dans Power BI
+2. ## Nettoyer, transformer et charger des données dans Power BI [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/8-lab)
     - Chargement des données 
 
 3. ## Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
