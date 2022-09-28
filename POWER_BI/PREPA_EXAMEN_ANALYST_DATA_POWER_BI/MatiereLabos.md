@@ -21,7 +21,7 @@
     6. ***Obtenir des données supplémentaires d’un fichier CSV***
 
 2. **Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)**
- 
+
     1. ***Créer des relations de modèle***
         1. Demarrage
         2. Créer des relations de modèle
@@ -34,7 +34,7 @@
                 - Direction du filtre croisé => sens unique 
                 - Rendre cette relation => active 
             - Création de relation à partir du diagramme 
-    2.  ***Configuration des tables ***
+    2.  ***Configuration des tables***
         1. Configurer la table Product
             - Création de hierarchie 
                 - Volet champs  => click droit sur colonne => Creer une hierarchie 
