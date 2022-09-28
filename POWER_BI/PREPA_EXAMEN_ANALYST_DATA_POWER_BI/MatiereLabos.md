@@ -20,7 +20,8 @@
             - Acceuil => zone nouvelle requete => Nouvelle source => Texte/CSV 
     6. ***Obtenir des données supplémentaires d’un fichier CSV***
 
-2. **Modéliser les données dans Power BI Desktop (partie 1)** 
+2. **Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)**
+ 
     1. ***Créer des relations de modèle***
         1. Demarrage
         2. Créer des relations de modèle
