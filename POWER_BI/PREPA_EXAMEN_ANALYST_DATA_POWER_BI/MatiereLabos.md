@@ -1,6 +1,6 @@
-# La matière abordée dansles labos Microsoft Power BI 
+# La matière abordée dans les labos Microsoft Power BI 
 
-1. **Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)** 
+1. ### Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
 
     1. ***Enregistrer le fichier Power BI Desktop***
     2. ***Définir les options de Power BI Desktop***
@@ -20,7 +20,7 @@
             - Acceuil => zone nouvelle requete => Nouvelle source => Texte/CSV 
     6. ***Obtenir des données supplémentaires d’un fichier CSV***
 
-2. **Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)**
+2. ### Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
 
     1. ***Créer des relations de modèle***
         1. Demarrage
