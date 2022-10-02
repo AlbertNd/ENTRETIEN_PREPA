@@ -51,6 +51,81 @@
 
         - *La boîte de dialogue Colonne personnalisée utilise le langage M pour créer la nouvelle colonne.*
 
-    3. **Cration d'ne colonne à l'aide de DAX** 
-        - 
+    3. **Cration d'une colonne à l'aide de DAX** 
+        - Voir avant 
+
+**NB: Lorsque on crée une colonne calculée à l’aide de DAX, on a pas besoin d’actualiser le jeu de données pour afficher la nouvelle colonne. Avec les autres méthodes, une actualisation serait nécessaire pour voir les modifications. Ce processus peut être long en présence d’un gros volume de données. Toutefois, ce problème n’est pas pertinent car, une fois créées, les colonnes sont rarement modifiées.**
+
+**La colonne calculée DAX ne présente pas une aussi bonne compression que les autres méthodes. Les autres types de colonnes sont compressés, ce qui permet d’obtenir un fichier ".pbix" plus petit et des performances généralement plus rapides.**
+
+**En règle générale, plus tôt la colonne est créée, mieux c’est. L’utilisation de DAX n’est pas considérée comme une pratique optimale pour les calculs si l’utilisation d’un autre mécanisme est possible.**
+
+**Par ailleurs, l’une des techniques permettant d’éviter d’utiliser une colonne calculée consiste à avoir recours à l’une des fonctions X,** 
+- comme SUMX, 
+- COUNTX ou MINX. 
+
+**Elles permettent de créer des mesures qui tiennent compte des données présentes dans chacune des lignes et calculent des totaux en fonction des totaux de la ligne.** 
+**Ces fonctions sont appelées fonctions d’itérateur, car, bien qu’elles soient utilisées dans les mesures, elles effectuent une itération sur les différentes lignes pour réaliser leurs calculs.** 
+
+***Une fonction X est plus performante et utilise moins d’espace disque qu’une colonne calculée.*** 
+
+[Pour plus d'informations sur les fonctions X](https://learn.microsoft.com/fr-fr/dax/sumx-function-dax) 
+
+#### Usage des mesures
+
+- Les colonnes calculées sont utiles, mais elles imposent de travailler ligne par ligne. D’autres situations peuvent réclamer une méthode plus simple. 
+    - *Supposons par exemple que l'on souhaite une agrégation qui s’applique à l’ensemble du jeu de données pour obtenir le total des ventes de toutes les lignes. On veut également découper les données selon d’autres critères, comme le total des ventes par année, par employé ou par produit.*
+        - Pour accomplir ces tâches, Il faut utiliser **une mesure**. 
+- **Il est possible d’élaborer une mesure sans écrire de formule DAX. Power BI l’écrit automatiquement lorsqu'on crée une mesure rapide.**
+
+1. **Création d’une mesure rapide**
+
+[Voir doc Calculs courants à l’aide des mesures rapides.](https://learn.microsoft.com/fr-fr/power-bi/transform-model/desktop-quick-measures)
+
+- click droit ou sélection du bouton points de suspension (…) à côté d’un élément dans le volet Champs, puis sélection de **Nouvelle mesure rapide** dans le menu qui s’affiche. L’écran Mesures rapides s’affiche.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-quick-measure-ssm.png)
+
+- Dans la fenêtre Mesures rapides, on peut sélectionner le calcul que l'on souhaite et les champs sur lesquels il sera réalisé, par exemple une colonne. Power BI crée automatiquement la mesure DAX et affiche la formule DAX. 
+
+2. **Création d’une mesure**
+- click droit ou sélection du bouton points de suspension (…) à côté d’un élément dans le volet Champs, puis sélection de **Nouvelle mesure** dans le menu qui s’affiche. L’écran Mesures rapides s’affiche.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-new-measure-ss.png)
+
+- On peut replacer le texte mesure par :
+    - `Total Sales = sum('Sales OrderDetails'[Total Price])`
+    - La nouvelle mesure apparaît maintenant dans la liste Champs.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-new-measure-fields-ss.png)
+
+3. **Différences entre une colonne calculée et une mesure** 
+- La différence fondamentale entre une colonne calculée et une mesure est que la première crée une valeur pour chacune des lignes d’une table, Par exemple, si la table contient 1 000 lignes. 
+    - la colonne calculée comportera 1 000 valeurs. 
+        - Les valeurs des colonnes calculées sont stockées dans le fichier .pbix Power BI. Chaque colonne calculée augmente l’espace utilisé dans ce fichier, et éventuellement le temps d’actualisation.
+    - Les mesures sont calculées à la demande. 
+        - Power BI calcule la valeur lorsque l’utilisateur le réclame. Lorsque on fait glisser la mesure Total Sales (Total des ventes) sur le rapport, Power BI a calculé le total et affiché le visuel. Les mesures n’augmentent pas l’espace disque global du fichier .pbix Power BI.
+        - Les mesures sont calculées en fonction des filtres appliqués par l’utilisateur du rapport, qui se combinent pour donner le contexte de filtre.
+
+### Presentation du contxte 
+- Les trois visuels suivants utilisent exactement la même mesure DAX : Total Sales (Total des ventes).
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-total-sales-visuals-ss.png)
+
+- Bien qu’ils utilisent tous la même mesure DAX et, par conséquent, la même formule DAX, les visuels produisent des résultats différents.
+    - le premier affiche la mesure Total Sales (Total des ventes) pour l’ensemble du jeu de données, soit 1,35 million de dollars USD.
+    - le deuxième visuel, le total des ventes est décomposé année par année, par exemple, 0,23 million de dollars USD en 2014. 
+    - Le troisième visuel ventile le total des ventes selon l’ID de produit.
+
+- *Avec Power BI, une mesure peut être utilisée dans ces visuels de différentes façons même si elle n’a été définie qu’une seule fois. Chacun des totaux est exact et est obtenu rapidement. C’est le contexte d’utilisation de la mesure DAX qui permet de les calculer avec précision.
+Les interactions entre les visuels modifient également le mode de calcul de la mesure DAX. Par exemple, si on sélectionne le deuxième visuel, puis 2015, les résultats s’affichent ainsi:*
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-filter-context-change-ss.png)
+
+- *Le fait de sélectionner 2015 dans le deuxième visuel a pour effet de modifier le contexte de filtre de la mesure DAX. Le premier visuel correspond donc aux ventes de l’année 2015 : 0,66 million de dollars USD. Par ailleurs, le total des ventes est maintenant décomposé par ID de produit, mais seuls les résultats de l’année 2015 s’affichent. Ces calculs ont été rapidement modifiés en mémoire et ont affiché les résultats de manière très interactive pour l’utilisateur.*
+
+- *La définition de la mesure DAX n’a pas changé ; il s’agit toujours de la mesure d’origine: *
+    - `Total Sales = sum('Sales OrderDetails'[Total Price])`
+
+**NB: Ce scénario est un moyen simple d’expliquer le fonctionnement du contexte avec DAX. De nombreux autres facteurs influent sur la manière dont les formules DAX sont évaluées. Les segments et les filtres de page, entre autres, peuvent avoir une incidence sur le calcul et l’affichage d’une formule DAX.** 
 
