@@ -107,7 +107,7 @@
         - Power BI calcule la valeur lorsque l’utilisateur le réclame. Lorsque on fait glisser la mesure Total Sales (Total des ventes) sur le rapport, Power BI a calculé le total et affiché le visuel. Les mesures n’augmentent pas l’espace disque global du fichier .pbix Power BI.
         - Les mesures sont calculées en fonction des filtres appliqués par l’utilisateur du rapport, qui se combinent pour donner le contexte de filtre.
 
-### Presentation du contxte 
+#### Presentation du contxte 
 - Les trois visuels suivants utilisent exactement la même mesure DAX : Total Sales (Total des ventes).
 
 ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-total-sales-visuals-ss.png)
@@ -128,4 +128,45 @@ Les interactions entre les visuels modifient également le mode de calcul de la 
     - `Total Sales = sum('Sales OrderDetails'[Total Price])`
 
 **NB: Ce scénario est un moyen simple d’expliquer le fonctionnement du contexte avec DAX. De nombreux autres facteurs influent sur la manière dont les formules DAX sont évaluées. Les segments et les filtres de page, entre autres, peuvent avoir une incidence sur le calcul et l’affichage d’une formule DAX.** 
+
+#### Usage de la fonction CALCULATE
+- La fonction CALCULATE est une méthode de création d’une mesure DAX qui remplacera certaines parties du contexte utilisées pour exprimer le résultat.
+    - Par exemple, une mesure qui calcule toujours le total des ventes pour 2015, quelle que soit l’année sélectionnée dans les autres visuels de Power BI, se présente ainsi :
+        - `Total Sales for 2015 = CALCULATE(SUM('Sales OrderDetails'[Total Price]), YEAR('Sales OrderDetails'[orderdate]) = 2015)`
+    - Lorsqu'on utilise la fonction CALCULATE pour remplacer le contexte, il est utile de donner à la mesure un nom décrivant précisément le remplacement. Dans cet exemple, CALCULATE agrège la colonne Total Price (Prix total), comme dans la mesure précédente. Toutefois, au lieu de s’appliquer à l’ensemble du jeu de données tout en suivant les instructions du contexte de filtre, elle remplace le contexte de filtre par l’année 2015. Quelle que soit l’année sélectionnée en tant que filtre pour d’autres rapports, on obtient toujours le total pour 2015 à l’aide de cette mesure. Tous les autres filtres s’appliquent toujours. 
+    - Lorsque les deux mesures sont ajoutées au visuel précédent, elles ressemblent à la capture d’écran suivante.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-two-measures-ss.png)
+
+    - Comme le montre la capture d’écran précédente, Total Sales (Total des ventes) vaut toujours 1,35 millions de dollars USD, contre 0,66 million de dollars USD pour 2015 Total Sales (Total des ventes totales 2015).
+
+    - Si on ajoute l’autre visuel dans le rapport et qu'on sélectionne 2015, les résultats sont les suivants. Si on sélectionne 2016, le Total des ventes pour 2015 restera à 0,66 millions USD.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-two-visuals-with-calculate-ss.png)
+
+    - *Comme on peut le constater, les deux mesures sont désormais égales. Si on filtre selon d’autres critères, notamment la région, l’employé ou le produit, le contexte de filtre sera toujours appliqué aux deux mesures. Seul le filtre Year (Année) ne s’applique pas à cette mesure.*
+
+#### Utilisation efficace des relations
+- Il existe une autre fonction DAX permettant de remplacer le comportement par défaut : **USERELATIONSHIP**
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-manage-relationships-ss.png)
+
+- Une relation établie entre les colonnes  **Date** et **OrderDate (DateCommande)**, comme l’indique la ligne en surbrillance reliant les deux. 
+    - La ligne pleine entre les deux tables indique qu’il s’agit de la relation active, ce qui signifie que, par défaut, tous les segments de la table de dates où s’affichent les mesures des données Sales (Ventes) suivront la colonne OrderDate (DateCommande). 
+    - La ligne en pointillés, donc inactive, entre les colonnes Date et ShipDate. Cette relation ne sera jamais utilisée, à moins d’être déclarée explicitement dans une mesure. 
+- L’objectif est de créer le rapport suivant, comportant deux visuels :  Sales by Ship Date (Ventes par date d’expédition) et  Sales by Order Date (Ventes par date de commande).
+
+![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-two-visuals-with-use-relationship-ssm.png)
+
+- ***Ces visuels affichent les ventes au fil du temps, le premier par date de commande et le second par date d'expédition. Bien qu'il s'agisse de dates dans les deux cas, le point de données associé est différent, ce qui permet d'obtenir les deux ensembles de données sur le même visuel.***
+
+- Pour créer cette mesure pour Ventes par date d’expédition, il faut utiliser la fonction **DAX USERELATIONSHIP()**. 
+    - Cette fonction permet d’indiquer une relation à utiliser dans un calcul, et ce, sans remplacer les relations existantes. Il s’agit d’une fonctionnalité intéressante, car elle permet aux développeurs d’effectuer des calculs supplémentaires sur les relations inactives en remplaçant la relation active par défaut entre deux tables dans une expression DAX,
+    - `Sales by Ship Date = CALCULATE(Sum(Sales[TotalPrice]), USERELATIONSHIP(Sales[ShipDate],'Calendar'[Date]))`
+
+#### Création de mesures semi-additives
+
+
+
+
 
