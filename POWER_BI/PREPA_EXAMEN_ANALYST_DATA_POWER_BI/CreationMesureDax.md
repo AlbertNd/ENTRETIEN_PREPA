@@ -165,8 +165,18 @@ Les interactions entre les visuels modifient également le mode de calcul de la 
     - `Sales by Ship Date = CALCULATE(Sum(Sales[TotalPrice]), USERELATIONSHIP(Sales[ShipDate],'Calendar'[Date]))`
 
 #### Création de mesures semi-additives
+- Dans les situations où on ne souhaite pas utiliser le comportement d’évaluation standard de Power BI, on peut utiliser les fonctions **CALCULATE** et **USERELATIONSHIP**. 
+    - Toutefois, il existe d’autres circonstances dans lesquelles le comportement standard n’est pas souhaitable, notamment en cas de problème semi-additif à résoudre. Les mesures standard sont des concepts simples, dans le cadre desquels les fonctions SUM, AVERAGE, MIN et MAX peuvent être utilisées.
 
-
-
+- Parfois, la somme d’une mesure n’a pas de sens, par exemple pour un inventaire des stocks dans un entrepôt. 
+    - Par exemple, si on a 100 VTT lundi et 125 VTT mardi, on ne souhaite pas les additionner pour indiquer qu'on a 225 VTT entre ces deux jours. Dans ce cas, si on veut connaître le niveau des stock de mars, on doit demander à Power BI de ne pas ajouter la mesure, mais de prendre la dernière valeur pour le mois de mars et de l’affecter à n’importe quel visuel.
+    - On utilise la fonction CALCULATE avec la fonction LASTDATE
+        -   ```
+                Last Inventory Count =
+                CALCULATE (
+                    SUM ( 'Warehouse'[Inventory Count] ),
+                    LASTDATE ( 'Date'[Date] ))
+            ```
+            - ***Cette approche permet d’empêcher la fonction SUM de croiser toutes les dates. Elle n’est utilisée que sur la dernière date de la période, ce qui donne une mesure semi-additive.***
 
 
