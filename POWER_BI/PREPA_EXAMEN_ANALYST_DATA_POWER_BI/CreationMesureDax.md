@@ -179,4 +179,41 @@ Les interactions entre les visuels modifient également le mode de calcul de la 
             ```
             - ***Cette approche permet d’empêcher la fonction SUM de croiser toutes les dates. Elle n’est utilisée que sur la dernière date de la période, ce qui donne une mesure semi-additive.***
 
+#### Utilisation de Time Intelligence 
+- Les dates étant importantes, ***il est vivement recommandé de créer ou d’importer une table de dates***. Cette approche simplifie considérablement les calculs de date et d’heure dans DAX.
 
+- *Certains calculs de temps sont simples dans DAX, d’autres plus difficiles.* 
+    - Par exemple, la capture d’écran suivante montre ce qui se passe si l’on souhaite afficher un cumul.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-running-total-ss.png)
+
+    - ***les totaux sont incrémentés pour chaque mois, mais réinitialisés lorsque l’année change.*** *Dans d’autres langages de programmation, ce résultat peut être assez compliqué, impliquant souvent plusieurs variables et une boucle dans le code. DAX rend ce processus relativement simple* 
+        -   ```
+                YTD Total Sales = TOTALYTD 
+                ( 
+                    SUM('Sales OrderDetails'[Total Price]) 
+                    , Dates[Date]
+                )
+            ```
+        - La mesure YTD Total Sales (Totale des ventes cumulées annuelles jusqu'à ce jour) utilise une fonction DAX intégrée appelée **TOTALYTD**. 
+            - Cette fonction prend comme argument le **type de calcul**. 
+                - On peut utiliser la fonction SUM pour calculer Total Price (Prix total). 
+            - Le deuxième argument à exploiter est le champ Dates. 
+                - On peut utiliser la table Dates et ajouter cette mesure à au visuel. On obtiendra alors le résultat cumulé que l'on recherche. 
+        - *Il est possible de faire de même pour toutes les fonctions comportant **YTD (cumul annuel jusqu'à ce jour)**, **MTD (cumul mensuel jusqu'à ce jour)** et **QTD (cumul trimestriel jusqu'à ce jour)**.*
+    - Un autre exemple d’utilisation du temps consisterait à ***comparer les ventes actuelles avec les ventes d’une période précédente***. 
+        - Par exemple, si on souhaite afficher le total des ventes du mois à côté de celui du mois précédent, on doit entrer la définition de la mesure DAX suivant :
+            -   ```
+                    Total Sales Previous Month = CALCULATE
+                    (
+                        sum('Sales OrderDetails'[Total Price])
+                        , PREVIOUSMONTH(Dates[Date])
+                    )
+                ```
+            - Cette mesure utilise la fonction **CALCULATE**, qui indique qu'on remplace le contexte pour évaluer cette expression comme on le souhaite. 
+                - On effectue la somme de Total Price (Prix total).
+                - En deuxième argument, **PREVIOUSMONTH** est utilisé pour le remplacement, ce qui indique à Power BI que, quel que soit le mois par défaut, le système doit le remplacer par le mois précédent.
+            
+            ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/02-previous-month-ss.png)
+
+            - ***Comme on peut le constater lorsque l’on examine les mois côte à côte, le total des ventes du mois de juillet est comparé à celui du mois de juin***.
