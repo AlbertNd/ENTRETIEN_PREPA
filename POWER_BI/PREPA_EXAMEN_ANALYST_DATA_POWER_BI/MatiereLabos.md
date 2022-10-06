@@ -21,7 +21,115 @@
     6. ***Obtenir des données supplémentaires d’un fichier CSV***   
 
 2. ## Nettoyer, transformer et charger des données dans Power BI [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/8-lab)
-    - Chargement des données 
+    1. **Chargement des données** 
+        - Accès au fichier **Sales Analysis** dans **D:\PL300\Labs\02-load-data-with-power-query-in-power-bi-desktop\Starter.** 
+    2. **Configuration des requetes** 
+        1. ***Salesperson***
+            - Renomer la requete : *Salesperson*
+            - Trie de la colonne SalesPersonFlag : *True*
+            - Choisir les 6 colonnes :
+                1. EmployeeKey
+                2. EmployeeNationalIDAlternateKey
+                3. FirstName
+                4. LastName
+                5. Title
+                6. EmailAddress
+            - Fucion des colonnes : *LastName FirstName*
+            - Renomer les colonnes:
+                - *EmployeeNationalIDAlternateKey =>  EmployeeID*
+                - *EmailAddress => UPN*
+            - Confiration 5 colonne 18 lignes 
+        2. ***SalespersonRegion***
+            - Renommer la requete : *SalespersonRegion*
+            - Suppression des deux dernieres colonnes
+                - *DimEmployee*
+                - *DimSalesTerritory*
+            - Confiration 2 colonne 39 lignes 
+        3. ***Product***
+            - Renommer la requete: *Product*
+            - Filtrer la colonne FinishedGoodsFlag : *True*
+            - Choix des 5 colonnes et supression du reste:
+                1. ProductKey
+                2. EnglishProductName
+                3. StandardCost
+                4. Color
+                5. DimProductSubcategory *(Qi est une table associée)*
+            - Developement de la colonne *DimProductSubcategory* et garder les colonnes suivantes:
+                - *EnglishProductSubcategoryName*
+                - *DimProductCategory*
+                - (NB : Utiliser le nom de la colonne d’origine comme préfixe)
+            - Developement de la colonne *DimProductCategory* et introduire la colonne suivante: 
+                - *EnglishProductCategoryName* 
+            - Renommer les colonnes: 
+                - *EnglishProductName* => *Product*
+                - *StandardCost => *Standard Cost* (incluez un espace
+                - *EnglishProductSubcategoryName* => *Subcategory*
+                - *EnglishProductCategoryName* => *Category*
+             - Confiration 6 colonne 397 lignes 
+        4. **DimReseller**
+            - Renommer la requete : *Reseller* 
+            - Choix de 4 colonnes et supression du reste 
+                1. ResellerKey
+                2. BusinessType
+                3. ResellerName
+                4. DimGeography
+            - Developpement de la colonne *DimGeography* et inclure les 3 colonne suivantes: 
+                - City
+                - StateProvinceName
+                - EnglishCountryRegionName
+            - Correction elements dans la colonne *Business Type* 
+            - Renommer les colonnes:
+                - *BusinessType* => *Business Type* (incluez un espace)
+                - *ResellerName* => *Reseller*
+                - *StateProvinceName* => *State-Province*
+                - *EnglishCountryRegionName* => *Country-Region* 
+            - Confiration 6 colonne 701 lignes 
+        5. **DimSalesTerritory**
+            - Renommer la requete : *Region* 
+            - filtres sur la colonne *SalesTerritoryAlternateKey* : *suppresion de la valeur 0*
+            - Supression des colonnes sauf: 
+                1. SalesTerritoryKey
+                2. SalesTerritoryRegion
+                3. SalesTerritoryCountry
+                4. SalesTerritoryGroup
+            - Renommer les colonnes suivantes: 
+                - *SalesTerritoryRegion* => *Region*
+                - *SalesTerritoryCountry* => *Country*
+                - *SalesTerritoryGroup* => *Group* 
+            - Confiration 4 colonne 10 lignes 
+        6. **FactResellerSales**
+            - Renemmer la colonne : *Sales* 
+            - Supression des colonnes sauf:
+                1. SalesOrderNumber
+                2. OrderDate
+                3. ProductKey
+                4. ResellerKey
+                5. EmployeeKey
+                6. SalesTerritoryKey
+                7. OrderQuantity
+                8. UnitPrice
+                9. TotalProductCost
+                10. SalesAmount
+                11. DimProduct
+            - Developpement de la colonne *DimProduct* inclure la colonne: 
+                - *StandardCost*
+            - Création de colonne personnalisée 
+                - Nom : Caost 
+                - contenu: *Si la valeur de **TotalProductCost** est manquante, elle met le produit de la valeur de **OrderQuantity** par la valeur de **StandardCost** et  sinon, elle met la valeur existante de **TotalProductCost**.*
+                     - `if [TotalProductCost] = null then [OrderQuantity] * [StandardCost] else [TotalProductCost]`
+            - Suppression des colonnes : 
+                - *TotalProductCost*
+                - *StandardCost* 
+            - Renommer les colonnes 
+                - *OrderQuantity* => *Quantity*
+                - *UnitPrice => *Unit Price* (incluez un espace)
+                - *SalesAmount* => *Sales*
+            - Modifier le type des colonnes:
+                - *Quantity* : *Nombre entier*
+                - *Unit Price* : *Nombre decimal fixe*
+                - *Sales* : *Nombre decimal fixe*
+                - *Coût* : *Nombre decimal fixe*
+            - Confirmation 10 colonne 999 lignes 
 
 3. ## Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
 
