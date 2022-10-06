@@ -24,7 +24,7 @@
     1. **Chargement des données** 
         - Accès au fichier **Sales Analysis** dans **D:\PL300\Labs\02-load-data-with-power-query-in-power-bi-desktop\Starter.** 
     2. **Configuration des requetes** 
-        1. ***Salesperson***
+        1. ***DimEmployee***
             - Renomer la requete : *Salesperson*
             - Trie de la colonne SalesPersonFlag : *True*
             - Choisir les 6 colonnes :
@@ -38,14 +38,14 @@
             - Renomer les colonnes:
                 - *EmployeeNationalIDAlternateKey =>  EmployeeID*
                 - *EmailAddress => UPN*
-            - Confiration 5 colonne 18 lignes 
-        2. ***SalespersonRegion***
+            - Confirmation : 5 colonne 18 lignes 
+        2. ***DimEmployeeSalesTerritory***
             - Renommer la requete : *SalespersonRegion*
             - Suppression des deux dernieres colonnes
                 - *DimEmployee*
                 - *DimSalesTerritory*
-            - Confiration 2 colonne 39 lignes 
-        3. ***Product***
+            - Confirmation : 2 colonne 39 lignes 
+        3. ***DimProduct***
             - Renommer la requete: *Product*
             - Filtrer la colonne FinishedGoodsFlag : *True*
             - Choix des 5 colonnes et supression du reste:
@@ -65,7 +65,7 @@
                 - *StandardCost => *Standard Cost* (incluez un espace
                 - *EnglishProductSubcategoryName* => *Subcategory*
                 - *EnglishProductCategoryName* => *Category*
-             - Confiration 6 colonne 397 lignes 
+             - Confirmation : 6 colonne 397 lignes 
         4. **DimReseller**
             - Renommer la requete : *Reseller* 
             - Choix de 4 colonnes et supression du reste 
@@ -83,7 +83,7 @@
                 - *ResellerName* => *Reseller*
                 - *StateProvinceName* => *State-Province*
                 - *EnglishCountryRegionName* => *Country-Region* 
-            - Confiration 6 colonne 701 lignes 
+            - Confirmation : 6 colonne 701 lignes 
         5. **DimSalesTerritory**
             - Renommer la requete : *Region* 
             - filtres sur la colonne *SalesTerritoryAlternateKey* : *suppresion de la valeur 0*
@@ -96,7 +96,7 @@
                 - *SalesTerritoryRegion* => *Region*
                 - *SalesTerritoryCountry* => *Country*
                 - *SalesTerritoryGroup* => *Group* 
-            - Confiration 4 colonne 10 lignes 
+            - Confirmation : 4 colonne 10 lignes 
         6. **FactResellerSales**
             - Renemmer la requete : *Sales* 
             - Supression des colonnes sauf:
@@ -129,7 +129,7 @@
                 - *Unit Price* : *Nombre decimal fixe*
                 - *Sales* : *Nombre decimal fixe*
                 - *Coût* : *Nombre decimal fixe*
-            - Confirmation 10 colonne 999 lignes 
+            - Confirmation : 10 colonne 999 lignes 
         7. **ResellerSalesTargets** 
             - Renommer la requete : *Targets* 
             - Depivoter les colonnes correspondant aux 12 Mois(M01-M12) 
@@ -149,14 +149,17 @@
             - Les valeurs de la colonne *Target* multiple de 1000
         8. **ColorFormats** 
             - Utiliser la première ligne pour les en-têtes.
-            - Confirmation 3 colonne 10 lignes 
+            - Confirmation : 3 colonne 10 lignes 
     3. **Mettre à jour la requete product** 
         - Funsionner avec la requete *ColorFormats*
             - Color & color
         - Developpement de la colonne *ColorFormats* inclure les deux colonnes: 
             - Background Color Format 
             - Font Color Format
-        - Confirmation 8 colonne 397 lignes 
+        - Confirmation : 8 colonne 397 lignes 
+    4. **Mettre à jour la requête ColorFormats** 
+        - Desactiver le chargement vers le rapport.
+    5. **Vérification => fermer et appliquer**
 
 3. ## Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
 
