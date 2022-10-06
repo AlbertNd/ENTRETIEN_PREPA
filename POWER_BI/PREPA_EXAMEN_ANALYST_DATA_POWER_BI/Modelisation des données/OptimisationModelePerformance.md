@@ -233,3 +233,125 @@
 [Voir Doc Techniques de réduction des données pour la modélisation des importations.](https://learn.microsoft.com/fr-fr/power-bi/guidance/import-modeling-data-reduction#group-by-and-summarize/?azure-portal=true)
 
 #### Optimiser les modèles DirectQuery avec un stockage au niveau de la table
+[Voir Doc Guide du modèle DirectQuery dans Power BI Desktop. ](https://learn.microsoft.com/fr-fr/power-bi/guidance/directquery-model-guidance)
+
+- DirectQuery est un moyen d’obtenir des données dans Power BI Desktop. La méthode DirectQuery implique la connexion directe aux données dans leur dépôt source à partir de Power BI Desktop. Il s’agit d’une alternative à l’importation de données dans Power BI Desktop.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/5-direct-query-option-getting-data-ssm.png)
+
+- *Lorsqu'on utilise la méthode DirectQuery, l’expérience utilisateur globale dépend fortement des performances de la source de données sous-jacente. Les temps de réponse lents des requêtes entraînent une expérience utilisateur négative, voire une expiration des requêtes dans les cas les plus pessimistes. En outre, le nombre d’utilisateurs qui ouvrent les rapports à un moment donné impacte la charge qui est placée sur la source de données. Par exemple, si le rapport contient 20 visuels et que 10 personnes utilisent le rapport, 200 requêtes ou plus existent sur la source de données, car chaque visuel émet une ou plusieurs requêtes.*
+- Les performances du modèle Power BI ne sont pas uniquement affectées par les performances de la source de données sous-jacente, mais également par d’autres facteurs incontrôlables, tels que les suivants :
+    - Latence du réseau : les réseaux plus rapides retournent les données plus rapidement.
+    - Les performances du serveur de la source de données et la quantité d’autres charges de travail sur ce serveur. Par exemple,les implications de l’actualisation d’un serveur pendant que des centaines de personnes utilisent ce même serveur pour différentes raisons.
+- Ainsi, l’utilisation de DirectQuery représente un risque pour la qualité des performances du modèle. Pour optimiser les performances dans ce cas, il faut contrôler la base de données source ou y accéder.
+
+1. **Implications de l’utilisation de DirectQuery**
+- [Voir Doc Implications de l’utilisation de DirectQuery](https://learn.microsoft.com/fr-fr/power-bi/connect-data/desktop-directquery-about#implications-of-using-directquery)
+- [Voir Doc  Guide du modèle DirectQuery dans Power BI Desktop](https://learn.microsoft.com/fr-fr/power-bi/guidance/directquery-model-guidance)
+- [Voir Doc Guide pour une utilisation efficace de DirectQuery.](https://learn.microsoft.com/fr-fr/power-bi/connect-data/desktop-directquery-about#guidance-for-using-directquery-successfully/?azure-portal=true)
+- Il est recommandé d’importer des données dans Power BI Desktop, mais on peut être amenée à utiliser le mode de connectivité des données DirectQuery pour l’une des raisons suivantes (avantages de DirectQuery) :
+    - Il est approprié dans les cas où les données changent fréquemment et que la création de rapports en quasi-temps réel est nécessaire.
+    - Il peut gérer des données volumineuses sans qu’il soit nécessaire d’effectuer une pré-agrégation.
+    - Il applique des restrictions de souveraineté des données pour se conformer aux exigences légales.
+    - Il peut être utilisé avec une source de données multidimensionnelles qui contient des mesures comme SAP Business Warehouse (BW).
+2. **Comportement des connexions DirectQuery** 
+    - Quand on utilise DirectQuery pour se connecter à des données dans Power BI Desktop, cette connexion se comporte de la façon suivante :
+        - Quand on utilise initialement la fonctionnalité Obtenir les données dans Power BI Desktop, il faut sélectionner la source. Si on se connecte à une source relationnelle, on peut sélectionner un ensemble de tables, et chacune d’entre elles définit une requête qui retourne un jeu de données de façon logique. Si on sélectionne une source multidimensionnelle, par exemple SAP BW, on ne peut sélectionner que celle-ci.
+        - Lorsqu'on charge les données, aucune donnée n’est importée dans Power BI Desktop ; seul le schéma est chargé. Et quand on génére un visuel dans Power BI Desktop, les requêtes sont envoyées à la source sous-jacente pour récupérer les données nécessaires. Le temps nécessaire à l’actualisation du visuel dépend des performances de la source de données sous-jacente.
+        - Si des modifications sont apportées aux données sous-jacentes, elles ne sont pas répercutées immédiatement dans les visuels existants dans Power BI en raison de la mise en cache. Il faut effectuer une actualisation pour voir ces modifications. Les requêtes nécessaires sont présentes pour chaque visuel, et les visuels sont mis à jour en conséquence.
+        - La publication du rapport dans le service Power BI engendre un jeu de données dans ce service, comme pour une importation. Toutefois, aucune donnée n’est incluse dans ce jeu de données.
+        - Lorsqu'on ouvre un rapport existant dans le service Power BI ou que on en crée un, la source sous-jacente est réinterrogée afin que soient récupérées les données nécessaires. Selon l’endroit où se trouve la source d’origine, on doit peut-être configurer une passerelle de données locale.
+        - On peut épingler des visuels ou des pages de rapport entières sous forme de vignettes de tableau de bord. Les vignettes sont actualisées automatiquement selon une planification, par exemple toutes les heures. On peut contrôler la fréquence de cette actualisation en fonction des besoins. Quand on ouvre un tableau de bord, les vignettes reflètent les données au moment de la dernière actualisation et peuvent ne pas inclure les dernières modifications apportées à la source de données sous-jacente. On peut toujours actualiser un tableau de bord ouvert pour s'assurer qu’il est à jour.
+3. **Limitations des connexions DirectQuery** 
+    - L’utilisation de DirectQuery peut avoir des conséquences négatives. Les limitations varient selon la source de données utilisée. Il faut tenir compte des points suivants :
+        - **Performances** : Expérience utilisateur globale dépend fortement des performances de la source de données sous-jacente.
+        - **Sécurité** : si on utilise plusieurs sources de données dans un modèle DirectQuery, il est important de comprendre comment les données se déplacent entre les sources de données sous-jacentes et les implications de sécurité associées. Il faut également déterminer si des règles de sécurité s’appliquent aux données de la source sous-jacente, car, dans Power BI, chaque utilisateur peut voir ces données.
+        - **Transformation des données** : par rapport aux données importées, les données provenant de DirectQuery ont des limites si on souhaite appliquer des techniques de transformation de données dans l’Éditeur Power Query. Par exemple, si on se connectez à une source OLAP, telle que SAP BW, on ne peut pas effectuer de transformations ; le modèle externe entier est extrait de la source de données. Si on souhaite appliquer des transformations aux données, il faut le faire dans la source de données sous-jacente.
+        - **Modélisation** : certaines des fonctionnalités de modélisation disponibles avec des données importées ne sont pas utilisables ou sont limitées dans le cadre de DirectQuery.
+        - **Création de rapports** : presque toutes les fonctionnalités de création de rapports disponibles avec des données importées sont également prises en charge pour les modèles DirectQuery, à condition que la source sous-jacente offre un niveau de performances approprié. Toutefois, quand le rapport est publié dans le service Power BI, les fonctionnalités **Quick Insights et Questions et réponses** ne sont pas prises en charge. En outre, l’utilisation de la fonctionnalité Explorer dans Excel entraîne probablement une baisse des performances.
+4. **Optimiser les performances** 
+    1. ***Optimiser les données dans Power BI Desktop***
+        - Quand on a optimisé la source de données autant que possible, on peut prendre des mesures supplémentaires dans Power BI Desktop à l’aide de l’ **Analyseur de performances**, où on peut isoler des requêtes pour valider les plans de requête.
+        - On peut analyser la durée des requêtes qui sont envoyées à la source sous-jacente pour identifier les requêtes dont le chargement prend beaucoup de temps. En d’autres termes, identifier où se trouvent les goulots d’étranglement.
+        - On a pas besoin d’utiliser une approche spéciale pour optimiser un modèle DirectQuery ; on peut appliquer les mêmes techniques d’optimisation que celles que on a utilisées sur les données importées pour ajuster les données provenant de la source DirectQuery. 
+            - *Par exemple, on peut réduire le nombre de visuels dans la page de rapport ou réduire le nombre de champs utilisés dans un visuel. On peut également supprimer les colonnes et les lignes inutiles.* 
+    2. ***Optimiser la source de données sous-jacente (base de données connectée)***
+        - Il faut d’abord se pencher sur la source de données. Il faut ajuster la base de données source autant que possible, car tout ce qu'on fait pour améliorer les performances de cette base de données source améliore à son tour Power BI DirectQuery. Les actions qu'on effectue dans la base de données sont les plus efficaces.
+        - Envisager l’utilisation des pratiques de base de données standard ci-dessous, qui s’appliquent à la plupart des situations :
+            - Éviter l’utilisation de colonnes calculées complexes, car l’expression de calcul est incorporée dans les requêtes source. Il est plus efficace de renvoyer (push) l’expression à la source, car cela évite l’envoi (push down). On peut également envisager d’ajouter des colonnes clés de substitution à des tables de type dimension.
+            - Examiner les index et vérifier que l’indexation actuelle est correcte. Si on a besoin de créer des index , il faut s'assurer qu’ils sont appropriés.
+        - **NB:** se reporter aux documents d’aide de la source de données afin d’implémenter leurs recommandations en matière de performances.
+    3. ***Personnaliser les options de réduction de requête***
+        - Power BI Desktop donne la possibilité d’envoyer moins de requêtes et de désactiver certaines interactions qui entraînent une mauvaise expérience si les requêtes résultantes mettent beaucoup de temps à s’exécuter. L’application de ces options empêche les requêtes d’atteindre continuellement la source de données, ce qui devrait améliorer les performances.
+        - Pour modifier les paramettre par defaut et active les options de reduction de donnée disponible au model: 
+            - => Sélection **Fichier** => **Options et paramètres** => **Options**, faire défiler la page vers le bas, puis sélection de l’option **Réduction de requête**.
+        - ***Les options de réduction de requête suivantes sont disponibles*** :
+            - **Réduire le nombre de requêtes envoyées par** : par défaut, chaque visuel interagit avec tous les autres visuels. Si cette case est cochée, l’interaction par défaut est désactivée. On peut ensuite choisir les visuels qui interagissent les uns avec les autres à l’aide de la fonctionnalité **Modifier les interactions**.
+            - **Segments** : par défaut, l’option **Appliquer instantanément les changements de segment** est sélectionnée. Pour forcer les utilisateurs du rapport à appliquer manuellement les changements de segment, on sélectionne l’option **Ajouter un bouton Appliquer à chaque segment pour apporter les changements quand vous êtes prêt**.
+            - **Filtres** : par défaut, l’option **Appliquer instantanément les changements des filtres de base** est sélectionnée. Pour forcer les utilisateurs du rapport à appliquer manuellement les changements de filtre, on sélectionne l’une des options suivantes :
+                - **Ajouter des boutons Appliquer à chaque filtre de base pour appliquer les changements au besoin**
+                - **Ajouter un seul bouton Appliquer au volet des filtres pour appliquer tous les changements à la fois (préversion)** 
+        
+        ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/5-query-reduction-settings-ssm.png)
+
+#### Créer et gérer des agrégations
+
+[Voir Doc  Utiliser des agrégations dans Power BI Desktop.](https://learn.microsoft.com/fr-fr/power-bi/enterprise/aggregations-auto)
+
+![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-data-overview.ss.png)
+
+- L’agrégation de données consiste à résumer ces dernières et à les présenter à un niveau plus général. 
+    - *Par exemple, on peut résumer toutes les données de ventes et les regrouper par date, client, produit, etc.* 
+- Le processus d’agrégation réduit la taille des tables dans le modèle de données, ce qui permet de se concentrer sur les données importantes et aide à améliorer les performances des requêtes.
+- On peut decider d'utiliser des agregations dans le modele de donnée our les raisons suivant:
+    - *Si on utilise une grande quantité de données (Big Data), les agrégations fournissent de meilleures performances de requête et aident à analyser et à révéler les **insights** de ces données volumineuses. Les données agrégées étant mises en cache, elles utilisent beaucoup moins de ressources que celles nécessaires pour les données détaillées.*
+    - *En cas d’actualisation lente, les agrégations aident à accélérer le processus d’actualisation. La taille de cache étant plus petite, le temps d’actualisation est réduit et les utilisateurs disposent des données plus rapidement. Au lieu d’actualiser ce qui pourrait être des millions de lignes, on doit actualiser une plus petite quantité de données.*
+    - *Si on a un grand modèle de données, les agrégations peuvent aider à réduire et à maintenir sa taille.*
+    - *Si on pense que la taille du modèle de données est appelée à augmenter, on peut utiliser des agrégations afin de protéger de manière proactive le modèle de données contre les risques éventuels de problèmes de performances, d’actualisation ainsi que de problèmes de requête globaux.* 
+
+1. **Création d'agrégations**
+- Avant de commencer à créer des agrégations, il faut choisir le degré de précision (niveau) avec lequel on souhaite les créer. ensuite decider de a facon dont on souhaite les créer
+    - Si on a accès à la base de données, on peut créer une table avec l’agrégation, puis importer cette table dans Power BI Desktop.
+    - Si on a accès à la base de données, on peut créer une vue pour l’agrégation, puis importer cette vue dans Power BI Desktop.
+    - Dans Power BI Desktop, on peut utiliser l’Éditeur Power Query pour créer les agrégations pas à pas.
+
+- ***Exemple*** 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-data-before-ssm.png)
+
+- Si on souhaite agreger les données en fonction de la colonne **orderDate** et afficher les colonnes **OrderQuantity** et **SalesAmount** 
+    - => Onglet **Acceuil** => Selection **Choisir des colonnes** => selection des colonnes que l'on souhaite agreger => **OK**
+    - => Onglet **Acceuil** => **Regrouper par** => Selection de la colonne en fonction de laquelle on souhaite regrouper(OrderDate) => introduction du nom de la nouvelle colonne(OnlineOrdersCount). 
+    - => Selection **Avancé** => **Ajouter une agrégation** pour afficher une autre colonne => Introduction du nom de la colonne d'agrégation => selection de l'opération de la colonne => selection de la colonne  laquelle on souhaite lier l'agrégation 
+    - On repete les étapes jusqu'a ce qu'on est ajouter toutes les agrégations => **OK**
+
+    1. 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-data-before-ssm.png)
+
+    2. 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-choose-columns-ssm.png)
+
+    3. 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-group-ssm.png)
+
+    4. 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-data-after-new-columns-ss.png)
+    
+    - *Une fois l’agrégation affichée, on peut voir comment les données ont été transformées. Les données sont agrégées pour chaque date, avec pour chacune le nombre de commandes ainsi que les sommes respectives du montant des ventes et de la quantité commandée.*
+    - **Fermer et appliquer** pour fermer l’Éditeur Power Query et appliquer les modifications apportées au modèle de données. 
+        - Retour à la page Power BI Desktop => sélection du bouton **Actualiser** pour voir les résultats. 
+            - *On observe l’écran, car un bref message affiche le nombre de lignes que contient désormais le modèle de données. Ce nombre de lignes doit être considérablement inférieur au nombre initial. On peut également voir ce nombre quand on ouvre l’Éditeur Power Query, le nombre de lignes a été réduit à 30.
+    
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-aggregate-data-after-less-rows-ssm.png)
+
+2. **Gestion d'agregation**
+    - Il est possible d'apporter des modification aux agregation créée si nécessaire. 
+        - => Click droit sur le champs => **Gérer les agrégations** 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/optimize-model-power-bi/media/6-open-manage-aggregations-window-ssm.png)
+
+    - *Pour chaque colonne d’agrégation, on peut sélectionner une option dans la liste déroulante Résumé et apporter des modifications à la table et à la colonne de détails sélectionnées.* 
+
+
+
+
