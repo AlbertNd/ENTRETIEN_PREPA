@@ -165,46 +165,112 @@
 
     1. ***Créer des relations de modèle***
         1. Demarrage
+            - Accès au fichier **Sales Analysis** dans **D:\DA100\Labs\03-configure-data-model-in-power-bi-desktop\Starter**
+            - Enregistrer le fichier dans **D:\DA100\MySolution**
         2. Créer des relations de modèle
-            - Dans Power BI Desktop => selection de l'icone Modele => 7 tables 
-            - Dans Power BI Desktop => selection de l'icone Rapport
-            - Creation d'une visuel Product|Categorie & Sales|Sales
-            - relation dela table Product et sales pour le visuel 
-                - Modelisation => relations => gere les relations => nouveau => Fenetre créer une relation => Connection des clef dans les deux tables.
-                - Relation un à plusiers 
-                - Direction du filtre croisé => sens unique 
-                - Rendre cette relation => active 
-            - Création de relation à partir du diagramme 
+            - Création d'une relation entre la table **Categorie** et la tables **Sales** 
+                - Via la gestion des relation 
+                - Cardinalité :  1 à *
+                - Direction du filtre croisé : *à sens unique*
+                - Relation active.
+            - Création des relations:
+                - La table **Region** et la table **Sales**
+                - La table **Salesperson** et la table **Employeekey** 
+            - Les manoeuvre
+                ```
+                    - Dans Power BI Desktop => selection de l'icone Modele => 7 tables 
+                    - Dans Power BI Desktop => selection de l'icone Rapport
+                    - Creation d'une visuel Product|Categorie & Sales|Sales
+                    - relation dela table Product et sales pour le visuel 
+                        - Modelisation => relations => gere les relations => nouveau => Fenetre créer une relation => Connection des clef dans les deux tables.
+                        - Relation un à plusiers 
+                        - Direction du filtre croisé => sens unique 
+                        - Rendre cette relation => active 
+                ```
     2.  ***Configuration des tables***
-        1. Configurer la table Product
-            - Création de hierarchie 
-                - Volet champs  => click droit sur colonne => Creer une hierarchie 
-                    - Volet propriétés => zone nom 
-                    - Deuxieme hierarchie => volet propriété => liste deroulant hierarchie => selection de la sous catégorie souhaité
-                    - ...
-                - Pour terminer => *Appliquer les changements de niveau*
-            - Organisation des colonne dans une dossier d'affichage 
-                - Selection des colonnes souhaité => volet Popriétés => zone Dossier d'affichage => introduire mise en forme ( nom du dossier) 
-        2. Configurer la table Region
-            - Configurer la table Reseller
-            - Catégorisation: càd placement de la colone country (pas celle de la hierarchie) dans la catéorie des Country/region *(Utile pour le rendu visuel de la carte)*
-                - Volet propriété => Avancé => liste deroulante catégorie de données => Country/Region
-        3. Configurer la table Reseller
-            - Configurer la table Reseller
-            - Categorisation : 
-                - Country-Region dans la catégorie Pays/Région
-                - State-Province dans la catégorie Département ou province
-                - City dans la catégorie Ville
-        4.  Configurer la table Sales
-            - Description de la colonne
-                - Volet propriété => description
-            - Mise en forme colonne 
-                - Volet propriété => section mise en forme:
-                    - Separateur de miliers => Oui 
-                    - Nombre deciaml
-            - Avancé 
-                - Totaliser par la moyenne 
-        5. Mettre à jour en bloc les propriétés
+        1. **Product**
+            - Création d'une hierarchie sur la colonne *Category*
+                - Nom : *Product*
+                - dans la hierarchie:
+                    - *Subcategory*
+                    - *product*
+            - Création d'un dossier d'affichage
+                - Nom : Mise en forme
+                - Contenu: 
+                    - Format de couleur d'arriere plan
+                    - Format de couleur de police 
+                - Les manoeuvre 
+                    ```
+                        - Selection des colonnes souhaité => volet Popriétés => zone Dossier d'affichage => introduire mise en forme ( nom du dossier) 
+                    ```
+                - ***Pour terminer => **Appliquer les changements de niveau** ***  
+        2. **Region**
+            - Création d'une hiérarchie sur la colonne **Region**
+                - Nom :*Regions*
+                - Contenu: 
+                    - Group
+                    - Country ( la colonne)
+                    - Région
+            - Catégorisation de la colone *country* (pas celle de la hierarchie) dans la catéorie des **Country/region** *
+                - Les manoeuvres
+                    ```
+                        - Volet propriété => Avancé => liste deroulante catégorie de données => Country/Region
+                    ```
+                
+        3. **Reseller**
+            - Création d'une hierarchie sur la colonne *resseller* 
+                - Nom : *Revendeurs*
+                - Contenu:
+                    - Business Type
+                    - Resseller
+            - Création d'une categorie sur la colonne *Country-Region*
+                - Nom : *Geography*
+                - Contenu: 
+                    - Country-Region 
+                    - Etat-Province
+                    - City
+                    - Reseller                
+            - Categorisation dees colonnes : 
+                - Country-Region dans la catégorie **Pays/Région**
+                - State-Province dans la catégorie **Département ou province**
+                - City dans la catégorie **Ville**
+
+        4.  **Sales**
+            - Description de la colonne *Cost* : *Based on standard cost*
+            - Mise en forme des colonne:
+                - Quantity : *Séparateur de milliers* => Oui
+                - Unit Price: 
+                    - *Nombre de décimales* => 2
+                    - *Totaliser par* => *Moyenne*
+                - Les manoeuvre
+                    ```
+                        - Volet propriété => section mise en forme:
+                            - Separateur de miliers => Oui 
+                            - Nombre deciaml
+                        - Avancé 
+                            - Totaliser par la moyenne 
+                    ``` 
+                
+        5. **Mettre à jour en bloc les propriétés**
+            - Passer la propriété **est masqué** sur **Active** 
+                - Product | ProductKey
+                - Region | SalesTerritoryKey
+                - Reseller | ResellerKey
+                - Sales | EmployeeKey
+                - Sales | ProductKey
+                - Sales | ResellerKey           
+                - Sales | SalesOrderNumber
+                - Sales | SalesTerritoryKey
+                - Salesperson | EmployeeID
+                - Salesperson | EmployeeKey
+                - Salesperson | UPN
+                - SalespersonRegion | EmployeeKey
+                - SalespersonRegion | SalesTerritoryKey
+                - Targets | EmployeeID
+            - Definir la mise en former : *Nombre decimales* => *0* Pour :
+                - Product | Standard Cost
+                - Sales | Cost
+                - Sales | Sales
     3.  ***Examiner l’interface du modèle***
         - Vue rapport 
         - Volet chammps 
@@ -217,5 +283,11 @@
         - desactivation de Date/heure automatique 
             - fichier => Option et paramettre => options => fichier actif => chargement des données => time intelligence => date/heure automatique.
     4.  ***Création des mesures rapides***
-        1. Créer des mesures rapides
-            - Click droit sur la tables => Nouvelle mesure rapide.
+        - Création d'une mesures rapides sur la table *Sales* 
+            - Soustraction de : *Sommes des ventes* - *Cout*
+            - Renommer la nouvelle colonne *Profit*
+        - Création d'une mesure rapide sur la table *Slaes*
+            - Division de : *Profit* / *Sales*
+            - Renommer la nouvelle colonne *Profit Margin*
+            - Attriubuer le format *Pourcentage*
+        - Mettre les deux mesures dans le visuel
