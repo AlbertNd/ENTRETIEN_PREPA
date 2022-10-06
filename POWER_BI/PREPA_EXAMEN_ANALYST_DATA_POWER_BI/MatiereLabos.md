@@ -98,7 +98,7 @@
                 - *SalesTerritoryGroup* => *Group* 
             - Confiration 4 colonne 10 lignes 
         6. **FactResellerSales**
-            - Renemmer la colonne : *Sales* 
+            - Renemmer la requete : *Sales* 
             - Supression des colonnes sauf:
                 1. SalesOrderNumber
                 2. OrderDate
@@ -130,6 +130,33 @@
                 - *Sales* : *Nombre decimal fixe*
                 - *Coût* : *Nombre decimal fixe*
             - Confirmation 10 colonne 999 lignes 
+        7. **ResellerSalesTargets** 
+            - Renommer la requete : *Targets* 
+            - Depivoter les colonnes correspondant aux 12 Mois(M01-M12) 
+            - Filtrer la colonne *valeur* : Suppression de "-"
+            - Renommer les colonnes : 
+                - *Attribut* => *MonthNumber* (pas d’espace entre les deux mots, il sera supprimé plus tard) 
+                - *Valeur* => *Target*
+            - Création d'une colonne *Date* derivée des colonnes **Year** et **MonthNumber**
+                - Utilisation de la fonction : *Colonne à partir d'exemples*
+            - Renommer la colonnes : *TargetMonth*
+            - Suppression des colonnes
+                - *Year* 
+                - *MonthNumber*
+            - Modification des types de colonnes: 
+                - *Target* => *Nombre décimal fixe*
+                - *TargetMonth* => *Date*
+            - Les valeurs de la colonne *Target* multiple de 1000
+        8. **ColorFormats** 
+            - Utiliser la première ligne pour les en-têtes.
+            - Confirmation 3 colonne 10 lignes 
+    3. **Mettre à jour la requete product** 
+        - Funsionner avec la requete *ColorFormats*
+            - Color & color
+        - Developpement de la colonne *ColorFormats* inclure les deux colonnes: 
+            - Background Color Format 
+            - Font Color Format
+        - Confirmation 8 colonne 397 lignes 
 
 3. ## Modéliser les données dans Power BI Desktop (partie 1) [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/8-lab)
 
