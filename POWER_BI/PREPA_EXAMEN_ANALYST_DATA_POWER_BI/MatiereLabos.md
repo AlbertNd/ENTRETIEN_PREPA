@@ -250,7 +250,6 @@
                         - Avancé 
                             - Totaliser par la moyenne 
                     ``` 
-                
         5. **Mettre à jour en bloc les propriétés**
             - Passer la propriété **est masqué** sur **Active** 
                 - Product | ProductKey
@@ -291,3 +290,151 @@
             - Renommer la nouvelle colonne *Profit Margin*
             - Attriubuer le format *Pourcentage*
         - Mettre les deux mesures dans le visuel
+
+4. ## Introduction à DAX dans Power BI Desktop [Voir Labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/6-lab)
+
+- Accès aux fichier **Sales Analysis.pbiix** dans **D:\DA100\Labs\05-create-dax-calculations-in-power-bi-desktop\Starter** 
+
+1. **Création des tbales calculées** 
+    1. ***La table Salesperson*** 
+        - Nom : **Salesperson** 
+        - Création de relation : 
+            - *Salesperson | EmployeeKey* et *Sales | EmployeeKey*
+            - Suppression de la relation inactive 
+        - Masquage des colonnes : 
+            - EmployeeID (IDEmployé)
+            - EmployeeKey (CléEmployé)
+            - UPN
+        - Description des tables : 
+            - *Salesperson (Performance)* => "Salesperson related to Region(s)"
+            -   ``` 
+                    La table Salesperson (Vendeur) permet d’analyser les ventes effectuées par un
+                    vendeur, et la table Salesperson (Performance), celles effectuées dans la ou
+                    les régions de vente affectées au vendeur.
+                ```
+    2. ***La table Date*** 
+        - Création d'une table a une colonne composée de valeur de date. 
+            - Le mois de juin doit etre considéré comme le dernier mois de l'année.
+            - Confirmation de : 1826 lignes.
+        - Définition fonction ***CALENDARAUTO()***
+            - *C'est une fonction que retoune une table avec une colonne composée de valeur date.*
+            - *Elle accepte un seul argument, correspondant au dernier mois de l'année chois*
+                - *si l'argumznt n'est pas precisé, le dernier mois est automatiquement 12*
+            ```
+               Le comportement « automatique » consiste à analyser toutes les colonnes de date du
+               modèle de données pour trouver les valeurs de date les plus anciennes et les plus
+               récentes qui sont stockées dans le modèle de données. 
+               Une ligne est ensuite créée pour chaque date de cette plage, en étendant la plage
+               dans les deux sens pour que les années de données stockées soient complètes. 
+            ```
+2. **Création des colonnes claculées**
+    1. ***Colonnes Année** 
+        - Nom : *Année* 
+        - A partir de la colonne *Date* de la table 
+        - Format d'affichage : *FYANNEE* (Ex : FY2018)
+        - Condition d'affichage:
+            - Si le mois de l'année est plus grand que juin in rejoute un sur l'année
+    2. ***Colonne Trimestre***
+        - Nom : *Trimestre* 
+        - A partir de la colonne *Date* de la table
+        - Format d'affichage : *FYANNEE T1* (Ex : FY2018 T1)
+        - Condition d'affichage:  
+            - Si le mois est inferieur ou égale à 3 => T3
+            - Si le mois est inferieur ou égale à 6 => T4
+            - Si les mois est inferieur ou égale à 9 => T1 Sinon T2  
+    3. ***Colonne Mois***
+        - Nom : *Mois* 
+        - A partir de la colonne *Date* de la table
+        - Format d'affichage : *Mois Année* (Ex Juil.2017)
+        - Création d'une page de rapport:
+            - Contenu 
+                - Visuel matriciel
+                    - *Année*
+                    - *Month*
+                - Personnaliser l'ordre de trie du vhamps *Month*
+        - Ajout de la colonne *MonthKey* à la table *Date*
+            - Format d'affichage : *AnnéeMois* (Ex : 201707)
+                - `MonthKey = (YEAR('Date'[Date]) * 100) + MONTH('Date'[Date])`
+            - Faire le trie par la colonne *MonthKey*
+        - Masque la colonne *MonthKey* 
+    4. ***Creation d'une hierarchie sur la colonne Année:***
+        - Nom : Fiscal 
+        - Contenu: 
+            - *Année*
+            - *Trimestre*
+            - *Mois*
+    5. ***Creation de relation:*** 
+        - Date | Date & Sales | OrderDate
+        - Date | Date & Targets | TargetMonth 
+    6. ***Masque les colonnes:*** 
+        - Sales | OrderDate
+        - Targets | TargetMonth 
+    7. ***Marquge de la table Date*** 
+        - Marque comme table de date
+            - `Outils de table => Marquer comme table de date`
+3. **Création des mesures** 
+    1. ***Mesures simples***
+        - Average Price
+        - Median Price
+        - Min Price 
+        - Max Price 
+        - Orders
+            - Fonction *DISCOUNT()*
+                - Permet de compte les valeur une seule fois (Sans les doublons)
+        - Order Lines 
+            - Fonction *COUNTROWS()*
+                - Permet de compter les lignes d'une table
+        - Format à deux decimale pour la moyenne, la median, le minimum et le maximum
+        - Création d'un dossier *Tarifs*
+            - Contenu:
+                - Average Price
+                - Median Price
+                - Min Price 
+                - Max Price 
+        - Format avec séparateur de miliers pour les ligne de commande et les commandes 
+        - Création d'un dossier *Volumes*
+            - Contenu:
+                - Lignes de commandes
+                - Commande
+    2. ***Suppression du prix unitaire dans le visuel*** 
+    3. ***Ajout dans le visuel***
+        - Median Price (Prix médian)
+        - Min Price (Prix minimal)
+        - Max Price (Prix maximal)
+        - Orders (Commandes)
+        - Order Lines (Lignes de commande)
+    
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-6-35-ss.png)
+
+4. **Création des mesures supplémentaires** 
+    - Sur la page 1 
+        - Faire en sorte que la valeur **Target** doit s'afficher qu’en présence d’un filtre sur un seul commercial.
+            - Renomer la colonne 
+                - *Targets* => *TargetAmount*
+            - Création de la mesure d'affichage 
+                - Fonction *HASONEVALUE*:
+                    - Permetant de tester si une valeur unique est filtrée dans la colonne et elle retourne la sommes des chiffres pour un vendeur, sinon elle retoune une valeur VIDE
+                    -   ```
+                            Target =
+
+                            IF(
+
+                            HASONEVALUE('Salesperson (Performance)'[Salesperson]),
+
+                            SUM(Targets[TargetAmount])
+
+                            )
+                        ```
+        - Mise en forme de la colonne *Target* : Decimal = 0 
+        - Masque la colonne *TargetAmount* 
+        - Ajouter la mesure *Target* dans le visuel
+        - Repeter la manoeuvre pour les colonnes:
+            - Variance
+                - Format : Pourcentage à 2 decimales
+            - Variance Margin
+        - Ajouter l'ensemble aux visuel 
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-6-40-ss.png)
+
+
+
