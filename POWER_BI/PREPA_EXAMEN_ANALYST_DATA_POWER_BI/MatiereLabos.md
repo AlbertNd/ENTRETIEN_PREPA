@@ -2,15 +2,24 @@
 
 1. ## Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
 
-    1. ***Enregistrer le fichier Power BI Desktop***
-    2. ***Définir les options de Power BI Desktop***
-        - Fichier => Options et paramètres => Options => dans le groupe fichier actif => chargement des données *(Les paramètres de Chargement des données pour le fichier actif permettent de définir des options qui déterminent les comportements par défaut lors de la modélisatio)* => Deselection des options de relations
-    3. ***Obtenir des données de SQL Server***
-        - Acceuil => zone Données => Selection SQL Server 
-            - Zone Serveur => localhost => Utiliser mes informations d’identification actuelles.
-        - Fenetre de navigation => selection des 6 tables 
-        - Tranformer les données => éditeur Power Query 
-    4.  ***Afficher un aperçu des requêtes SQL Server***
+    1. ***Accès à l'espace d'enregistrement***
+        - Enregistre sous *Sales Analysis* Dans **D:\PL300\MySolution**
+    2. ***Définir les options de telechargement***
+        - Desactivation des relations 
+    3. ***Chargement des donnée SQL***
+        - Serveur => localhost 
+        - Dans AventureWorksDW2020
+            - Chargement des 6 tables 
+                1. DimEmployee
+                2. DimEmployeeSalesTerritory
+                3. DimProduct
+                4. DimReseller
+                5. DimSalesTerritory
+                6. FactResellerSales 
+    4.  ***Analyse et interpretation des metadata***
+        - *Distribution des colonnes* 
+        - *Profile des colonnes*
+        - *Qualité des colonnes*
         - Bare d'etat => statistique de la table 
         - Derniere colonne contenant liens tbales et valeur *(colonnes représentent les relations avec d’autres tables de la base de données. Elles peuvent être utilisées pour joindre des tables ensemble.)*
         - Evaluation de la qualité, distribution, profilage des colonnes 
