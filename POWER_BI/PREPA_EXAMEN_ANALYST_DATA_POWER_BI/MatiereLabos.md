@@ -436,5 +436,170 @@
 
         ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-6-40-ss.png)
 
+5. ## Mesures en DAX  et Time Intelligence [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab) 
 
+- Accès au fichier **D:\DA100\Lab06B\starter.** 
 
+1. **Création d'un visuel matrice**
+    - Création d'une nouvelle page
+    - Ajout du visuel matriciel 
+    - Mettre la hiérarchie Region | Regions dans les champs visuel
+    - Ajout du champs Sales |Sales
+    - Mise à jour du visuel 
+        - Propriéte *Disposition échélonnée* : Desactiver 
+2. **Manipulation du contexte de filtre** 
+    1. ***Création de la mesure "Sales All Region"***
+        - Objectif : La mesure doit evaluer la somme des ventes pour toutes les regions. *(Elle va filtrer sur toute la table Region)*
+            - La fonction *[CALCULATE()](https://learn.microsoft.com/en-us/dax/calculate-function-dax)* : `CALCULATE(<expression>[, <filter1> [, <filter2> [, …]]])`
+                - Fonction qui permet de manipuler un contexte de filtre. 
+                - Son premier argument est l'expressio ou la mesure
+                - Les autre argumentes permettent la modificaton du contexte filtre.
+            - La fonction *[REMOVEFILTERS()](https://learn.microsoft.com/en-us/dax/removefilters-function-dax)* :`REMOVEFILTERS([<table> | <column>[, <column>[, <column>[,…]]]])`
+                - Fonction qui permet de supprimers les filtres actifs
+                - Elle prend comme argument une table, une ou plusieurs colonnes, ou rien. 
+        - `Sales All Region = CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region))`
+        - Ajout de la mesure *Sales All Region* au visuel 
+    2. ***Création de la mesure "Sales % All Region" ***
+        - Objectif : La mesure doit evaluer le pourcentage de la somme des ventes par region sur le total general .*(Elle va filtrer sur toute la table Region)*
+            - La fonction *[DEVIDE()](https://learn.microsoft.com/en-us/dax/divide-function-dax)* : `DIVIDE(<numerator>, <denominator> [,<alternateresult>])`
+        - Mise en forme de la mesure : *Pourcentage à deux decimales*
+        -   ```
+                Sales % All Region =
+                DIVIDE(
+                SUM(Sales[Sales]),
+                CALCULATE(
+                        SUM(Sales[Sales]),
+                        REMOVEFILTERS(Region)
+                )
+                )
+            ``` 
+    3. ***Creation de la mesure "Sales % Country"*** 
+        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)*
+            -   ```
+                    Sales % Country =
+                    DIVIDE(
+                    SUM(Sales[Sales]),
+                    CALCULATE(
+                        SUM(Sales[Sales]),
+                        REMOVEFILTERS(Region[Region])
+                    )
+                    )
+                ```
+            - Ajout de la mesure qu visuel 
+    4. ***Création de la mesure "Sales % country" ***
+        - Objectif : Amelioration visuel de la mesure precedente *Sales % Country*. affiche que lorsque le la valeur existe dans le niveau de hiérarchie. *(Rajout d'une condition)*
+            - Fonction *[ISINSCOPE()](https://learn.microsoft.com/en-us/dax/isinscope-function-dax): `ISINSCOPE(<columnName>)`
+                - Elle retourne TRUE lorsque la colonne spécifier est le niveau dans les niveau de hiérarchie sinon elle retourne une veleur vide.
+            -   ```
+                    Sales % Country =
+                    IF(
+                        ISINSCOPE(Region[Region]),
+                        DIVIDE(
+                            SUM(Sales[Sales]),
+                            CALCULATE(
+                                SUM(Sales[Sales]),
+                                REMOVEFILTERS(Region[Region]
+                            )
+                        ) 
+                    )
+                ```
+    5. ***Création de la mesure "Sales % Groupe"*** 
+        - Objectif: Evaluer le pourcentage de la somme des ventes par pays et par region
+            -   ```
+                    Sales % Group =
+                    DIVIDE(
+                        SUM(Sales[Sales]),
+                        CALCULATE(
+                            SUM(Sales[Sales]),
+                            REMOVEFILTERS(
+                                Region[Region],
+                                Region[Country]
+                            )
+                        )
+                    )
+                ```
+    6. ***Creation de la mesure "Sales % Groupe"***
+        - Objectif : Ameliorer le visuel de la mesure precedente à l'aide d'une condition inhérentes à la fonction ISINSCOPE() et permettant de retuourner une valeur que si la region est comprise dans la portée
+            -   ```
+                    Sales % Group =
+                    IF(
+                        ISINSCOPE(Region[Region])
+                            || ISINSCOPE(Region[Country]),
+                        DIVIDE(
+                            SUM(Sales[Sales]),
+                            CALCULATE(
+                                SUM(Sales[Sales]),
+                                REMOVEFILTERS(
+                                    Region[Region],
+                                    Region[Country]
+                                )
+                            )
+                        )
+                    )
+                ```
+3. **Creation d'un dossier Ratio**
+    - Contenu: Les 3 mesure de pourcentage. 
+4. **Utiliser Time Intelligence**
+    1. ***Créer une mesure de ventes cumulées annuelles jusqu'à ce jour***
+        - Sur la page 2
+        - Objectif : Ventes cumuléé 
+        - Fonction *[TOTALYTD()](https://learn.microsoft.com/en-us/dax/totalytd-function-dax)*, Elle évalue la valeur cumulée de l'année de l' expression: `TOTALYTD(<expression>,<dates>[,<filter>][,<year_end_date>])`
+            - Expresssion: Une expresion qui retourne une valeur scalaire. 
+            - Date : Une colonne contenant des dates.
+            - Filtre: Une expression qui spécifie un filtre à appliquer au contexte actuel.
+            - Date de fin d'année: Une chaine littérale avec une date qui definit la date de fin d'année. la valeur par defaut est le 31 decembre.
+        - `Sales YTD =  TOTALYTD(SUM(Sales[Sales]), 'Date'[Date], "6-30")`
+        - Ajout des champs *Sales* et *Sales YTD* dansle visuel
+    2. ***Créer une mesure de croissance en glissement annuel*** 
+        - Création d'une mesure à la tables *Sales*
+            - Nom : Sales YoY Growth
+            - Declaration d'une variable permettant de calculer la somme de la colonne *Sales* et revenir en arriere de 12 mois à partir de chaque date dans le filtre.
+                - Fonction *[PARALLELPERIOD()](https://learn.microsoft.com/en-us/dax/parallelperiod-function-dax)* Elle renvoie une table qui contient une colonne de dates qui représente une période parallèle aux dates dans la colonne de dates spécifiée, avec les dates décalées d'un certain nombre d'intervalles vers l'avant ou vers l'arrière dans le temps : `PARALLELPERIOD(<dates>,<number_of_intervals>,<interval>)`
+                    - Date : la colonne qui contient les dates 
+                    - Nombre d'interval : Un entier qui spécifie le nombre d'intervalles à ajouter ou à soustraire des dates. 
+                    - intervalle: intervalle de décalage des dates 
+                        - valeur : *year*,*quarter*,*month*
+                    - Elle retourne une table contenant une seule colonne de valeurs de date.
+            -   ```
+                    Sales YoY Growth =
+                    VAR SalesPriorYear =
+                        CALCULATE(
+                            SUM(Sales[Sales]),
+                            PARALLELPERIOD(
+                                'Date'[Date],
+                                -12,
+                            MONTH
+                            )
+                        )
+                    RETURN
+                        SalesPriorYear
+                ```
+        - Ajout de la mesure dans le visuel 
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-8-13-ssm.png)
+
+    3. ***Créer une mesure de croissance en glissement annuel***
+        - Mise en forme de la mesure en pourcentage calculé
+            -   ```
+                    Sales YoY Growth =
+                    VAR SalesPriorYear =
+                        CALCULATE(
+                            SUM(Sales[Sales]),
+                            PARALLELPERIOD(
+                            'Date'[Date],
+                            -12,
+                            MONTH
+                            )
+                    )
+                    RETURN
+                    DIVIDE(
+                        (SUM(Sales[Sales]) - SalesPriorYear),
+                        SalesPriorYear
+                    )
+                ```
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-8-14-ssm.png)
+    
+    4. ***Creation d'un dossier Time Intelligence*** 
+        - Contenu : 
+            - Ventes cumulée 
+            - Pourcentage de la croissance des ventes 
