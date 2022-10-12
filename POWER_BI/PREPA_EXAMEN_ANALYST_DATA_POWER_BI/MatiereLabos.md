@@ -173,7 +173,7 @@
                 - *Target* => *Nombre décimal fixe*
                 - *TargetMonth* => *Date*
             - Les valeurs de la colonne *Target* multiple de 1000
-                - Pas de création de nouvelle colonne, multiplier la colonne 
+                - Pas de création de nouvelle colonne, multiplier la colonne target !!!!
         8. **ColorFormats** 
             - Utiliser la première ligne pour les en-têtes.
             - Confirmation : 3 colonne 10 lignes 
