@@ -80,6 +80,7 @@
                 - *EnglishProductSubcategoryName*
                 - *DimProductCategory*
                 - (NB : Ne pas utiliser le nom de la colonne d’origine comme préfixe)
+                    - Expliquer à quoi sert la fonction
             - Developement de la colonne *DimProductCategory* et introduire la colonne suivante: 
                 - *EnglishProductCategoryName* 
             - Renommer les colonnes: 
