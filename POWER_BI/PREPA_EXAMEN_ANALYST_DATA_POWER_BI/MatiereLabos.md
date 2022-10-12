@@ -145,7 +145,7 @@
                 - *StandardCost* 
             - Renommer les colonnes 
                 - *OrderQuantity* => *Quantity*
-                - *UnitPrice => *Unit Price* (incluez un espace)
+                - *UnitPrice* => *Unit Price* (incluez un espace)
                 - *SalesAmount* => *Sales*
             - Modifier le type des colonnes:
                 - *Quantity* : *Nombre entier*
