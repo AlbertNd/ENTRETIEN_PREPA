@@ -75,11 +75,11 @@
                 2. EnglishProductName
                 3. StandardCost
                 4. Color
-                5. DimProductSubcategory *(Qi est une table associée)*
+                5. DimProductSubcategory *(Qui est une table associée)*
             - Developement de la colonne *DimProductSubcategory* et garder les colonnes suivantes:
                 - *EnglishProductSubcategoryName*
                 - *DimProductCategory*
-                - (NB : Utiliser le nom de la colonne d’origine comme préfixe)
+                - (NB : Ne pas utiliser le nom de la colonne d’origine comme préfixe)
             - Developement de la colonne *DimProductCategory* et introduire la colonne suivante: 
                 - *EnglishProductCategoryName* 
             - Renommer les colonnes: 
