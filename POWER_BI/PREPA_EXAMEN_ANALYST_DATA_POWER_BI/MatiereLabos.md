@@ -17,17 +17,29 @@
                 5. DimSalesTerritory
                 6. FactResellerSales 
     4.  ***Analyse et interpretation des metadata***
-        - *Distribution des colonnes* 
-        - *Profile des colonnes*
         - *Qualité des colonnes*
-        - Bare d'etat => statistique de la table 
-        - Derniere colonne contenant liens tbales et valeur *(colonnes représentent les relations avec d’autres tables de la base de données. Elles peuvent être utilisées pour joindre des tables ensemble.)*
-        - Evaluation de la qualité, distribution, profilage des colonnes 
-            - Affichage => zone apercus des données
-    5. ***Obtenir des données d’un fichier CSV***
-        - Ajout d'une nouvelle requête
-            - Acceuil => zone nouvelle requete => Nouvelle source => Texte/CSV 
-    6. ***Obtenir des données supplémentaires d’un fichier CSV***   
+            - Relever des pourcentages des valeurs (**Valide**, **Error**, **Empty**) pour cahque colonne et trouver une explication.
+                - Colonne: 
+                    - *Position*
+        - *Distribution des colonnes*
+            - Relever des valeur **distinct** et valeur **unique** Pour chaque colonne et trouver une interpretation (cardinalité .....)
+            -   ``` 
+                    - Nombre de valeurs distinctes : nombre total de valeurs différentes trouvées dans une colonne donnée.
+
+                    - Nombre de valeurs uniques : nombre total de valeurs qui n’apparaissent qu’une seule fois dans une colonne donnée.
+                        1. Une colonne dont la plage contient de nombreuses valeurs répétées(le nombre de valeurs distinctes est faible) présente un niveau de cardinalité bas. 
+                        2. Une colonne dont la plage contient de nombreuses valeurs uniques (le nombre de valeurs uniques est élevé) présente un niveau de cardinalité élevé.
+
+                    - NB: Une cardinalité plus faible donnant des performances plus optimisées, vous devrez peut-être réduire le nombre de colonnes présentant un niveau de cardinalité élevé dans votre jeu de données.
+
+                        3. Quand les nombres de valeurs distinctes et uniques sont identiques, cela signifie que la colonne contient que des valeurs uniques.
+                ```
+        - *Profile des colonnes*
+            - Releve les problemes de qualité des données (voir si anomalie dans les graphes)
+    5. ***Charger les données d'un fichier TEXT/CSV***
+        - Fichier **ResellerSalesTargets.csv** dans **D:\PL300\Resources**
+    6. ***Charger les données d'un autre fichier TEXT/CSV***
+        - Fichier **D:\PL300\Resources\ColorFormats.csv**   
 
 2. ## Nettoyer, transformer et charger des données dans Power BI [(Voir labo)](https://learn.microsoft.com/fr-fr/training/modules/clean-data-power-bi/8-lab)
     1. **Chargement des données** 

@@ -217,6 +217,7 @@
         1. Une colonne dont la plage **contient de nombreuses valeurs répétées** *(le nombre de valeurs distinctes est faible)* **présente un niveau de cardinalité bas**. 
         2. Une colonne dont la plage **contient de nombreuses valeurs uniques** *(le nombre de valeurs uniques est élevé)* **présente un niveau de cardinalité élevé**.
     - **NB: Une cardinalité plus faible donnant des performances plus optimisées, vous devrez peut-être réduire le nombre de colonnes présentant un niveau de cardinalité élevé dans votre jeu de données.**
+        3. Quand les nombres de valeurs distinctes et uniques sont identiques, cela signifie que la colonne contient que des valeurs uniques.
 
 2. **Réduire la cardinalité des relations** 
     - Power BI Desktop offre différentes techniques qu'on peut utiliser pour réduire les données chargées dans des modèles de données, **telles que le résumé**. En réduisant les données chargées dans le modèle, on améliore la cardinalité des relations du rapport. Il est donc important de chercher à réduire les données à charger dans les modèles. Cela est particulièrement vrai pour les modèles de grande taille ou les modèles appelés à croître au fil du temps.
