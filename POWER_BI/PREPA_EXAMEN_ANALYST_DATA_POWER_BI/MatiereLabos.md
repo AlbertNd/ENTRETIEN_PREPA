@@ -55,7 +55,8 @@
                 4. LastName
                 5. Title
                 6. EmailAddress
-            - Fucion des colonnes : *LastName FirstName*
+            - Fusion des colonnes : *LastName FirstName*
+                - Renommer la nouvelle colonne *Salesperson*
             - Renomer les colonnes:
                 - *EmployeeNationalIDAlternateKey =>  EmployeeID*
                 - *EmailAddress => UPN*
