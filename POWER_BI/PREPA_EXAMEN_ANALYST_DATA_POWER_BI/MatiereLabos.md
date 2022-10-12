@@ -160,6 +160,8 @@
             - Renommer les colonnes : 
                 - *Attribut* => *MonthNumber* (pas d’espace entre les deux mots, il sera supprimé plus tard) 
                 - *Valeur* => *Target*
+            - Retirer la lettre *M* des mois
+                - Changer les type de donnée en *Nombre entier*
             - Création d'une colonne *Date* derivée des colonnes **Year** et **MonthNumber**
                 - Utilisation de la fonction : *Colonne à partir d'exemples*
             - Renommer la colonnes : *TargetMonth*
