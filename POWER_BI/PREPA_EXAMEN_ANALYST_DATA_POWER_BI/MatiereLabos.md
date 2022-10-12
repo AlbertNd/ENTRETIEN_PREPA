@@ -164,6 +164,7 @@
                 - Changer les type de donnée en *Nombre entier*
             - Création d'une colonne *Date* derivée des colonnes **Year** et **MonthNumber**
                 - Utilisation de la fonction : *Colonne à partir d'exemples*
+                    - Date format *US* : 7/1/2017
             - Renommer la colonnes : *TargetMonth*
             - Suppression des colonnes
                 - *Year* 
@@ -172,6 +173,7 @@
                 - *Target* => *Nombre décimal fixe*
                 - *TargetMonth* => *Date*
             - Les valeurs de la colonne *Target* multiple de 1000
+                - Pas de création de nouvelle colonne, multiplier la colonne 
         8. **ColorFormats** 
             - Utiliser la première ligne pour les en-têtes.
             - Confirmation : 3 colonne 10 lignes 
