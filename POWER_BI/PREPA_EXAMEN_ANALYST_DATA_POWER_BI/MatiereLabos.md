@@ -443,7 +443,8 @@
 
 4. **Création des mesures supplémentaires** 
     - Sur la page 1 
-        - Faire en sorte que la valeur **Target** doit s'afficher qu’en présence d’un filtre sur un seul commercial.
+        - Suppression de **Target** du visuel
+            
             - Renomer la colonne 
                 - *Targets* => *TargetAmount*
             - Création de la mesure d'affichage 
