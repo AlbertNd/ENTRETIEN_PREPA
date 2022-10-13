@@ -307,7 +307,7 @@
             - ornément d'icone et symbole 
             - info bulle
         - Voir dans la colonne **Sales|OrderDate** et la colonne **Target|TargetMonth**
-            - desactivation de Date/heure automatique 
+            - desactivation de Date/heure automatique *(Savoir expliquer pour il faut desactiver les date automatique : "l’année de la hiérarchie de dates qui est créée automatiquement commence le 1er janvier de l’année. alors que nous on souhaite que l'année commece en juin")*
                 - `fichier => Option et paramettre => options => fichier actif => chargement des données => time intelligence => date/heure automatique.`
     4.  ***Création des mesures rapides***
         - Création d'une mesures rapides sur la table *Sales* 
