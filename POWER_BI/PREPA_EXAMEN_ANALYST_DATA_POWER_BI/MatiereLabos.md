@@ -403,10 +403,11 @@
     6. ***Masque les colonnes:*** 
         - Sales | OrderDate
         - Targets | TargetMonth 
-    7. ***Marquge de la table Date*** 
+    7. ***Marquage de la table Date*** 
         - Marque comme table de date
             - `Outils de table => Marquer comme table de date`
-3. **Création des mesures** 
+3. **Création des mesures**
+    ***NB : Créer la mesure, et nom definir l'affichage dans les colonne "Moyenne, median, Min ..." fait qu'il ne soit pas possible de modifier la technique d’agrégation*** 
     1. ***Mesures simples***
         - Average Price
         - Median Price
