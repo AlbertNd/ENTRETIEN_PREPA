@@ -480,7 +480,7 @@
         - Propriéte *Disposition échélonnée* : Desactiver 
 2. **Manipulation du contexte de filtre** 
     1. ***Création de la mesure "Sales All Region"***
-        - Objectif : La mesure doit evaluer la somme des ventes pour toutes les regions. *(Elle va filtrer sur toute la table Region)*
+        - Objectif : La mesure doit evaluer la somme des ventes pour **toutes les regions**. *(Elle va filtrer sur toute la table Region)*
             - La fonction *[CALCULATE()](https://learn.microsoft.com/en-us/dax/calculate-function-dax)* : `CALCULATE(<expression>[, <filter1> [, <filter2> [, …]]])`
                 - Fonction qui permet de manipuler un contexte de filtre. 
                 - Son premier argument est l'expressio ou la mesure
@@ -505,7 +505,7 @@
                 )
             ``` 
     3. ***Creation de la mesure "Sales % Country"*** 
-        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)* 
+        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes **par region**. *(Elle va filtrer sur la colonne region de la table region)* 
             -   ```
                     Sales % Country =
                     DIVIDE(
