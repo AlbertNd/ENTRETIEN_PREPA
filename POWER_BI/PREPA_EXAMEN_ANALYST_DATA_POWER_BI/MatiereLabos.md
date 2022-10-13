@@ -386,7 +386,6 @@
                 - Visuel matriciel
                     - *Année*
                     - *Month*
-                - Personnaliser l'ordre de trie du vhamps *Month*
         - Ajout de la colonne *MonthKey* à la table *Date*
             - Format d'affichage : *AnnéeMois* (Ex : 201707)
                 - `MonthKey = (YEAR('Date'[Date]) * 100) + MONTH('Date'[Date])`
