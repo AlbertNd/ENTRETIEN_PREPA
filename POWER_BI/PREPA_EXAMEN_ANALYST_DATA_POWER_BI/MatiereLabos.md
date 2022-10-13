@@ -469,7 +469,7 @@
 
 5. ## Mesures en DAX  et Time Intelligence [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab) 
 
-- Accès au fichier **D:\DA100\Lab06B\starter.** 
+- Accès au fichier **D:\DA100\Lab05B\starter.** 
 
 1. **Création d'un visuel matrice**
     - Création d'une nouvelle page
