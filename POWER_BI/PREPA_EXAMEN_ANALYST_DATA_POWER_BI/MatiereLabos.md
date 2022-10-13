@@ -362,7 +362,7 @@
                Une ligne est ensuite créée pour chaque date de cette plage, en étendant la plage
                dans les deux sens pour que les années de données stockées soient complètes. 
             ```
-2. **Création des colonnes claculées**
+2. **Création des colonnes calculées**
     1. ***Colonnes Année** 
         - Nom : *Année* 
         - A partir de la colonne *Date* de la table 
