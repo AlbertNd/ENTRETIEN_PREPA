@@ -368,7 +368,7 @@
         - A partir de la colonne *Date* de la table 
         - Format d'affichage : *FYANNEE* (Ex : FY2018)
         - Condition d'affichage:
-            - Si le mois de l'année est plus grand que juin in rejoute un sur l'année
+            - Si le mois de l'année est plus grand que juin on rajoute un sur l'année
     2. ***Colonne Trimestre***
         - Nom : *Trimestre* 
         - A partir de la colonne *Date* de la table
