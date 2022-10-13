@@ -347,7 +347,8 @@
                     les régions de vente affectées au vendeur.
                 ```
     2. ***La table Date*** 
-        - Création d'une table a une colonne composée de valeur de date. 
+        - Nom : *Date* 
+        - Table a une colonne: 
             - Le mois de juin doit etre considéré comme le dernier mois de l'année.
             - Confirmation de : 1826 lignes.
         - Définition fonction ***CALENDARAUTO()***
