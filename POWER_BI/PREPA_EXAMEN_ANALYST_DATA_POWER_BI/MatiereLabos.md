@@ -379,7 +379,7 @@
             - Si les mois est inferieur ou égale à 9 => T1 Sinon T2  
     3. ***Colonne Mois***
         - Nom : *Mois* 
-        - A partir de la colonne *Date* de la table
+        - A partir de la colonne *Date* 
         - Format d'affichage : *Mois Année* (Ex Juil.2017)
         - Création d'une page de rapport:
             - Contenu 
