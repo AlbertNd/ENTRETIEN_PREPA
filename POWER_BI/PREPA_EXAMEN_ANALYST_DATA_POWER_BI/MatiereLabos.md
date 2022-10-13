@@ -251,7 +251,7 @@
                 - Contenu:
                     - Business Type
                     - Resseller
-            - Création d'une categorie sur la colonne *Country-Region*
+            - Création d'une hierarchie sur la colonne *Country-Region*
                 - Nom : *Geography*
                 - Contenu: 
                     - Country-Region 
