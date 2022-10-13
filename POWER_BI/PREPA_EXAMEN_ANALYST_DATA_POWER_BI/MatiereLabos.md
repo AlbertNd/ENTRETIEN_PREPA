@@ -442,7 +442,7 @@
     ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-6-35-ss.png)
 
 4. **Création des mesures supplémentaires** 
-    - Objectif : *La somme des valeurs Target (Objectif) n’est pas pertinente, car les objectifs sont définis pour chaque vendeur en fonction de leurs affectations de région de vente. La valeur Target (Objectif) ne doit s’afficher qu’en présence d’un filtre sur un seul commercial.*
+    - Objectif : *Afficher la somme des montant des cibles que si il y a bien un vendeur dan sle filtre*
     - Sur la page 1 
         - Suppression de **Target** du visuel
             - Renomer la colonne 
@@ -452,13 +452,8 @@
                     - Retourne TRUE quand il ne reste qu’une valeur distincte après filtrage du contexte pour columnName. Sinon, FALSE.
                     -   ```
                             Target =
-
-                            IF(
-
-                            HASONEVALUE('Salesperson (Performance)'[Salesperson]),
-
-                            SUM(Targets[TargetAmount])
-
+                            IF( HASONEVALUE('Salesperson (Performance)'[Salesperson]),
+                                SUM(Targets[TargetAmount])
                             )
                         ```
         - Mise en forme de la colonne *Target* : Decimal = 0 
