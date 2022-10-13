@@ -417,7 +417,7 @@
             - Fonction *[DISTINCTCOUNT()](https://learn.microsoft.com/en-us/dax/distinctcount-function-dax)* : `DISTINCTCOUNT(<column>)`  
                 - Permet de compte les nombre de valeur distinct
         - Order Lines 
-            - Fonction *COUNTROWS()*
+            - Fonction *[COUNTROWS()](https://learn.microsoft.com/en-us/dax/countrows-function-dax)* : `COUNTROWS([<table>])` 
                 - Permet de compter les lignes d'une table
         - Format à deux decimale pour la moyenne, la median, le minimum et le maximum
         - Création d'un dossier *Tarifs*
