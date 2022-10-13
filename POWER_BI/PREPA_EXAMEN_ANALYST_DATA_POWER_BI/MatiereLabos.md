@@ -340,6 +340,7 @@
             - UPN
         - Description des tables : 
             - *Salesperson (Performance)* => "Salesperson related to Region(s)"
+            - *Salesperson* => "Salesperson related to Sales"
             -   ``` 
                     La table Salesperson (Vendeur) permet d’analyser les ventes effectuées par un
                     vendeur, et la table Salesperson (Performance), celles effectuées dans la ou
