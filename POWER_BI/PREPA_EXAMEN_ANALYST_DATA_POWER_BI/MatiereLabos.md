@@ -324,7 +324,7 @@
 
 4. ## Introduction à DAX dans Power BI Desktop [Voir Labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/6-lab)
 
-- Accès aux fichier **Sales Analysis.pbiix** dans **D:\DA100\Labs\05-create-dax-calculations-in-power-bi-desktop\Starter** 
+- Accès aux fichier **Sales Analysis.pbiix** dans **D:\DA100\Labs\04-create-dax-calculations-in-power-bi-desktop\Starter** 
 
 1. **Création des tables calculées** 
     1. ***La table Salesperson*** 
