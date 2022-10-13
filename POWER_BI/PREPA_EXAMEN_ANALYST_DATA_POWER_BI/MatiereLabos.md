@@ -490,7 +490,7 @@
                 - Elle prend comme argument une table, une ou plusieurs colonnes, ou rien. 
         - `Sales All Region = CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region))`
         - Ajout de la mesure *Sales All Region* au visuel 
-    2. ***Création de la mesure "Sales % All Region" ***
+    2. ***Création de la mesure "Sales % All Region"***
         - Objectif : La mesure doit evaluer le pourcentage de la somme des ventes par region sur le total general .*(Elle va filtrer sur toute la table Region)*
             - La fonction *[DEVIDE()](https://learn.microsoft.com/en-us/dax/divide-function-dax)* : `DIVIDE(<numerator>, <denominator> [,<alternateresult>])`
         - Mise en forme de la mesure : *Pourcentage à deux decimales*
@@ -505,7 +505,7 @@
                 )
             ``` 
     3. ***Creation de la mesure "Sales % Country"*** 
-        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)*
+        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)* *On divise la somme des ventes sur la somme des ventes par region*
             -   ```
                     Sales % Country =
                     DIVIDE(
@@ -517,7 +517,7 @@
                     )
                 ```
             - Ajout de la mesure qu visuel 
-    4. ***Création de la mesure "Sales % country" ***
+    4. ***Création de la mesure "Sales % country"***
         - Objectif : Amelioration visuel de la mesure precedente *Sales % Country*. affiche que lorsque le la valeur existe dans le niveau de hiérarchie. *(Rajout d'une condition)*
             - Fonction *[ISINSCOPE()](https://learn.microsoft.com/en-us/dax/isinscope-function-dax): `ISINSCOPE(<columnName>)`
                 - Elle retourne TRUE lorsque la colonne spécifier est le niveau dans les niveau de hiérarchie sinon elle retourne une veleur vide.
