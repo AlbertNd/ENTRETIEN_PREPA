@@ -195,7 +195,7 @@
             - Accès au fichier **Sales Analysis** dans **D:\DA100\Labs\03-configure-data-model-in-power-bi-desktop\Starter**
             - Enregistrer le fichier dans **D:\DA100\MySolution**
         2. Créer des relations de modèle
-            - Création d'une relation entre la table **Categorie** et la tables **Sales** 
+            - Création d'une relation entre la table **Product** et la tables **Sales** 
                 - Via la gestion des relation 
                 - Cardinalité :  1 à *
                 - Direction du filtre croisé : *à sens unique*
