@@ -306,9 +306,9 @@
             - champs visibles 
             - ornément d'icone et symbole 
             - info bulle
-        - Hierarchie date automatique 
-        - desactivation de Date/heure automatique 
-            - fichier => Option et paramettre => options => fichier actif => chargement des données => time intelligence => date/heure automatique.
+        - Voir dans la colonne **Sales|OrderDate** et la colonne **Target|TargetMonth**
+            - desactivation de Date/heure automatique 
+                - `fichier => Option et paramettre => options => fichier actif => chargement des données => time intelligence => date/heure automatique.`
     4.  ***Création des mesures rapides***
         - Création d'une mesures rapides sur la table *Sales* 
             - Soustraction de : *Sommes des ventes* - *Cout*
