@@ -314,11 +314,13 @@
         - Création d'une mesures rapides sur la table *Sales* 
             - Soustraction de : *Sommes des ventes* - *Cout*
             - Renommer la nouvelle colonne *Profit*
-        - Création d'une mesure rapide sur la table *Slaes*
+        - Création d'une mesure rapide sur la table *Sales*
             - Division de : *Profit* / *Sales*
             - Renommer la nouvelle colonne *Profit Margin*
             - Attriubuer le format *Pourcentage*
         - Mettre les deux mesures dans le visuel
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/design-model-power-bi/media/lab-19-ss.png)
 
 4. ## Introduction à DAX dans Power BI Desktop [Voir Labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/6-lab)
 
