@@ -414,8 +414,8 @@
         - Min Price 
         - Max Price 
         - Orders
-            - Fonction *DISCOUNT()*
-                - Permet de compte les valeur une seule fois (Sans les doublons)
+            - Fonction *[DISTINCTCOUNT()](https://learn.microsoft.com/en-us/dax/distinctcount-function-dax)* : `DISTINCTCOUNT(<column>)`  
+                - Permet de compte les nombre de valeur distinct
         - Order Lines 
             - Fonction *COUNTROWS()*
                 - Permet de compter les lignes d'une table
