@@ -381,7 +381,7 @@
         - Nom : *Mois* 
         - A partir de la colonne *Date* 
         - Format d'affichage : *Mois Année* (Ex Juil.2017)
-        - Création d'une page de rapport:
+        - Création d'une nouvel page de rapport:
             - Contenu 
                 - Visuel matriciel
                     - *Année*
