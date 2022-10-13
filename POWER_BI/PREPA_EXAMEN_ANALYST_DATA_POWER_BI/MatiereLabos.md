@@ -460,9 +460,9 @@
         - Masque la colonne *TargetAmount* 
         - Ajouter la mesure *Target* dans le visuel
         - Création des mesures *Variance* et *Variance Margin* en respectant la manoeuvre precedente:
-            - Variance
+            - Variance *(Sommes des ventes - Cible)*
                 - Format : Pourcentage à 2 decimales
-            - Variance Margin
+            - Variance Margin *(Varince / Cible)*
         - Ajouter l'ensemble aux visuel 
 
         ![](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/media/lab-6-40-ss.png)
