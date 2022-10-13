@@ -389,7 +389,7 @@
         - Ajout de la colonne *MonthKey* à la table *Date*
             - Format d'affichage : *AnnéeMois* (Ex : 201707)
                 - `MonthKey = (YEAR('Date'[Date]) * 100) + MONTH('Date'[Date])`
-            - Faire le trie par la colonne *MonthKey*
+            - Faire le trie des *Mois* par la colonne *MonthKey*
         - Masque la colonne *MonthKey* 
     4. ***Creation d'une hierarchie sur la colonne Année:***
         - Nom : Fiscal 
