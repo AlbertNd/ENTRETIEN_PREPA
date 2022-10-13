@@ -464,7 +464,7 @@
         - Mise en forme de la colonne *Target* : Decimal = 0 
         - Masque la colonne *TargetAmount* 
         - Ajouter la mesure *Target* dans le visuel
-        - Repeter la manoeuvre pour les colonnes:
+        - Création des mesures *Variance* et *Variance Margin* en respectant la manoeuvre precedente:
             - Variance
                 - Format : Pourcentage à 2 decimales
             - Variance Margin
