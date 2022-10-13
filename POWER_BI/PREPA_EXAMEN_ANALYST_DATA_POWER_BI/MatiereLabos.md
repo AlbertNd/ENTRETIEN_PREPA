@@ -326,9 +326,11 @@
 
 - Accès aux fichier **Sales Analysis.pbiix** dans **D:\DA100\Labs\05-create-dax-calculations-in-power-bi-desktop\Starter** 
 
-1. **Création des tbales calculées** 
+1. **Création des tables calculées** 
     1. ***La table Salesperson*** 
         - Nom : **Salesperson** 
+            - La table doit etre une copie de la table *Salesperson (Performance)* 
+                - *NB : elle ne copie pas les propriétés comme la visibilité, la mise en forme, etc.*    
         - Création de relation : 
             - *Salesperson | EmployeeKey* et *Sales | EmployeeKey*
             - Suppression de la relation inactive 
