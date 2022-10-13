@@ -491,7 +491,7 @@
         - `Sales All Region = CALCULATE(SUM(Sales[Sales]), REMOVEFILTERS(Region))`
         - Ajout de la mesure *Sales All Region* au visuel 
     2. ***Création de la mesure "Sales % All Region"***
-        - Objectif : La mesure doit evaluer le pourcentage de la somme des ventes par region sur le total general .*(Elle va filtrer sur toute la table Region)*
+        - Objectif : La mesure doit evaluer le pourcentage de la somme des ventes par region sur le total general .*(Elle va filtrer sur toute la table Region)* *On divise la somme des ventes sur la somme des ventes par region*
             - La fonction *[DEVIDE()](https://learn.microsoft.com/en-us/dax/divide-function-dax)* : `DIVIDE(<numerator>, <denominator> [,<alternateresult>])`
         - Mise en forme de la mesure : *Pourcentage à deux decimales*
         -   ```
@@ -505,7 +505,7 @@
                 )
             ``` 
     3. ***Creation de la mesure "Sales % Country"*** 
-        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)* *On divise la somme des ventes sur la somme des ventes par region*
+        - Objectif: la mesure doit evaluer le pourcentage de la somme des ventes par region. *(Elle va filtrer sur la colonne region de la table region)* 
             -   ```
                     Sales % Country =
                     DIVIDE(
