@@ -258,7 +258,7 @@
                     - Etat-Province
                     - City
                     - Reseller                
-            - Categorisation dees colonnes : 
+            - Categorisation des colonnes : 
                 - Country-Region dans la catégorie **Pays/Région**
                 - State-Province dans la catégorie **Département ou province**
                 - City dans la catégorie **Ville**
@@ -300,7 +300,7 @@
                 - Sales | Sales
     3.  ***Examiner l’interface du modèle***
         - Vue rapport 
-        - Volet chammps 
+        - Volet champs 
             - les colonnes 
             - les hierarchies
             - champs visibles 
