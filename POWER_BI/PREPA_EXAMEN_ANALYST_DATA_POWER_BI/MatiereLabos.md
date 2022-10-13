@@ -202,7 +202,7 @@
                 - Relation active.
             - Création des relations:
                 - La table **Region** et la table **Sales**
-                - La table **Salesperson** et la table **Employeekey** 
+                - La table **Salesperson** et la table **Sales** 
             - Les manoeuvre
                 ```
                     - Dans Power BI Desktop => selection de l'icone Modele => 7 tables 
@@ -217,8 +217,9 @@
     2.  ***Configuration des tables***
         1. **Product**
             - Création d'une hierarchie sur la colonne *Category*
-                - Nom : *Product*
+                - Nom : *Products*
                 - dans la hierarchie:
+                    - *Category*
                     - *Subcategory*
                     - *product*
             - Création d'un dossier d'affichage
