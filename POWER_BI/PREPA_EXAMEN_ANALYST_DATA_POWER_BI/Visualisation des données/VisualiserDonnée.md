@@ -145,3 +145,67 @@
                 ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/3-question-answer-visualization-ss.png)
 
 #### Mettre en forme et configurer des visualisations
+- Power BI Desktop offre une variété d’options permettant de personnaliser l’apparence des visualisations sélectionnées. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-format-visualization-options-ssm.png)
+
+- Les options de mise en forme disponibles dépendent du type de la visualisation sélectionné.
+- Les options de mise en forme courantes incluent 
+    - **Le Titre**
+        - Il est possible ajouter ou modifier un titre à l’objet visuel. Il est possile de mettre en forme le titre en modifiant le texte, la taille du texte, la police, la couleur, l’arrière-plan et l’alignement.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-format-visualization-title-ssm.png)
+
+    - **L’Arrière-plan**
+        - Il est possible de définir une couleur ou une image comme arrière-plan du visuel.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-format-visualization-background-ssm.png)
+
+    - **La Bordure**
+        - Il est possible de définir une bordure autour de l’objet visuel pour isoler l’objet visuel des autres éléments du canevas,. On peut modifier la couleur de la bordure et le rayon.
+    - **Général**
+        - Il est possible de définir la taille et l’emplacement précis de l'objet visuel sur le canevas. Cette option peut être adaptée si la fonctionnalité de glisser-déplacer ne place pas l’objet visuel exactement là où on le souhaite. Elle peut également être utile pour s'assurer d'un alignement spécifiques.
+    - **Couleurs des données**
+        - Il est possible de définir les couleurs pour les valeurs de données dans l’objet visuel
+    - **Étiquettes de données** 
+        - Il est possible de modifier les polices, la taille et les couleurs de toutes les étiquettes du visuel.
+    - **Info-bulles**
+        - Elle permet d’ajouter une info-bulle personnalisée qui s’affiche lorsque on pointe sur l’objet visuel
+        - L’info-bulle par défaut affiche la valeur et la catégorie du point de données et les info-bulles personnalisées peuvent inclure des objets visuels, des images et toute autre collection d’éléments que l'on crée dans la page de rapport.
+        - ***Il ne faut pas ajouter trop de champs aux info-bulles, car l’ajout d’un trop grand nombre de champs peut entraîner des problèmes de performances et ralentir vos objets visuels.***
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-add-new-value-page-tooltip-ssm.png)
+
+    - **Les info-bulles affichant des informations graphiques**
+        - Creation d'une nouvelle page 
+        - Sur la nouvelle page 
+            - Volet **Mise en forme**
+            - **Taille de page** => **Type** => **Info-bulle** 
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-add-new-report-page-tooltip-ss.png)
+
+            - **Information sur la page** => Info-bulle => Activer *(Ainsi Power BI inscrit cette page en tant que page d’info-bulle)*
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-enable-tooltip-option-ss.png#lightbox)
+
+            - NB: Les info-bulles ont un espace de canevas limité. Il est possible d'assurer que les visuels s’affichent dans l’info-bulle, sous l’onglet **Affichage**, en définissant l’option **Mode Page** sur **Taille réelle**.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-change-page-view-size-tooltip-ss.png)
+
+            - On specifie les champs pour lesquels on souhaite que l’info-bulle s’affiche
+                - Sélection de la page d’info-bulle => l’onglet Valeurs dans le volet Visualisations => faire glisser les champs du volet Champs dans le compartiment Info-bulle.
+            
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-specify-fields-tooltip-ssm.png)
+
+            - *Revenir à la page du rapport et appliquer l’info-bulle à un ou plusieurs visuels de cette page.* 
+                - Sélection d'un objet visuel, puis dans le volet Mise en forme, faire défiler jusqu’à la section Info-bulle => Régler l’option d’info-bulle sur Activer, puis sélection de la page d’info-bulle dans la liste Page.
+            
+            - Lorsqu'on point sur l'objet 
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-display-tooltip-ssm.png)
+
+            
+
+
+
+
