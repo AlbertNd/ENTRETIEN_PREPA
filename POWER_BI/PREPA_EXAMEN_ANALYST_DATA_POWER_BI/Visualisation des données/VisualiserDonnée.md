@@ -204,7 +204,19 @@
 
             ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/4-display-tooltip-ssm.png)
 
-            
+#### Importer un objet visuel personnalisé
+- *Les visuels personnalisés disponibles dans Microsoft AppSource sont créés par Microsoft et des partenaires Microsoft. Certains de ces visuels personnalisés sont certifiés et d'autres non. Le statut certifié signifie que le visuel répond aux exigences du code de l'équipe Microsoft Power BI ; le visuel est testé pour vérifier qu'il n'accède pas à des services ou ressources externes et qu'il suit des modèles et des directives de codage sécurisés. Le processus de certification est facultatif, donc un visuel non certifié n'est pas nécessairement dangereux à utiliser.*
+
+![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/5-get-visual-appsource-ssm.png)
+
+![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/5-new-visual-icon-ssm.png)
+
+![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/5-new-appsource-visual-ss.png)
+
+- Il est possible de créer son propre visuel personnalisé en utilisant le kit de développement logiciel visuel personnalisé **(SDK)**, qui est un outil open source basé sur NodeJS (langage de programmation JavaScript) disponible sur GitHub. Le visuel personnalisé est fourni sous la forme d'un seul fichier Power BI Visual Tools (.pbiviz) qu'on peut importer dans Power BI Desktop.
+
+
+
 
 
 
