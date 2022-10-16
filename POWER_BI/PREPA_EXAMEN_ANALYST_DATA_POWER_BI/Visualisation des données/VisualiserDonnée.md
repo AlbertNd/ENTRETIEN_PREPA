@@ -215,9 +215,75 @@
 
 - Il est possible de créer son propre visuel personnalisé en utilisant le kit de développement logiciel visuel personnalisé **(SDK)**, qui est un outil open source basé sur NodeJS (langage de programmation JavaScript) disponible sur GitHub. Le visuel personnalisé est fourni sous la forme d'un seul fichier Power BI Visual Tools (.pbiviz) qu'on peut importer dans Power BI Desktop.
 
+#### Ajouter un objet visuel R ou Python
+- Power BI Desktop propose une option de visualisation pour R et Python à laquelle on peut accéder dans le volet Visualisations
+    - Il est egalement possible d'importer un visuel R ou Python personnalisé à partir de Microsoft AppSource.
+[ Pour utiliser un visuel R ou Python et actualiser les données dans le service Power BI, il faut utiliser une passerelle personnelle](https://learn.microsoft.com/en-us/power-bi/connect-data/service-gateway-personal-mode)
 
+1. **Création d'un visuel R**
+    - Avant de créer le visuel R, il faut installer R sur l'ordinateur local afin que Power BI Desktop puisse exécuter des scripts R. 
+        - Une fois téléchargé et installé Power BI l'active automatiquement, mais il faut vérifier qu'il a été activé au bon emplacement. 
+            - Dans Power BI Desktop, sélection **Fichier** => **Options et paramètres** => **Options** => sélection Script R dans la liste Options globales .
+            -  Vérifier que l'installation R locale est spécifiée dans le menu déroulant Répertoires de base R détectés et qu'elle reflète correctement l'installation R locale que l'on souhaite que Power BI Desktop utilise.
 
+            ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-select-r-scripting-global-options-ssm.png)
+    - Création du visuel 
+        - Sélection de l' icône visuelle R dans le volet Visualisations , puis sélection **Activer** dans la fenêtre qui s'affiche => une image visuelle R d'espace réservé sur le canevas du rapport, avec l' éditeur de script R en dessous.
 
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-select-r-visual-ssm.png)
 
+        - Ensuite, dans le panneau Champ , sélection des champs que l'on souhaite utiliser dans le script. Ils s'afficheront dans la section Valeurs du volet Visualisations . On utilisere les données de ces champs pour créer un tracé.
 
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-select-fields-r-visual-ssm.png)
+
+        - Lorsque on sélectionne ou supprime des champs, le code de prise en charge dans l' éditeur de script R est automatiquement généré ou supprimé. En fonction des sélections, l' éditeur de script R génère le code de liaison suivant :
+            - L'éditeur a créé une trame de données d'ensemble de données avec les champs que l'on a ajoutés.
+            - L'agrégation par défaut est : ne pas résumer.
+            - Comme pour les visuels de tableau, les champs sont regroupés et les lignes en double n'apparaissent qu'une seule fois.
+        - Une fois le script terminé => **Exécuter** dans la barre de titre de l'éditeur de script R.
+        - Power BI Desktop identifie le tracé et le présente sur le canevas.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-run-r-script-ssm.png)
+
+2. **Création d'un visuel Python**
+    - Pas de prerequis (installation ..... Rien)
+        - Dans Power BI Desktop en sélectionnant l' icône du visuel Python dans le volet Visualisations => Sélection **Activer** dans la fenêtre qui s'affiche => une image visuelle Python d'espace réservé sur le canevas du rapport, avec l' éditeur de script Python en dessous.
+    - Tout comme pour R sélectionner les champs, écrire le script Python, puis sélectionner **Exécuter** dans la barre de titre de l' éditeur de script Python 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-select-python-visual-ssm.png)
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-python-script-editor-title-bar-ssm.png)
+
+ #### Importer un visuel R ou Python
+ - Pour importer un visuel R ou Python à partir d'AppSource:
+    - Dans le volet Visualisations => sélection de l'icône **Obtenir plus de visuels** => sélection **Obtenir plus de visuels** => Dans la fenêtre qui s'affiche, recherche et sélection du visuel R ou Python que l'on souhaite importer => **Ajouter**. La nouvelle icône visuelle apparaîtra sous les autres icônes visuelles dans le volet Visualisations.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/6-import-appsource-ssm.png)
+
+#### Travailler avec les d'indicateurs de clé de performance (KPI)
+- Les indicateurs de clés  de performance (KPI) aident à suivre les progrès vers un objectif spécifique au fil du temps. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/7-kpi-ss.png)
+
+- **Pour utiliser un KPI, on besoin de trois informations:**
+    1. Une unité de mesure que l'on souhaite suivre, par exemple les ventes totales, le nombre d'embauches d'employés, le nombre de prêts remboursés ou le nombre d'étudiants inscrits.
+    2. Un objectif pour la mesure afin que l'on puisse comparer les progrès avec cet objectif.
+    3. Une série chronologique, par exemple quotidienne, mensuelle ou annuelle.
+
+- Lors de la configuration du visuel KPI, 
+    1. On introduit l'unité de mesure dans l' invite **Indicateur**. 
+    2. On saisit l'objectif sous **Objectifs cibles** 
+    3. Sélection de la série chronologique dans la liste déroulante **Axe de tendance**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/7-configure-kpi-ss.png)
+
+    - ***Ce ci va donner*** 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/7-kpi-visual-ss.png)
+
+    - ***NB : Les KPI fonctionnent mieux dans une série, par exemple, en affichant les objectifs quotidiens, mensuels et annuels dans la section d'un rapport Power BI.***
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/media/7-kpi-series-ss.png)
+
+    
 
