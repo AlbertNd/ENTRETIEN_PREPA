@@ -272,7 +272,102 @@
                     ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/5-apply-new-hierarchy-ssm.png)
                     
 #### Utiliser les interactions avancées et l'extraction
-- Pour bénéficier d'un contrôle total sur le comportement de votre rapport et être en mesure de déterminer l'expérience utilisateur attendue, vous pouvez modifier les interactions par défaut et utiliser les fonctionnalités d'extraction.
+- Pour bénéficier d'un contrôle total sur le comportement du rapport et être en mesure de déterminer l'expérience utilisateur attendue, on peut **modifier les interactions** par défaut et utiliser les **fonctionnalités d'extraction**.
+
+1. **Modifier les interactions** 
+    - Pour activer les commandes d'interaction visuelle:
+        - Onglet **Format** => Selection  **Modifier les interactions**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-edit-interactions-button-option-ssm.png)
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-view-interactions-ssm.png)
+
+    - *Le bouton ***Modifier les interactions*** devient gris pour indiquer que cette option est activée, et les ***icônes Filtrer***, ***Mettre en surbrillance et/ou Aucune*** sont ajoutées aux autres visualisations de la page du rapport. Lorsque on pointe sur une icône, une zone grise s'affiche au-dessus de l'objet visuel associé. ***L'icône en gras est celle qui est appliquée***
+        - ***Ces modifications sont enregistrées avec le rapport, afin que les utilisateurs de celui-ci bénéficient de la même expérience d'interaction visuelle.***
+
+    - ***Les types d'interactions*** 
+        1. Filtrage croisé
+        2. Mise en surbrillance
+        3. Aucun (Suppression de toutes les filtre)
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-change-interactions-ssm.png) 
+
+    - ***NB : Attention, le nombre d'interactions entre les objets visuels aura un impact sur les performances du rapport***
+        - Pour optimiser les performances du rapport, il y a la possibilité d'envoyer moins de requêtes (ce qui réduira la verbosité) en désactivant la mise en surbrillance/le filtrage croisé par défaut. On peut également désactiver certaines interactions susceptibles de nuire à l'expérience si l'exécution des requêtes qui en résultent est très longue.
+            - Pour acceder au paramettre **Reduction de requete** 
+                - **Fichier** => **Options et paramètres** => **Options** => **Réduction des requetes**
+
+                ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-query-reduction-settings-ssm.png)
+
+2. **Extraire** 
+    - Il est possible d'utiliser la fonctionnalité Extraction  pour créer au sein de votre rapport une page qui se concentre sur une entité spécifique, comme un produit, une catégorie ou une région et ensuite acceder à cette page lorsque on procédez à une extraction à partir des objets visuels connexes qui se trouvent sur d'autres pages du rapport.Les informations affichées sur la page d'extraction seront propres à l'élément sélectionné sur l'objet visuel.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-drill-through-example-ssm.png)
+
+    - **Exemple** 
+        - On souhaite créer une extraction pour l'entité **Catégorie du produit**
+            1. On créer une page 
+            2. Renommer la page **Page Détails**
+            3. Dans la page 
+                - Ajout d'un visuel pour l'entité qu'on souhaite fournir l'exploration *(un tableau affichant les données des champs Catégorie, Sous-catégorie, Pays et Ventes brutes et Ventes nettes)*
+
+                ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-drill-through-detail-page-ss.png)
+
+            4. Dans le volet **Visualisation** => dans la section **Valeur** => on deplace le champs ***( Ici = nom de la categorie)*** pour le quel on veut activer l'exploration vers le puits **Filtres d'extraction**   
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-drag-category-name-drill-through-filters-ss.png)
+
+            5. On verifie que l'option **Conserver tous les filtres** est **activée** *(position ON)*. 
+                - Ainsi, lorsque on procédera à une extraction à partir d'un objet visuel, les mêmes filtres seront appliqués sur la page Détails.
+            6. Power BI Desktop crée automatiquement un objet visuel de bouton **Précédent** sur la page. 
+                - Ce bouton sera utilisé à des fins de navigation, pour permettre aux utilisateurs du rapport de revenir à la page précédente de celui-ci. *On peut le repositionner et le redimensionner sur la page du rapport ou le remplacer par un autre type de bouton.
+            
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-back-button-ssm.png)
+
+            7. ***Pour utiliser l'extraction*** 
+                - Click droit sur un point de données d'un objet visuel situé sur une autre page du rapport => sélection **Extraire** => sélection de la page ciblée **(Page Détails)** pour obtenir des détails filtrés en fonction de ce contexte.
+
+                ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-select-drill-through-context-menu-ssm.png)
+
+3. **Extraction interrapport** 
+    - La fonctionnalité **Extraction interrapport** permet de passer contextuellement d'un rapport à un autre dans la même application ou dans le même espace de travail du service Power BI.
+        - On peut ainsi relier deux ou plusieurs rapport dont le contenu est apparenté.
+        - On peut aussi transmettre le contexte de filtrage avec cette connexion interrapport.
+        - ***Par exemple, On peut sélectionner un point de données sur un objet visuel contenu dans un rapport, puis procéder à l'extraction d'informations détaillées connexes situées dans un autre rapport.***
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-cross-report-drill-through-example-ssm.png)
+
+        - Pour activer l'extraction interrapport:
+            1. Valider les modèles de données pour les rapports source et cible. 
+            2. Les deux modèles de données doivent contenir les champs que l'on souhaite transmettre. 
+                - *Bien que les schémas de chaque rapport ne doivent pas nécessairement être les mêmes*,
+            3. Les noms de ces champs et les noms des tableaux auxquels ils appartiennent doivent être identiques. 
+            4. Les chaînes, sensibles à la casse, doivent correspondre. 
+                - ***S’ils ne sont pas identiques, il faut mettre à jour le nom du champ ou le nom du tableau dans le modèle sous-jacent.***
+            5. Une fois les modèles de données validés, il faut activer la fonctionnalité **Extraction interrapport** dans Power BI Desktop.
+                - **Fichier** => **Option et parametres** => **Option** => dans **fichier actuel** => Selection **Paramettres de rapport**
+                    - Dans la section **Extraction interraport** => cocher la case **Autoriser les objets visuels de ce rapport à utiliser des cibles d'extraction d'autres rapports** => **OK**
+                
+                ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-enable-cross-report-drill-through-ssm.png)
+
+            6. Il faut configurer une page cible pour l'extraction interrapport. 
+                - *de la même manière qu'on a configuré une page pour l'extraction au sein d'un rapport à la section précédente. Les autres objets visuels cibleront cette page pour l'extraction.*
+            7. On accede à la section **Extraction** du volet **Visualisations** et on active l'option **Interrapport** *(position On)*. 
+            8. On déplace ensuite les champs que l'on souhaite utiliser comme cibles d'extraction vers le puits **Filtres d'exploration**. 
+            9. Pour chaque champ, on choisis d'autoriser l'extraction lorsque celui-ci est utilisé en tant que catégorie ou lorsqu'il est synthétisé sous forme de mesure.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/6-select-fields-cross-report-drill-through-ssm.png)
+
+            10. On choisis d'activer ou de désactiver l'option **Conserver tous les filtres** *(position On ou Off)* pour l'objet visuel. 
+                - *Pour que les filtres appliqués à l'objet visuel source ne soient pas transmis à l'objet visuel cible, on désactive cette option (Off).*
+            - ***NB : Comme lorsque on crée une extraction pour un rapport individuel, Power BI Desktop ajoute automatiquement un bouton Précédent à la page d'extraction cible.***
+                - *Cependant, dans ce cas, il faut ***supprimer le bouton Précédent*** car il s'applique uniquement à la navigation au sein d'un rapport.*
+
+            - Lors de l'enregistrement et de la publication des modifications, on peut utiliser la fonctionnalité d'extraction interrapport. 
+                - Sélection du rapport source à partir du service Power BI => choisir un objet visuel qui utilise le champ **Extraction** de la manière que on a spécifiée lors de la configuration de la page cible => Click droit sur un point de données de l'objet visuel => sélection **Extraction** => choisir la cible d'extraction.
+                    - ***NB: les cibles d'extraction interrapport se présentent au format : Nom de la page [Nom du rapport].***
+
+####  Configurer la mise en forme conditionnelle
 
 
-        
+
