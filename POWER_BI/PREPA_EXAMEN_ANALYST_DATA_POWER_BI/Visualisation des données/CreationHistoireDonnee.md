@@ -117,4 +117,162 @@
                 ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/2-view-theme-options-ss.png)
 
 #### Ajouter des boutons, des favoris et des sélections
+- Il est possible d'utiliser les [Signets](https://learn.microsoft.com/fr-fr/power-bi/create-reports/desktop-bookmarks?tabs=powerbi-desktop), [Bouttons](https://learn.microsoft.com/fr-fr/power-bi/create-reports/desktop-buttons?tabs=powerbi-desktop), [Sélections]()
 
+1. **Ajouter des signets**
+    - Ils permettent de capture une vue configurée d’une page de rapport pour que l'on puissiez revenir rapidement à cette vue plus tard. 
+        - *Utile pour assurer le suivi de votre propre avancement lorsque vous créez des rapports.*
+        - *Utile pour créer une présentation de type PowerPoint qui parcourt les signets dans l’ordre, créant ainsi un scénario avec votre rapport.*
+    - Lorsqu'on enregistre un signet, les elemenst suivant sont enregistré:
+        - ***Page actuelle***
+        - ***Filtres***
+        - ***Segments, notamment le type de segment (par exemple, liste déroulante ou liste) et l’état du segment***
+        - ***État de sélection de l’objet visuel (par exemple, filtres de surbrillance croisée)***
+        - ***Ordre de tri***
+        - ***Emplacement d’exploration***
+        - ***Visibilité d’un objet (à l’aide du volet  Sélection )***
+        - ***Mode Focus ou À la une de tout objet visible***
+    - Exemple: si on souhaite permettre à l'utilisateur de pouvoir basculer netre deux objets visuels sur une page, 
+        1. Configuration de la facon dont on veut que la page s'affiche initialement.
+            - Onglet **Affichage** => Selection **Sélection** :
+                - *Dans le volet Sélection qui s’affiche, il y a la liste de tous les éléments de la page, ainsi qu’une icône d’œil qui indique les éléments actuellement visibles*
+                - **NB:** Il est possible de renommer les éléments de la liste en double-cliquant dessus afin de savoir exactement qui est qui. 
+        2. Ajout d'un signet pour capturer le visuel de la page dans son état actuel. 
+            - Onglet **Affichage** => Selection **Signets** => selection **Ajouter**:
+                - Renommer(Double click) le signets avec un objectif claire *(Ex : Graphique des variances)*
+    - Si plusieurs Signets
+        - ***On répéte ces étapes pour ajouter d’autres signets : sélection des éléments que l'on souhaite afficher/masquer sur la page de rapport, puis ajout d'un signet et lui donner un nom descriptif.***
+    - **Grpahique variance**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/3-add-bookmark-ssm.png)
+
+    - **Tableau de bord**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/3-select-items-dashboard-bookmark-ssm.png)
+    
+    **Il est possible ensuite d'affecter ces signets à des boutons pour autoriser les utilisateurs à basculer entre les signets.**
+
+2. **Ajouter des boutons**
+    - Il est possible d'utiliser des bouttons pour des nombreuses raisons:
+        - Basculer entre deux objets visuels d’un rapport (comme requis dans l’exemple précédent)
+        - Descendre dans la vue des données d’un objet visuel
+        - Passer d’une page de rapport à une autre
+    - Power BI Desktop fournit une série de types de boutons
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/3-button-options-ssm.png)
+
+    - Supponsons que l'on souhaite un boutton personalisé permettant de basculer entre deux signets
+        1. Onglet **Insert** = > Selection **Bouttons** => Selection du type de bouton souhaité *(Dans ce cas ci ***Vide**)*
+        2. Une fois que le bouton est ajouter à la page: 
+            1. On slection le boutton
+            2. Dans le volet **Visualisations** 
+                - Deplacement du curseur **Texte du bouton**  vers  la position **Active**
+                - Developement de la section **Text du bouton** 
+                    - Introduire le texte à afficher sur le bouton
+                    - Mise en forme du boutton et texte du bouton *(Couleur, police, ...)
+            3. Ajout d'une action au bouton
+                - Volet **Visualisations** => **Action** => **Activé**
+                    - Developpement de la section **Action** => choix du type d'action souhaité. 
+                        - ***Retour*** : *renvoie l’utilisateur à la page précédente du rapport.* 
+                            - *Cette option est utile pour les pages d’extraction ou les pages accessibles à partir d’une page principale.*
+                        - ***Signet*** : *affiche la page de rapport associée à un signet défini pour le rapport actuel.*
+                        - ***Extraction*** : *dirige l’utilisateur vers une page d’extraction filtrée sur sa sélection, sans utiliser de signets.*
+                        - ***Navigation entre les pages*** : *dirige l’utilisateur vers une autre page du rapport, aussi sans utiliser de signets, ce qui est un moyen efficace de créer une expérience de navigation pour les utilisateurs.*
+                        - ***Questions et réponses*** : *ouvre une fenêtre **Explorateur de questions et réponses**, où les utilisateurs peuvent taper des questions pour trouver rapidement les informations qu’ils recherchent, et de spécifier le type d’objet visuel dans lequel ils veulent voir les informations s’afficher.* 
+                            - *Cette option peut être utile si on souhaite gagner de l’espace dans le rapport tout en offrant à l’utilisateur une fonctionnalité de questions et réponses.*
+                        - ***URL web*** : *ouvre un site web dans une nouvelle fenêtre de navigateur.* 
+                            - *Par exemple, si on souhaite accorder aux utilisateurs un accès rapide au site web à partir d’un rapport.*
+            - Dans le'exemple ci-dessous:
+                - On selectionne le type d'action **Signet**(Bookmark) et on selection le signet **Tableau de bord principal**
+                    - *Il aussi possible de rajouter une info-bull visible au survole du bouton.*
+            
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/3-assign-bookmark-action-ssm.png)
+
+            - ***copier et coller le bouton afin d’avoir deux boutons avec une mise en forme cohérente sur la page. On renomme le deuxième bouton en **Graphique de variance** et on modifie l’action affectée au signet **Graphique de variance**.*
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/3-two-buttons-ssm.png)
+
+#### Concevoir le mode de navigation au sein d'un rapport
+- Le mode de navigation au sein d'un rapport correspond à la façon dont les utilisateurs passent d'une page à une autre, ou d'un objet visuel à un autre, avant de revenir à leur point de départ
+
+1. **Ajout des boutons de navigation**
+    - Pour concevoir le mode de navigation:
+        - On peut créer une nouvelle page **Navigation** au sein du rapport et y ajouter des boutons de navigation
+        - On peut également utiliser une combinaison des deux options. 
+    - ***Lorsque les utilisateurs sélectionnent un de ces boutons, ils accèdent directement à une autre page du rapport, que l'on peut masquer afin qu'elle soit uniquement accessible via les boutons de la page **Navigation**.***
+    1. Dans le volet **visualisation** => **Action** => Type d'action **Navigation au sein de la page** => page de **Destination** du boutton.
+    2. Copier et coller pour en créer un deuxième avec la même mise en forme
+    3. Sur a page de **Destination** : 
+        - Selection du bouton **Vide** dans le menu des bouton => type d'action **Precedent** 
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-add-customized-back-button-ssm.png)
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-assign-bookmark-as-action-ss.png)
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-add-default-back-button-ssm.png)
+
+2. **Définir la destination de navigation**
+    - Il est possible d'utiliser la mise en forme conditionnelle pour définir la destination de navigation en fonction du résultat d'une mesure. ***Ce type de méthode de navigation permet d'économiser de l'espace dans votre rapport***
+        - *Ex: plutôt que d'utiliser plusieurs boutons de navigation (comme l'illustre l'image précédente), on peut utiliser un seul bouton pour accéder à différentes pages en fonction de la sélection de l'utilisateur*
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-conditional-navigation-ss.png)
+
+        - Ce type de navigation peut etre utile pour les raison suivantes:
+            - Spécifier le chemin logique que les utilisateurs du rapport doivent suivre. 
+                - *En d'autres termes,on détermine l'ordre dans lequel les utilisateurs consulteront les différentes pages.*
+            - Raconter une histoire basée sur les données. 
+                - *On peut l'utiliser pour adresser aux employés un message qui est sauvegardé par les données. Cette méthode peut favoriser un changement, comme une augmentation des ventes.*
+            - Créer un portail où les utilisateurs ont accès à un ensemble de rapports.
+    - **Pour utiliser la mise en forme conditionnelle afin de définir la navigation:**
+        1. Créer un tableau à une seule colonne contenant les noms des destinations de navigation. 
+        2. Dans ce tableau, on verifie que les valeurs entrées correspondent aux noms des pages du rapport.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-load-table-ss.png)
+
+        3. On l'ajoute à la page du rapport en tant que segment à **sélection unique**
+        4. Ajout d'un bouton de navigation au sein de la page 
+            - Dans la section **Actions**,on s'assurez que la **Destination** est définie sur **Aucune**
+        5. Click droit sur la destination et sélection **Mise en forme conditionnelle**.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-conditional-formatting-option-ss.png)
+
+        6. Dans la fenetre **Destination**
+            - Selection du nom de la colonne créée. *(En fonction de la sélection opérée par l'utilisateur, le bouton peut permettre d'accéder à différentes pages)*
+        7. Configuration de la mise en forme conditionnelle
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/4-conditional-navigation-configuration-ss.png)
+
+#### Utiliser les interactions de base
+- Dans Power BI Desktop, le rapport est dynamique. 
+    - Si on effectue une sélection sur un objet visuel dans le rapport, d’autres objets visuels peuvent changer pour refléter cette sélection. De même, s’il existe des hiérarchies dans les données, on peut monter et descendre dans la hiérarchie pour afficher les données à différents niveaux.
+
+1. **Afficher les interactions** 
+    - Il est possible d'effectuer des modifications afin de contrôler la façon dont ces interactions circulent entre les objets visuels
+        1. ***Utiliser les hiérarchies**
+            - Une hiérarchie est une structure dans laquelle des groupes sont classés l’un au-dessus de l’autre, en fonction d’un état spécifique
+            - ***Les icônes de hiérarchie se situent au-dessus de l’objet visuel***
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/5-add-default-hierarchy-ssm.png)
+
+            - Il est possible de descendre et monter dans la hierarchie 
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/5-expand-hierarchy-ssm.png#lightbox)
+
+            - IL est aussi possible de prédéfinir le chemin d’accès de la hiérarchie pour les utilisateurs du rapport et supprimer le travail d’estimation *(Empêcher les utilisateurs d’afficher un niveau de hiérarchie particulier)*.
+                - Pour ce faire: 
+                    1. On supprime tous les champs dela barre d'outils **Axe**
+                    2. Dans le volet **Champs**  => click droit sur le champs que l'on souhaite definir comme niveau superieur de la hierarchie => Selection **Nouvelle hiérarchie**
+                    3. La nouvelle hierarchie s'affiche dans la liste du volet **Champs**
+                    4. Faire glisser d'autre champs dans la hierarchie (ou click droit => ajouter à la hierarchie)
+
+                    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/5-create-hierarchy-ssm.png)
+
+                    5. Selection de l'objet visuel => Volet Champs => **Nouvelle hiérarchie**  
+
+                    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/5-apply-new-hierarchy-ssm.png)
+                    
+#### Utiliser les interactions avancées et l'extraction
+- Pour bénéficier d'un contrôle total sur le comportement de votre rapport et être en mesure de déterminer l'expérience utilisateur attendue, vous pouvez modifier les interactions par défaut et utiliser les fonctionnalités d'extraction.
+
+
+        
