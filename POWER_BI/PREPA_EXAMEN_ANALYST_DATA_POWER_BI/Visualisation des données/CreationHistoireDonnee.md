@@ -368,6 +368,162 @@
                     - ***NB: les cibles d'extraction interrapport se présentent au format : Nom de la page [Nom du rapport].***
 
 ####  Configurer la mise en forme conditionnelle
+- La fonctionnalité de mise en forme conditionnelle permet de spécifier des couleurs de cellule personnalisées, des dégradés de couleurs ..., en fonction des valeurs des champs. 
+    - Il est possible d'utiliser la mise en forme conditionnelle pour représenter des valeurs de cellule avec des barres de données, des icônes de KPI ou des liens web actifs.
+- ***Elle permet de mettre en évidence ou différencier les données affichées au sein des objet visuel.***
+    - *Si le montant des ventes est inférieur à zéro: Affichage rouge*
+    - *Montants supérieurs à la cible: vert*
+- ***Il est possible de definir differentes conditions sur une colonne, a n'importe quel champ de **texte** ou de **données**, mais la mise en forme doit être basée sur un champ qui a une **valeur numérique**, un **nom de couleur** ou un **code hexadécimal**, ou encore des **valeurs d’URL web**.***
+- Dans le volet **Format** => Section **Mise en forme conditionnelle** => Activation de l'option **Couleur d'arrière-plan**
+    - Definition d'une condition pour modifier la couleur d'arrière plan.
+        - *Par exemple en rouge pour les cellules avec des valeurs basses et vert pour les cellles avec des valeurs élevées*
+    
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/7-set-condtional-formatting-visualization-ssm.png)
+
+    - ***La fonction de mise en forme conditionnelle de Power BI détecte automatiquement la valeur la plus élevée et la plus basse dans chaque colonne, et applique la coloration d’arrière-plan en fonction des valeurs.***
+
+    - Pour supprimer la mise en forme conditionnelle:
+        - Dans le volet **Visualisations** => Sélection onglet **Valeurs** => click droit sur la valeur (champ) mis en forme => Sélection **Supprimer la mise en forme conditionnelle** => sélection du type de mise en forme à supprimer,
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/7-remove-conditional-formatting-visualization-ss.png)
+
+#### Appliquer le découpage, le filtrage et le tri
+- Power BI Desktop fournit trois outils que l'on peut utiliser pour modifier et configurer les interactions entre les visualisations du rapport : 
+    1. segments, 
+    2. filtres 
+    3. tri
+- *Les segments et les filtres sont similaires et permettent de supprimer toutes les donnée inutiles. Il est possible de les combine*
+- *Tri permet de mettre en évidence les informations importantes sans supprimer aucune donnée.*
+1. **Ajouter un segment**
+    - Un segment est un type de filtre que l'on peut ajouter au rapport pour que les utilisateurs puissent segmenter les données du rapport en fonction d’une valeur spécifique, *par exemple par année ou par emplacement géographique*. 
+        - ***Les segments réduisent la partie du jeu de données affichée dans les autres visualisations du rapport.***
+    - Ils sont utiles pour les operations suivantes: 
+        - *Fournir un accès plus rapide aux filtres couramment utilisés ou importants*
+        - *Filtrer les colonnes inutiles et masquées dans les tables de données*
+        - *Simplifier la capacité d’un utilisateur à voir l’état filtré actuel sans avoir à ouvrir une liste déroulante.*
+        - *Créer des rapports plus ciblés en plaçant des segments en regard d’objets visuels importants*
+        - *Différer les requêtes effectuées auprès du modèle de données à l’aide d’un segment de liste déroulante, en particulier lorsque on utilise DirectQuery.*
+    - **NB : Les segments ne sont pas pris en charge pour les champs d’entrée et les fonctions d’exploration.**
+    - Lorsque on ajoute un segment, on peut le modifier pour remplir une liste d’éléments que l'on souhaite utiliser pour filtrer les éléments de la page:
+        - Format deroulant 
+        - Boutton 
+        - Colonne de tpye date 
+    - Dans volet **Visualisation** => Selection incone **Segment** 
+        - Dans le volet **Champs** => Selection des champs à inclure dans le segment.
+    - On peut ajouter autant de segments qu'on le souhaite à une page de rapport. 
+        - Si on utilise un type de liste de segment, on peut configurer les contrôles de sélection. 
+            - Sélection du segment => le volet **Format** =>  section **Contrôles de sélection** pour afficher les options suivantes :
+                - **Sélection unique** : cette option est désactivée par défaut. Elle garantit qu’un seul élément puisse être sélectionné à la fois.
+                - **Sélection multiple avec Ctrl** : cette option est activée par défaut. Elle permet de sélectionner plusieurs éléments en appuyant sur la touche Ctrl.
+                - **Afficher « Sélectionner tout »**  : cette option est désactivée par défaut. elle permet d'ajouter une case **Sélectionner tout** au segment. 
+2. **Personnaliser les filtres**
+- Il est possible de personnaliser le volet **Filtre**:
+    - Ajouter et supprimer des champs sur lesquels filtrer.
+    - Modifier l’état du filtre.
+    - Mettre en forme et personnaliser le volet Filtres pour qu’il fasse partie du rapport.
+    - Déterminer si le volet Filtres est ouvert ou réduit par défaut lorsqu’un utilisateur ouvre le rapport.
+    - Masquer la totalité du volet Filtres ou des filtres spécifiques
+    - Contrôler et ajouter un signet pour la visibilité, ouvrir et réduire l’état du volet Filtres.
+    - Verrouiller les filtres que l'on souhaite que les utilisateurs ne modifient pas.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/8-configure-filter-options-ss.png)
+
+![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/8-add-field-filters-pane-ssm.png)
+
+- **Filtres sur cet objet visuel** : filtres qui s’appliquent à l’objet visuel sélectionné et à rien d’autre. Cette section n'apparaît que si on sélectionne un objet visuel.
+- **Filtrer sur cette page** : filtres qui s'appliquent à l'ensemble de la page actuellement ouverte.
+- **Filtres sur toutes les pages** : filtres qui s'appliquent à toutes les pages du rapport.
+- **Extraction** : filtres qui s'appliquent à une seule entité au sein d'un rapport.
+
+3. **Trier les données**
+    - Le tri permet d'afficher les données importantes de la manière la plus logique possible, par exemple par ordre alphabétique ou numérique.
+    - Bouton **Autres options (...)** dans le coin supérieur droit de l'objet visuel
+        - Trois options de tri :
+            - **Tri décroissant** : trie le contenu de l'objet visuel à partir de la colonne sélectionnée, de la plus grande à la plus petite valeur.
+            - **Tri croissant** : trie le contenu de l'objet visuel à partir de la colonne sélectionnée, de la plus petite à la plus grande valeur.
+            - **Trier par** : trie les données à partir d'une colonne spécifique.
+    
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/8-sort-visual-data-ss.png)
 
 
+####  Publier et exporter des rapports
+- Une fois le rapport créé, il est possible de le publier dans l'espace de travail dans le service Power BI ou l'exporter vers Microsoft Excel.
 
+1. **Publier des rapports** 
+    - Onglet **Acceuil** => Selection **Publier** 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/9-publish-report-button-ssm.png)
+
+    - Une fois le rapport publié, on recois un message contenant un lien vers celui-ci sur le site Power BI
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/9-publish-report-success-message-ss.png)
+
+2. **Exporter des rapports**
+    - Power BI vous permet d'exporter des données visuelles, des rapports et des jeux de données. Différents formats d'exportation sont disponibles, notamment **CSV**, **Excel** et **PDF**.
+
+#### Effectuer des commentaires sur les rapports
+
+![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/10-add-comment-report-ssm.png)
+
+#### Optimiser les performances du rapport
+1. **Analyser les performances**
+    - Pour rechercher la cause des problèmes, le premier recours est l'outil ​​**Analyseur de performances** de Power BI Desktop. 
+        - *L'Analyseur de performances permet d'en savoir plus sur les performances de chacun des éléments du rapport, comme les objets visuels et les formules DAX. Il fournit des journaux qui mesurent (en durée) les performances de chacun des éléments du rapport lorsque les utilisateurs interagissent avec eux. Il permet d'identifier les éléments du rapport qui nécessitent le plus (ou le moins) de ressources et ainsi localiser les goulots d'étranglement, ce qui constitue un bon point de départ pour apporter des modifications.*
+    - Avant d'exécuter l'Analyseur de performances, il faut **vider le cache des objets visuels et le cache du moteur de données**, sinon les résultats manqueront de précision. on peut également configurer le rapport de manière à ce qu'il s'ouvre sur une page vierge.
+        - Après avoir vidé les caches et configuré le rapport pour qu'il s'ouvre sur une page vierge, on execute l'Analyseur de performances. 
+        1. l'onglet **Affichage** => sélection **Analyseur de performances** et **Démarrer l'enregistrement**.
+        
+            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/11-run-performance-analyzer-ssm.png)
+                
+        2. Interagir avec le rapport comme si on est un utilisateur, puis on arrête l'enregistrement. 
+            - Les résultats des interactions s’affichent progressivement dans le **volet Analyseur de performances**
+        3. Une fois terminer => **Arret**
+        4. Analyse des résultats dans le **volet Analyseur de performances**. Les résultats des performances de chaque élément du rapport, exprimés en millisecondes, apparaissent dans la colonne Durée. On peut développer un élément de la liste pour afficher des informations plus détaillées et identifier la cause exacte du problème, comme la requête DAX, l'affichage visuel ou autre.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/11-performance-analyzer-results-ss.png)
+
+        - ***Si on veut examiner de près la requête DAX, on copie la requête dans [DAX Studio](https://daxstudio.org/) pour une analyse plus approfondie.*** 
+            - *DAX Studio est un outil gratuit et open source fourni par une autre source que l'on peut télécharger et installer sur l'ordinateur.*
+2. **Optimiser les performances**
+    - Les résultats de l'analyse identifient les domaines à améliorer et mettent en évidence les éléments qu'il faut optimiser.
+        - *Les problèmes de performances sont souvent dus à la présence d'un trop grand nombre d'objets visuels sur une même page.*
+    - Si le goulot d'étranglement qui nuit aux performances est dû aux objets visuels:
+        1. On réduit le nombre d'objets visuels sur la page du rapport, car un nombre moins élevé d'objets visuels améliorera les performances. Si un objet visuel n'est pas nécessaire et n'apporte pas de valeur ajoutée à l'utilisateur, il convient de le supprimer. Plutôt que d'utiliser de multiples objets visuels sur une même page, envisagez d'autres moyens de fournir des détails supplémentaires, tels que des pages d'extraction et des info-bulles de page de rapport.
+        2. On reduit le nombre de champs au sein de chaque objet visuel. La limite supérieure étant de 100 champs, un objet visuel contenant plus de 100 champs se charge lentement (et semble encombré et brouillon). Identifiez les champs qui ne sont pas utiles à l'objet visuel et supprimez-les.
+    - Si les objets visuels ne sont pas à l'origine des problèmes de performances : 
+        1. Evaluation des résultats de la requête DAX disponibles dans le volet **Analyseur de performances** et approfondir l'analyse.
+            - *Par exemple au niveau des relations et colonne*
+
+#### Optimiser les rapports pour une utilisation mobile
+
+![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/12-mobile-design-overview-ss.png)
+
+- Pour créer une version du rapport optimisée pour les appareils mobiles:
+    1. Concevoir un affichage pour les appareils mobiles, dans lequel on peut glisser et déposer certains objets visuels sur un canevas de l’émulateur du téléphone ;
+    2. Utiliser des objets visuels et des segments appropriés à des petits écrans mobiles.
+
+Pour publier une version du rapport optimisée pour les appareils mobiles, on publie le rapport principal et les versions web et mobile sont publiées en même temps.
+
+1. **Concevoir une disposition de rapport mobile**
+    - Pour concevoir la vue d’une page de rapport optimisée pour les appareils mobiles
+        - Onglet **Affichage** => **Disposition mobile**
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/12-open-mobile-layout-ss.png)
+
+    - Pour ajouter un objet visuel au canevas de disposition mobile, on glisse l’objet visuel du volet Visualisations vers le canevas du téléphone ou double-cliquez sur l’objet visuel dans le volet Visualisation.
+        - On peut ensuite redimensionner et repositionner l’objet visuel de la même façon que sur une page de rapport.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/12-add-visuals-mobile-layout-ss.png)
+
+2. **Configurer des objets visuels et des segments pour les utiliser dans les rapports mobiles** 
+    - Par défaut, de nombreux objets visuels dans Power BI sont réactifs, ce qui signifie qu’ils changent de manière dynamique pour afficher la quantité maximale de données et d’informations, quelle que soit la taille de l’écran.
+        - Lorsqu’un objet visuel change de taille, Power BI donne la priorité aux données et effectue de petites modifications, telles que la suppression du remplissage ou le repositionnement de la légende, afin que les données restent visibles. 
+        - Il est possible de désactiver cette réactivité par défaut, dans la section **Général** des paramètres de format des objets visuels.
+            - Lorsqu’il s’agit de segments, qui offrent un filtrage sur le canevas des données de rapport, on peut modifier certains paramètres afin de les optimiser pour une utilisation mobile. 
+                - Mode de création de rapport standard pour modifier les paramètres de segment.
+                    - ***Tenir compte des points suivants :
+                        1. Déterminer si on veut autoriser les lecteurs de rapports à sélectionner un seul élément ou plusieurs éléments.
+                        2. Choisir l’orientation du segment, s’il doit être vertical, horizontal ou réactif (les segments réactifs doivent être horizontaux). 
+                            - Si on configure le segment de manière à ce qu’il soit réactif, lorsque on modifie sa taille et sa forme, il affiche plus ou moins d’options. Si on réduit suffisamment le segment, il devient une icône de filtre sur la page de rapport.
+                        
+                            ![](https://learn.microsoft.com/fr-fr/training/modules/data-driven-story-power-bi/media/12-configure-slicers-mobile-layout-ss.png)
