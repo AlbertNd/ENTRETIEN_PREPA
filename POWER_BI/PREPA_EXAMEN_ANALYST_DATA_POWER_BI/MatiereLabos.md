@@ -634,3 +634,108 @@
         - Contenu : 
             - Ventes cumulée 
             - Pourcentage de la croissance des ventes 
+
+6. ## Création de rapport Power BI [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
+
+    1. **Activations des visuels de carte et de carte pleine dans power BI service**
+    2. **Conception de la premiere page dans Power Bi Desktop** 
+        - Renommer la page: **Overview**
+        - Insertion et positionnement du logo : **D:\PL300\Resources\AdventureWorksLogo.jpg**
+        - Insertion des segments : 
+            1. Date | Champ Année (pas le niveau Année de la hiérarchie).
+                - Segment en **Liste deroulant** 
+                - Redimension et positionnement du segment
+            2. région | Champ Région (pas le niveau Région de la hiérarchie).
+                - Segment en **Liste**
+                - Redimension et positionnement du segment
+        - Insertion graphique:
+            - Graphique en courbes et en colonnes empilées.
+            - Redimension et positionnement du segment
+            - Champs graphique colonnes
+                1. Rendez-vous | Mois ***(axe des X)***
+                2. Ventes | Ventes ***(axe des Y)***
+            - Champs graphique courbes 
+                1.  Sales | Marge bénéficiaire ***(axe des y)***
+        - Configuration du visuels des mois pour afficher tous les mois 
+        - Insertion d'un graphique **Carte**
+        - Redimension et positionnement du visuel
+            - Champs visuel carte 
+                1. Localisation : Région | Pays
+                2. Légende : Produit | Catégorie
+                3. Taille : Soldes | Ventes
+        - Insertion d'un graphique 
+            - Graphique en barre empilées
+            - Redimension et positionnement du graphique 
+            - Champs graphique 
+                1. Axe : Produit | Catégorie
+                2. Valeur : Ventes | Quantité
+            - Formatage du graphque 
+                - Couleur par defaut sur une couleur appropriée
+                - Activation des étiquetes de données 
+    3. **Conception de la deuxieme page**
+        - Renommer la page : **Profit** 
+        - Insertion segment
+            1. région | Champ Région 
+        - Activation de l'option **Selectionner tout** 
+        - Redimension et positionnement du graphique 
+        - Insertion visuel matriciel 
+        - Redimension et positionnement du visuel 
+        - Champs du visuel 
+            1. Lignes : date | Hiérarchie fiscale
+            2. Valeurs : 
+                - Commandes (du dossier Comptes )
+                - Ventes
+                - Coût
+                - Profit
+                - Marge bénéficiaire
+        - Definir un filtre sur page **NB :** ***Les champs ajoutés au volet Filtres peuvent obtenir le même résultat qu'un segment. La seule différence est qu'ils ne prennent pas de place sur la page du rapport. Une autre différence est qu'ils peuvent être configurés pour répondre à des exigences de filtrage plus sophistiquées.***
+            - Produit | Catégorie
+            - Produit | SousCatégorie
+            - Produit | Produit
+            - Produit | Couleur 
+    4. **Conception de la troisieme page** 
+        - Renommer : **Mes performances** 
+        - Definir un filtre sur la page 
+            - vendeur (Performance) | champ Vendeu
+            -   - Selection **MIchel Blythe**
+        - Insertion segment 
+            - Date | champ Année
+            - Liste deroulant 
+            - Selection **FY2019**
+        - Redimension et positionnement du visuel
+        - Insertion visuel **Carte à plusieur lignes**
+        - Champs du visuel 
+            - Ventes | Ventes
+            - Cibles | Cible
+            - Cibles | Variance
+            - Cibles | Marge de variance
+        - Formatage du visuel 
+            - Valeurs de légende : Texte 28 pt
+            - Arriere plan : Couleur gris claire 
+        - Insertion graphique à barre groupées
+        - Redimension et positionnement du graphique
+        - Champs du graphique 
+            - Axe : Date | Mois
+            - Valeur : Ventes | Ventes et objectifs | Cible
+        - Insertion graphique cluster des colonne 
+    5. **Publication du rapport**
+    6. **Exploration du rapport** 
+        - Mon espace de travail .
+            - Rapport d'analyse des ventes
+            - Le model des données 
+        - Page presentation 
+        - Selection de plusieur regions
+        - Selection d'une colonne de mois (plusieurs mois )
+        - Incone de filtre au dessus des visuel 
+        - Icone de mise au point 
+        - Les info-bull sur les segments 
+        - Option du menu du visuel de la carte 
+        - Page profit:
+            - région a une sélection différente du trancheur de région sur la page Vue d'ensemble .
+            - Volet filtre 
+            - Hierarchie dans le visue matriciel 
+        - Page Mes performances 
+            - affichage en plein ecran 
+            - Interagir avec la page en modifiant le segment et en effectuant un filtrage croisé de la page.
+
+        
