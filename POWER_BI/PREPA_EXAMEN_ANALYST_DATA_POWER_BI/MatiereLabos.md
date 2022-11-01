@@ -680,7 +680,7 @@
         - Insertion segment
             1. région | Champ Région 
         - Activation de l'option **Selectionner tout** 
-        - Redimension et positionnement du graphique 
+        - Redimension et positionnement du segment 
         - Insertion visuel matriciel 
         - Redimension et positionnement du visuel 
         - Champs du visuel 
