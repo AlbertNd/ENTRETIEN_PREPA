@@ -638,6 +638,9 @@
 6. ## Création de rapport Power BI [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
 
     1. **Activations des visuels de carte et de carte pleine dans power BI service**
+        - Portail d'administration 
+            - Parametres du client 
+                - Parametres d'integration
     2. **Accès aux données**
         - ***D:\PL300\Labs\06-design-report-in-power-bi-desktop\Starter***
     3. **Conception de la premiere page dans Power Bi Desktop** 
