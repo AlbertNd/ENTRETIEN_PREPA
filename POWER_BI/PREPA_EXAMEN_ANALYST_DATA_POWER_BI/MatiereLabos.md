@@ -665,7 +665,7 @@
             - Champs visuel carte 
                 1. Localisation : Région | Pays
                 2. Légende : Produit | Catégorie
-                3. Taille : Soldes | Ventes
+                3. Taille : Ventes | Ventes
         - Insertion d'un graphique 
             - Graphique en barre empilées
             - Redimension et positionnement du graphique 
