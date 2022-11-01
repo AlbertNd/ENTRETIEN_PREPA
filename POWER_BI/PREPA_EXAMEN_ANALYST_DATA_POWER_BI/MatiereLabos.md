@@ -638,7 +638,9 @@
 6. ## Création de rapport Power BI [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
 
     1. **Activations des visuels de carte et de carte pleine dans power BI service**
-    2. **Conception de la premiere page dans Power Bi Desktop** 
+    2. **Accès aux données**
+        - ***D:\PL300\Labs\06-design-report-in-power-bi-desktop\Starter***
+    3. **Conception de la premiere page dans Power Bi Desktop** 
         - Renommer la page: **Overview**
         - Insertion et positionnement du logo : **D:\PL300\Resources\AdventureWorksLogo.jpg**
         - Insertion des segments : 
@@ -656,7 +658,8 @@
                 2. Ventes | Ventes ***(axe des Y)***
             - Champs graphique courbes 
                 1.  Sales | Marge bénéficiaire ***(axe des y)***
-        - Configuration du visuels des mois pour afficher tous les mois 
+        - Configuration du visuels des mois pour afficher tous les mois
+            - Filtrer sur **FY2020** 
         - Insertion d'un graphique **Carte**
         - Redimension et positionnement du visuel
             - Champs visuel carte 
@@ -672,7 +675,7 @@
             - Formatage du graphque 
                 - Couleur par defaut sur une couleur appropriée
                 - Activation des étiquetes de données 
-    3. **Conception de la deuxieme page**
+    4. **Conception de la deuxieme page**
         - Renommer la page : **Profit** 
         - Insertion segment
             1. région | Champ Région 
@@ -693,7 +696,7 @@
             - Produit | SousCatégorie
             - Produit | Produit
             - Produit | Couleur 
-    4. **Conception de la troisieme page** 
+    5. **Conception de la troisieme page** 
         - Renommer : **Mes performances** 
         - Definir un filtre sur la page 
             - vendeur (Performance) | champ Vendeu
@@ -718,8 +721,8 @@
             - Axe : Date | Mois
             - Valeur : Ventes | Ventes et objectifs | Cible
         - Insertion graphique cluster des colonne 
-    5. **Publication du rapport**
-    6. **Exploration du rapport** 
+    6. **Publication du rapport**
+    7. **Exploration du rapport** 
         - Mon espace de travail .
             - Rapport d'analyse des ventes
             - Le model des données 
