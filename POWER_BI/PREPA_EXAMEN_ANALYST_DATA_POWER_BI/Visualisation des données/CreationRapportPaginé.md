@@ -85,3 +85,24 @@ sur SSRS est une excellente idée, car on y trouvere de nombreux billets de blog
         3. On introduit une requête dans la zone de texte.
 
         ![](https://learn.microsoft.com/fr-fr/training/modules/create-paginated-reports-power-bi/media/04-dataset-properties-ssm.png)
+
+#### Création d'un rapport paginé
+- Pour créer un rapport, il faut ajouter un visuel à la surface de conception, de la même façon qu'on le ferait dans Power BI Desktop. 
+    - => Sélection de l’onglet **Insérer** pour consulter les options permettant d’ajouter un visuel
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/create-paginated-reports-power-bi/media/04-insert-tab-ss.png#lightbox)
+
+    - **Pour une visuel de table**
+        - Lorsqu'on selectionne le menu derolant **Table**, on peut choisir deux options: 
+            1. **Inserer une table**
+            2. **Assistant de table**
+        1. Selction **Inserer une table** 
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-paginated-reports-power-bi/media/04-insert-a-table-ss.png)
+
+        2. On dessine une table sur la surface de conception 
+        3. Depuis la fenetre **Données du rapport**, on fait glisser les champs du jeu de données vers la table sur la surface de conception.
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-paginated-reports-power-bi/media/04-add-fields-ss.png)
+
+        
