@@ -168,9 +168,127 @@
 
         - ***Une fois le groupe de classes configuré, un nouveau champ dans le volet Champs avec la mention (classes) est  ajoutée à son nom. Faire glisser ce champ sur le canevas pour utiliser la taille de classe dans un visuel.***
 
+#### Appliquer les techniques de clustering 
+- Le clustering paermet d'indentifier un segment (Cluster) de données similaires entre elles, mais qui se différencient du reste des données. 
+    - *La fonctionnalité de **clustering Power BI** permet de rechercher rapidement des groupes de points de données similaires dans un sous-ensemble des données. Elle analyse le jeu de données pour identifier les similitudes et les différences au niveau des valeurs d’attribut, puis elle sépare les données présentant des similitudes au sein d’un sous-ensemble de données. Ces sous-ensembles de données sont appelés **clusters**.*
+        - ***On peut segmenter les clients en clusters, en fonction de leurs similitudes, par exemple l’âge ou la localisation.***
+- => AJout d'un **nuage de point** dans le rapport => Ajout des champs obligatoires au  visuel :
+    - Par exemple : 
+        - Champ Order Qty (Quantité commandée) à l’axe X, 
+        - Le champ Sales (Ventes) à l’axe Y, 
+        - La valeur Unit Price (Prix unitaire) au champ Values (Valeurs)
+    - Pour ajouter une cluster au nuage des points:
+        - => Selection **Plus d'option (...)** *(Dans le coin supérieur droit du visuel)* => Selection **Rechercher automatiquement les clusters**
+            - => dans la fentre qui s'affiche : 
+                1. Modification du nom, du champs, de la description , .. si souhaité 
+                2. Introduire le nombre de clusters souhaités
+                    *NB: LA zone est vide par défaut car Power bi peut trouver automatiquement le nombre de clusters qu'il juge le plus pertinent par rapport aux données*
+                3. OK  
+                    - *Power BI exécute l’algorithme de clustering et crée un champ de catégorie contenant les différents groupes de clusters*
+                
+                ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/5-scatter-chart-product-names-ss.png)
 
+                ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/5-default-settings-cluster-window-ss.png)
 
+                ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/5-clustering-applied-scatter-chart-ss.png)
 
+                - *Le nouveau champ de cluster est ajouté au compartiment de champ Légende du nuage de points.*
+                    - *Il est possible de l’utiliser en tant que source de mise en évidence croisée comme tout autre champ Légende.* 
+                    - *Il est poassible de trouver le nouveau champ de cluster dans la liste de champs et de l’utiliser dans de nouveaux visuels, comme n’importe quel autre champ.*
+                - Si on souhaite modifier le cluster => clic droit sur le champ de cluster => sélection **Modifier les clusters**.
 
+                ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/5-edit-clusters-ss.png)
 
+                - **NB :** *Dans l’exemple précédent, quand on a appliquer un clustering au nuage de points, on pouvait utiliser seulement deux mesures. mais si on souhaite rechercher des clusters avec plus de deux mesures, on peut utiliser un visuel de table à la place, ajouter tous les champs à utiliser, puis exécuter l’algorithme de clustering à l’aide du même processus.*
+
+#### Effectuer une analyse de série chronologique
+- L’analyse de série chronologique consiste à analyser une série de données dans l’ordre chronologique pour identifier les informations et les tendances significatives, et effectuer des prédictions. L’analyse de série chronologique vous permet d’accéder aux meilleures données possibles pour effectuer des prévisions.
+    - Elle implique souvent l’utilisation de visuels tels que les **diagrammes de Gantt**, la **planification de projet** et **les jeux de données relatifs aux mouvements de stock**. 
+    - Dans Power BI, on peut utiliser des visuels pour afficher l’évolution des données dans le temps. Cela permet ensuite de faire des observations, par exemple si des événements majeurs ont perturbé les données.
+- Pour effectuer une analyse de série chronologique dans Power BI, il faut utiliser un type de visualisation adapté à l’affichage des tendances et des changements dans le temps:
+    - ***Un graphique en courbes*** 
+    - ***Un graphique en aires ou un nuage de points.***
+    - ***Importer un visuel personnalisé de série chronologique dans Power BI Desktop à partir de Microsoft AppSource.*** 
+        - *Microsoft AppSource dispose d’un visuel personnalisé d’animation appelé **Axe de lecture**. Celui-ci fonctionne comme un segment dynamique et représente un moyen convaincant d’afficher les tendances temporelles et les modèles de vos données, sans aucune interaction de l’utilisateur*
+
+#### Utiliser la fonctionnalité Analyser
+
+[Voir Doc Appliquer des insights dans Power BI Desktop pour rechercher où les distributions sont différentes (préversion).](https://learn.microsoft.com/fr-fr/power-bi/create-reports/desktop-insights-find-where-different)
+
+- La fonctionnalité Analyser fournit une analyse supplémentaire générée par Power BI pour un point de données sélectionné.   
+    - *On peut être amener à utiliser cette fonctionnalité pour déterminer si Power BI a trouvé quelque chose qu'on a pas vu, ou si on souhaite que Power BI donne un autre insight des données. Cette fonctionnalité est particulièrement utile, car elle permet d’analyser la raison pour laquelle la distribution de données se présente sous une certaine forme.*
+- => Clic droit sur un point de donnée du visuel => option **Analyse** :
+    1. **Expliquer la hausse** 
+    2. **Rechercher où cette distribution est différente.**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/7-display-analyze-options-ssm.png)
+
+    - Si option **expliquer la hausse** 
     
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/7-view-analysis-ss.png)
+
+    - Si l'analyse est convaincant, on peut ajouter le nouveau visuel au rapport, afin que d’autres utilisateurs puissent le voir. => Sélection icône du signe plus **(+)** dans le coin supérieur droit du visuel pour l’ajouter au rapport.
+
+#### Utiliser des visuels personnalisés pour un traitement analytique avancé
+- Il peut exister un visuel personnalisé qui résout un problème métier que les visuels standard ne peuvent pas résoudre, ou qui présente les données selon une approche inédite pour les visuels standard.
+    - Exemple *des diagrammes en boîte à moustaches, des graphiques des écarts, des arborescences hiérarchiques, des diagrammes de Gantt, des diagrammes de cluster et bien d’autres choses encore*
+
+1. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/8-add-advanced-analytics-custom-visual-ssm.png#lightbox)
+
+2. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/8-add-variance-chart-custom-visual-report-ssm.png)
+
+3. 
+
+![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/8-set-up-advanced-analytics-custom-visual-ssm.png)
+
+#### Passer en revue Quick Insights
+- La fonctionnalité **Quick Insights de Power BI** utilise des algorithmes de machine learning pour analyser l’intégralité du jeu de données et produire des insights (résultats) rapidement. 
+    - *Cette fonctionnalité est un excellent moyen de créer des tableaux de bord quand on ne sait pas par où commencer. Elle aide également à identifier les insights que on a pas pu manquer durant la création des rapports. À partir des insights que Power BI découvre*
+- ***Cette fonctionnalité est disponible uniquement dans le service web Power BI. De plus, elle ne fonctionne pas avec DirectQuery. Elle fonctionne uniquement avec les données importées dans Power BI.***
+
+1. **Obtenir des insights rapides de votre jeu de données**
+    - => Ouvrir le **service web Power BI** => sélection l’onglet **Contenu** => Rechercher le rapport pour lequel on souhaite obtenir des insights rapides => Sélection **Plus d’options (...)** => **Quick insights.**
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/9-get-quick-insights-ssm.png)
+
+    - Apres quelques seconde 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/9-insights-message-ss.png)
+
+    - => Selection **Voir les insights** pour ouvrir la page **Quick Insights**
+        - la page peut contenir jusqu'a 32 cartes insights distinctes.
+            - Chaque carte comporte un graphique ou un graphe ainsi qu’une brève description. 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/9-insights-card-ss.png)
+
+2. **Ajouter une carte de résultats Quick Insights à un tableau de bord**
+    - Dans la page Quick Insights, on pointe sur la carte => sélection de l’icône représentant une épingle. Le visuel est ajouté au tableau de bord.
+3. **Interagir avec les résultats de Quick Insights**
+    - Pour examiner de plus près une carte d’insight particulière dans la page Quick Insights => sélection de la carte d’insight correspondante afin d’ouvrir l’écran d’insight => L’écran Insight s’ouvre en mode Focus.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/9-insights-focus-mode-ss.png)
+
+    - Il est ensuite possible d'effecter les actions suivantes:
+        1. Filtrez la visualisation à l’aide des options disponibles dans le panneau Filtres.
+        2. Épinglez la carte d’insight à un tableau de bord en sélectionnant Épingler un visuel.
+        3. Exécutez des insights dans la carte (insights délimités par une étendue) en sélectionnant Obtenir des insights dans le coin supérieur droit. Les insights délimités par une étendue permettent d’approfondir l’analyse des données.
+        4. Retournez au canevas des insights d’origine en sélectionnant Quitter le mode focus dans le coin supérieur gauche.
+
+#### Appliquer Insights IA
+- La fonctionnalité Insights IA permet de se connecter à une collection de modèles machine learning préentraînés que l'on peut appliquer aux données pour améliorer leur préparation.
+- => Ouvrir l’Éditeur Power Query => sélection de l’onglet **Ajouter une colonne** => choisir parmi trois options AI Insights : 
+    - Analyse de texte, 
+    - Vision 
+    - Azure Machine Learning.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/10-ai-insights-options-ssm.png)
+
+- ***Si ces options n'apparaissent pas, il faut activer la fonctionnalité Insights IA dans les paramètres de Power BI Desktop. =>*** **Fichier** ***=> **Options et paramètres** => **Options**. Dans la liste d’options Global, => sélection **Fonctionnalités en préversion** => coche la case de l’option*** **Navigateur de fonctions Insights IA** ***=>*** **OK**.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/perform-analytics-power-bi/media/10-enable-ai-insights-feature-ssm.png)
+
+- *Dans l’onglet Ajouter une colonne, l’option AI Insights **Analyse de texte** comprend les modèles Azure Cognitive Services tels qu’Analyse des sentiments, Extraction de phrases clés et Détection de langue, qui s’appuient sur des données de texte pour en déduire le sens ou des éléments de langage spécifiques. Il est possible d'utiliser l’option Analyse des sentiments ou Extraction de phrases clés pour déterminer les sentiments des clients dans les tickets d’aide et afficher visuellement les résultats dans Power BI.*
