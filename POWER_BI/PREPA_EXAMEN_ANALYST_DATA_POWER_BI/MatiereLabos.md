@@ -1,5 +1,9 @@
 # La matière abordée dans les labos Microsoft Power BI 
 
+1) [Préparation des données](#préparation-des-données-dans-power-bi-voir-labo)
+2) [Nettoyer, transformer et chargerles données](#nettoyer-transformer-et-charger-des-données-dans-power-bi-voir-labo)
+3) [Modeliser les données](#modéliser-les-données-dans-power-bi-desktop-partie-1-voir-labo)
+4) [Introduction au data analyse expression (DAX)](#introduction-à-dax-dans-power-bi-desktop-voir-labo)
 1. ## Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
 
     1. ***Accès à l'espace d'enregistrement***
