@@ -755,5 +755,55 @@
 
 7. ## Analysez les données avec des visuels IA [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/ai-visuals-power-bi/5-lab) 
 
+1. **Création d'un rapport**
+    - Conection au service Power Bi 
+        - accès aux fichier `D:\PL300\Labs\09-create-power-bi-dashboard\Solution\Sales Analysis.pbix`
+    - Accès à ce fichier par Power Bi desktop 
+        - Se connecter 
+        - Enregistrer sous `Sales Exploration` dans le dossier `D:\PL300\MySolution`
+            - Importer le fichier `Analysis.pbix` Via **Power Bi Datasets** dans le ruban  
 
-
+2. **Création d'un graphique en nuage des points avec des intégralités du cycle d'animation du premier trimestre de l'exercice 2018 au quatrième trimestre de l'exercice 2020 .** 
+    - Renommer la page1 : **Nuage points**
+    - Le graphique : **Nuage des points**
+        - Axe X : Ventes | Ventes 
+        - Axes Y : Ventes | Marge bénéficiaire
+        - Legende : Revendeur | Type d'entreprise
+        - Taille : Ventes | Quantité
+        - Play Axis : Date | trimestre   
+    - Le filtre sur la page 
+        - Produit | catégorie
+            - Filtre par **Velos**
+    - Lancer l'animation 
+    - Commenter
+        - Les modifications de la taille de la bulle 
+        - Les mouvements horizontaux
+        - Les mouvements verticaux
+    - Reveler les tracés des bulls pour note les suivis dans le temps 
+    - Afficher les info bulls 
+    - Filtre par **Vetements**
+    - Enregistrer le fichier Power BI Desktop
+2. **Création de prevision**
+    - Renommer la page 2 : **Prevision**
+    - Le graphique : **Graphique linéaire**
+        - Axe X : Date | Date 
+        - Valeur : Ventes | Ventes 
+    - Le filtre sur la page 
+        - Date | année 
+            - Filtrer par : Année Fy2019 et Fy2020
+                - ***Lors d'une prévision sur une ligne de temps, on a toujours besoin d'au moins deux cycles (années) de données pour produire une prévision précise et stable.***
+    - Filtre aussi sur la page 
+        - Produit | categorie
+            - Filtrer par **Vélos**
+    - Ajout d'un prevision:
+        - Unités : mois 
+        - Durée prévisionnelle : 1 mois 
+        - Saisonnalité : 365
+        - Intervalle de confiance : 80%
+    - Commenter la prevision 
+        - La zone de confiance 
+        - La largeur de confiance 
+        - Les points de saisonalité
+    - Filtrer uniquement par **Vetements**
+    - Enregistrer le fichier power BI desktop
+3. **Publier dans l'espace de travail**  
