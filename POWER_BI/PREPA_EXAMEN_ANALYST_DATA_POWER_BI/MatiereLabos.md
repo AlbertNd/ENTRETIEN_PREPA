@@ -6,6 +6,7 @@
 4) [Introduction au data analyse expression (DAX)](#introduction-à-dax-dans-power-bi-desktop-voir-labo)
 5) [Mesure DAX et time intelligence](#mesures-en-dax-et-time-intelligence-voir-labo)
 6) [Création de rapport 1](#création-de-rapport-power-bi-voir-labo)
+7) [Analysez les données avec des visuels IA](#analysez-les-données-avec-des-visuels-ia-voir-labo)
 
 
 1. ## Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
@@ -752,6 +753,7 @@
             - affichage en plein ecran 
             - Interagir avec la page en modifiant le segment et en effectuant un filtrage croisé de la page.
 
-7. ## Concevoir un rapport dans Power BI 2 [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/8-lab) 
+7. ## Analysez les données avec des visuels IA [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/ai-visuals-power-bi/5-lab) 
+
 
 
