@@ -5,7 +5,7 @@
 3) [Modeliser les données](#modéliser-les-données-dans-power-bi-desktop-partie-1-voir-labo)
 4) [Introduction au data analyse expression (DAX)](#introduction-à-dax-dans-power-bi-desktop-voir-labo)
 5) [Mesure DAX et time intelligence](#mesures-en-dax-et-time-intelligence-voir-labo)
-6) [Création de rapport](#création-de-rapport-power-bi-voir-labo)
+6) [Création de rapport 1](#création-de-rapport-power-bi-voir-labo)
 
 
 1. ## Préparation des données dans Power BI [(Voir Labo)](https://learn.microsoft.com/fr-fr/training/modules/get-data/lab-prepare)
@@ -643,7 +643,7 @@
             - Ventes cumulée 
             - Pourcentage de la croissance des ventes 
 
-6. ## Création de rapport Power BI [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
+6. ## Création de rapport Power BI 1 [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
 
     1. **Activations des visuels de carte et de carte pleine dans power BI service**
         - Portail d'administration 
@@ -752,4 +752,6 @@
             - affichage en plein ecran 
             - Interagir avec la page en modifiant le segment et en effectuant un filtrage croisé de la page.
 
-        
+7. ## Concevoir un rapport dans Power BI 2 [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/8-lab) 
+
+
