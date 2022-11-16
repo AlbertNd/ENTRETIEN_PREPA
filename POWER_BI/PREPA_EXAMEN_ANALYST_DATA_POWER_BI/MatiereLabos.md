@@ -643,7 +643,7 @@
             - Ventes cumulée 
             - Pourcentage de la croissance des ventes 
 
-6. ## Création de rapport Power BI 1 [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/create-measures-dax-power-bi/8-lab-advanced) 
+6. ## Création de rapport Power BI [Voir labo](https://learn.microsoft.com/fr-fr/training/modules/visuals-power-bi/8-lab) 
 
     1. **Activations des visuels de carte et de carte pleine dans power BI service**
         - Portail d'administration 
