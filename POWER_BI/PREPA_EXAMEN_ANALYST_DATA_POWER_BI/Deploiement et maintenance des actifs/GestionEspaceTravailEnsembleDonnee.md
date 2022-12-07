@@ -1,4 +1,7 @@
 # Gérer des espaces de travail et des jeux de données dans Power BI
+
+[Voir Doc Supp Organiser le travail dans les nouveaux espaces de travail.](https://learn.microsoft.com/fr-fr/power-bi/collaborate-share/service-new-workspaces)
+
 ***Un espace de travail est un référentiel centralisé dans lequel vous pouvez collaborer avec des collègues et des équipes pour créer des collections de rapports et de tableaux de bord.***
 - **ils offrents les avantages suivants**
     - Des efforts de collaboration ciblés. On peut utiliser des espaces de travail pour héberger des rapports et des tableaux de bord destinés à être utilisés par plusieurs équipes.
