@@ -359,6 +359,47 @@
 
 #### Configurer la protection des données
 
+[Voir Doc Appliquer des étiquettes de sensibilité des données dans Power BI.](https://learn.microsoft.com/fr-fr/power-bi/enterprise/service-security-apply-data-sensitivity-labels)
+
+- Il faut souvent appliquer des exigences et des réglementations strictes pour veiller à ce que les données sensibles soient sécurisées. 
+    - Power BI offre plusieurs méthodes pour aider à accomplir cette tâche :
+        - Utilisez les étiquettes de confidentialité Microsoft pour étiqueter les tableaux de bord, les rapports, les jeux de données et les dataflows suivant la même taxonomie que celle utilisée pour classer et protéger les fichiers dans Microsoft 365.
+        - Ajoutez des mesures de protection supplémentaires, comme le chiffrement et les filigranes, lors de l’exportation des données.
+        - Utilisez Microsoft Cloud App Security pour superviser et examiner les activités dans Power BI.
+    - ***Supponsons que l'on veuille mettre une securité de telle sorte que aucun utilisateur n'est la possibilité d'exporter des données sans autorisation. par conséquent il faut implementer des mesures de sécurité compplete pour proteger l'accès aux données à la fois dans Power BI et en dehors. et en fin configurer des étiquettes de protection des données dans Power BI.***
+        - *Avant de commencer, vérifier qu'on a les licences appropriées, comme indiqué [Dans la documentation](https://learn.microsoft.com/fr-fr/power-bi/enterprise/service-security-data-protection-overview).*
+
+1. **Étiquette de confidentialité**
+    - Les étiquettes de confidentialité spécifient les données qui peuvent être exportées. Ces étiquettes sont configurées à l’extérieur de Power BI, qui permet de les utiliser rapidement et facilement dans les rapports et tableaux de bord.
+    - Elles permettent de définir et de protéger le contenu, même en dehors de Power BI. Les jeux de données, les flux, les rapports et les tableaux de bord peuvent utiliser ce mécanisme, et tous les utilisateurs peuvent utiliser cette fonctionnalité, sauf si des exceptions ont été définies.
+    - Une fois qu ela capacité d'ajouter des étiquettes est vérifier:
+        1. Accès à l'espace de travail 
+        2. Choisir une objet à sécuriser 
+        3. Selection **Parametres** (sous les points de suspension **(...)**)
+
+        ![](https://learn.microsoft.com/fr-fr/training/modules/create-manage-workspaces-power-bi/media/06-exporting-excel-4-ssm.png)
+
+        4. Une fenetre s'affiche et dans laquelle on peut attibuer une étiquette de confidentialité aux données. 
+            - Par exemple si les étiquette **Aucune**, **Personnel**, et **Général**, **Confidentiel** et **Hautement confidentiel** on etait extérieurement configuré, on peut les appliquer aux données. 
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/create-manage-workspaces-power-bi/media/06-sensitivity-settings-1-ssm.png)
+
+            - Par exemple, si on souhaite affecter une étiquette **Confidentiel** au rapport ***Sales Data*** , lorsque on modifie cette étiquette dans le volet Paramètres , elle apparaît sous la forme d’une étiquette sur le rapport.
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/create-manage-workspaces-power-bi/media/06-reports-dashboards-cards-6-ss.png)
+
+            - **Ce facteur est essentiel lorsque on exporte des données**. 
+                - Les données exportées vers des fichiers **Microsoft Excel**, **Microsoft PowerPoint** et **PDF** ont des étiquettes de confidentialité appliquées. 
+                    - *Par exemple, si on souhaite exporter des données de données de ventes dans un fichier Excel, si on est un utilisateur autorisé, on vera la vue Excel suivante lorsqu'on exporte dans Excel.
+
+                    ![](https://learn.microsoft.com/fr-fr/training/modules/create-manage-workspaces-power-bi/media/06-dashboard-with-label-4-ssm.png)
+
+                    - ***Toutefois, si on a pas d’autorisations établies, l’accès sera refusé pour afficher les données. Cette vérification garantit que seuls les utilisateurs appropriés ont accès à l’affichage des données, ce qui permet de s’assurer que les données sont sécurisées.***
+
+
+
+
+
 
 
 
