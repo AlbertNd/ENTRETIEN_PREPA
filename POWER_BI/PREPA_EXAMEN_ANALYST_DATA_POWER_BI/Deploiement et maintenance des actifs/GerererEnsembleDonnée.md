@@ -1,5 +1,5 @@
 # Gérer les jeux de données dans Power BI
-- *Quand les jeux de données sont publiés dans l’espace de travail de l'organisation dans le service Microsoft Power BI, toute personne ayant besoin d’un accès à ces jeux de données peut les trouver à un emplacement central, ce qui offre des possibilités de collaboration entre les équipes. 
+- Quand les jeux de données sont publiés dans l’espace de travail de l'organisation dans le service Microsoft Power BI, toute personne ayant besoin d’un accès à ces jeux de données peut les trouver à un emplacement central, ce qui offre des possibilités de collaboration entre les équipes. 
     - Cela réduit également les travaux effectués en double, car un jeu de données peut être utilisé par plusieurs utilisateurs pour des raisons métier différentes. 
     - *Par exemple, un jeu de données peut être utilisé pour créer plusieurs rapports Power BI. Comme la préparation et le nettoyage des données peuvent prendre beaucoup de temps, le partage des jeux de données peut être un accélérateur de productivité pour les créateurs de rapports.*
 - Le partage de jeux de données doit être géré activement pour des performances organisationnelles optimales. 
@@ -270,6 +270,9 @@
 ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/5-check-refresh-history-ssm.png)
 
 #### Configurer les paramètres d’actualisation incrémentielle
+
+![Voir Doc Actualisation incrémentielle sur Power BI.](https://learn.microsoft.com/fr-fr/power-bi/connect-data/incremental-refresh-overview)
+
 - La fonctionnalité **Actualisation incrémentielle** dans Power BI est une fonctionnalité très utilisée, car elle permet d’actualiser rapidement de très grands jeux de données et aussi souvent que nécessaire, sans devoir à recharger à chaque fois les données d’historique.
 ```
     L’actualisation incrémentielle doit être utilisée seulement sur les sources de données et les requêtes qui prennent 
@@ -292,7 +295,144 @@
             3. Définir la stratégie d’actualisation incrémentielle.
             4. Publier les modifications sur le service Power BI.
 1. **Définir les paramètres de filtrage**
+- Que l'on utilisie l’actualisation incrémentielle ou non, les grands jeux de données sont généralement filtrés quand ils sont importés dans Power BI Desktop, car le fichier PBIX est limité par les ressources mémoire disponibles sur le poste de travail. 
+    - Pour une actualisation incrémentielle, les jeux de données sont filtrés par deux paramètres de **date/heure**:
+        - **RangeStart** et **RangeEnd**. 
+        - Ces paramètres ont un double objectif. Dans Power BI Desktop, ils correspondent à la fenêtre de filtrage, car ils limitent les données utilisées à la plage représentée par les dates de début et de fin. Une fois qu’ils ont été publiés sur le service, les paramètres sont utilisés pour la fenêtre glissante permettant de déterminer les données à extraire.
+- Pour définir les paramètres de l’actualisation incrémentielle :
+    1. Ouvrir le jeu de données dans l’éditeur Power Query.
+    2. Sous l’onglet **Accueil** => sélection **Gérer les paramètres**.
+    3. Dans la fenêtre **Paramètres** qui s’affiche, on ajoute deux nouveaux paramètres, **RangeStart** et **RangeEnd**, en veillant à ce que, pour les deux paramètres, le **Type** soit défini sur **Date/heure** et la **Valeur suggérée** soit définie sur **N’importe quelle valeur**.
+    4. En ce qui concerne la **Valeur actuelle**, pour le paramètre **RangeStart**, introduire la date à laquelle on souhaite commencer l’importation et, pour le paramètre **RangeEnd**, introduire la date à laquelle on souhaite que l’importation se termine.
 
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/6-add-filter-parameters-ssm.png)
+
+2. **Appliquer le filtre**
+- Une fois que l'on a défini les nouveaux paramètres, on peut appliquer le filtre en suivant ces étapes :
+    1. Accéder à la colonne **Date** applicable => Click droit sur cette colonne => sélection **Filtre personnalisé**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/6-select-custom-filter-option-ssm.png)
+
+    2. Dans la fenêtre **Filtrer les lignes** qui s’affiche, pour éviter le double comptage des lignes, on veuille à conserver les lignes où la date **OrderDate** est postérieure ou égale au paramètre **RangeStart**, et antérieure au paramètre **RangeEnd**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/6-select-filter-rows-settings-ss.png)
+
+    3. Sélection **Fermer et appliquer** dans l’éditeur Power Query.
+        - On devrait voir un sous-ensemble du jeu de données dans Power BI Desktop.
+
+3. **Définir la stratégie d’actualisation incrémentielle**
+-  Une fois les données filtrées, on peut définir la stratégie d’actualisation incrémentielle pour la table de données, qui configure le processus d’actualisation.
+    - Clic droit sur la table applicable => sélection **Actualisation incrémentielle**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/6-select-incremental-refresh-option-ssm.png)
+
+    - Dans la fenêtre **Actualisation incrémentielle** qui s’affiche, on active l’option **Actualisation incrémentielle**. 
+        - *On Configure ensuite l’actualisation selon ce qui est nécessaire*. 
+            - *Dans cet exemple, on définis une stratégie d’actualisation pour stocker des données pour cinq années civiles complètes ainsi que des données pour l’année actuelle jusqu’à la date du jour, et on actualise de manière incrémentielle 10 jours de données.*
+
+            ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/6-select-incremental-refresh-settings-ssm.png)
+
+            - *La première opération d’actualisation dans le service Power BI va charger les données d’historique pour les cinq dernières années. Les opérations d’actualisation suivantes sont incrémentielles et elles actualisent les données qui ont changé au cours des 10 derniers jours jusqu’à la date du jour. Les actualisations incrémentielles suppriment également les années civiles datant de plus de cinq ans par rapport à la date actuelle.*
+
+4. **Publication sur le service Power BI**
+- Une fois qu'on a défini la stratégie d’actualisation incrémentielle dans Power BI Desktop, pour appliquer cette stratégie d’actualisation, il faut publier le rapport sur le service Power BI. 
+
+#### Gérer et promouvoir des jeux de données
+
+Voir Doc [Promouvoir votre jeu de données](https://learn.microsoft.com/fr-fr/power-bi/collaborate-share/service-endorse-content) ou [Certifier des jeux de données.](https://learn.microsoft.com/fr-fr/power-bi/collaborate-share/service-endorse-content)
+
+- Les fonctionnalités de **Business Intelligence** impliquent de collaborer et le partage des jeux de données entre les espaces de travail est une méthode de collaboration efficace. 
+    - Toutefois, si on dispose de nombreux jeux de données différents, accessibles par de nombreux utilisateurs, on souhaierai peut-être prendre des mesures pour gérer ces jeux de données. 
+        - *Par exemple, on peut diriger les utilisateurs vers les jeux de données les plus récents et de qualité optimale des espaces de travail, ou on peut limiter la réutilisation des jeux de données entre les espaces de travail.
+    - Pour garantir que l'on dispose de données cohérentes pour prendre des décisions et une culture des données saine, il est important de créer et de partager des jeux de données optimisés, puis d’approuver ces jeux de données en tant que source unique de confiance. Les créateurs de rapports peuvent ensuite réutiliser ces jeux de données approuvés pour générer des rapports précis et standardisés.
+- Power BI offre deux façons d’approuver les jeux de données :
+    - **Promotion:** promouver les jeux de données quand ils sont prêts pour une utilisation étendue. Les administrateurs Power BI ont l’autorisation nécessaire pour promouvoir les jeux de données.
+    - **Certification:** Demander une certification pour un jeu de données promu à un utilisateur administrateur défini dans le paramètre d’administrateur de locataire de certification de jeu de données. Cette certification ajoute une autre couche de sécurité pour les jeux de données. La certification peut être un processus hautement sélectif, de sorte que seuls les jeux de données réellement fiables et faisant autorité sont utilisés au sein de l’organisation.
+
+- ***Supposons par exemple, qu'on utilise un espace de travail dans le service Power BI pour organiser l’ensemble des rapports et tableaux de bord. Cependant, on commence à recevoir des e-mails de la part d’utilisateurs perplexes, qui s’attendaient à voir un rapport sur les ventes et qui obtiennent au lieu de cela un rapport sur les produits. il faut donc  apporter des modifications pour diriger les utilisateurs vers les jeux de données auxquels ils doivent normalement accéder.*** 
+    - *Pour cela, on peut utiliser la fonction d’approbation de Power BI*.
+    - *Dans cet exemple, le type de certification par approbation est le plus approprié pour l’équipe commerciale, car il obligera les utilisateurs à disposer d’un accès spécial avant de pouvoir consulter les tableaux de bord des ventes. L’implémentation de cette certification permet de diriger les utilisateurs vers les rapports et les tableaux de bord les plus appropriés, évitant ainsi les inévitables confusions qui peuvent se produire lors de la création et du partage de différents rapports.*
+1. **Promouvoir un jeu de données**
+- On peut promouvoir un jeu de données seulement si on est administrateur Power BI ou propriétaire de ce jeu de données.
+- Pour promouvoir un jeu de données:
+    1. Acceder à l'espace de travail dans le service Power BI, 
+    2. Ouvrir la page des paramètres pour le jeu de données que l'on veut promouvoir.
+    3. Sélection du paramètre **Approbation**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/7-select-endorsement-option-ssm.png)
+
+    4. Dans les paramètres **Approbation** => sélection de l’option **Promu** => **Appliquer**.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/7-select-endorsement-settings-ss.png)
+
+    - Lorsqu'on revient à l'espace de travail, un badge figure dans la colonne **Approbation** pour ce jeu de données, indiquant qu’il est prêt pour la consultation par tous les utilisateurs.
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/7-promoted-dataset-badge-ssm.png)
+
+2. **Certifier un jeu de données** 
+- On peut certifier un jeu de données seulement si on a été listé comme utilisateur dans les paramètres de locataire.   
+    - *L’option de certification va apparaître grisée pour les autres utilisateurs.*
+- Pour certifier un jeu de données, on commence de la même façon que pour promouvoir le jeu de données. sauf que ici, il faut sélectionner l’option **Certifié** dans les paramètres d’**Approbation**.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/7-select-certified-option-ssm.png)
+
+- Lorqu'on applique la modification, le paramètre **Certifié** est mis à jour pour afficher un message concernant la personne qui a certifié le jeu de données et à quel moment.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/7-view-certified-details-ss.png)
+
+#### Résoudre les problèmes de connectivité du service
+
+[Voir Doc ésolution des problèmes des scénarios d’actualisation.](https://learn.microsoft.com/fr-fr/power-bi/connect-data/refresh-troubleshooting-refresh-scenarios)
+
+- Les services cloud, comme **SharePoint Online**, ne nécessitent pas de passerelle, car les données se trouvent déjà dans le cloud.
+    - Il faut seulement fournir les informations d’identification d’autorisation pour configurer une connexion à une source de données.
+- Si l’actualisation du rapport échoue, on vérifie que les informations d’identification pour la source de données sont à jour.
+
+![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/8-check-data-source-credentials-ssm.png)
+
+- Si les informations d’identification de la source de données ne sont pas à jour, il faut prendre des mesures supplémentaires pour examiner et résoudre le problème.
+
+#### Améliorer les performances avec la mise en cache des requêtes (Premium)
+
+[Voir Doc Mise en cache des requêtes dans Power BI.](https://learn.microsoft.com/fr-fr/power-bi/connect-data/power-bi-query-caching)
+
+- Avec la fonctionnalité **Mise en cache des requêtes**, on peut utiliser les services de mise en cache locale de Power BI pour traiter les résultats des requêtes. 
+    - Au lieu de s’appuyer sur le jeu de données pour calculer les requêtes, ce qui en cas de surcharge peut réduire les performances, on peut utiliser des ressources cloud des capacités Premium sur le service Power BI pour charger le rapport et garantir ainsi des performances constantes. 
+- ***Supposons que l'on remarque que certains des jeux de données ralentissent le chargement des rapports et que cela commence à contrarier less utilisateurs. l'on veut savoir comment améliorer les performances et accélérer le chargement de ces rapports. On decide d’utiliser la possibilité de mise en cache des requêtes dans Power BI pour résoudre ce problème.***
+1. **Mise en cache des requêtes**
+- La mise en cache des requêtes est une fonctionnalité de mise en cache locale qui gère les résultats pour chaque utilisateur et chaque rapport.  
+    - *Ce service est accessible seulement aux utilisateurs ayant Power BI Premium ou Power BI Embedded.* 
+- Lorsque on utilise la mise en cache des requêtes, les résultats des requêtes sont spécifiques à un seul utilisateur et on peut utiliser la mise en cache des requêtes uniquement sur une page spécifique d’un rapport. 
+    - L’utilisation de la mise en cache des requêtes offre plusieurs avantages :
+        - l'Amélioration des performances des rapports, des tableaux de bord et des vignettes d’un tableau de bord en réduisant le temps de chargement et en améliorant la vitesse des requêtes. 
+            - *Cette notion est particulièrement vraie pour les jeux de données qui ne sont pas souvent actualisés ni consultés fréquemment.*  
+    - Elle respecte les signets et les filtres par défaut : ainsi, même si on active la mise en cache des requêtes, tous les signets qu'on a créés continuent d’exister. 
+    - Les résultats de requête mis en cache sont spécifiques à l’utilisateur. 
+    - Toutes les étiquettes de sécurité font l’objet d’un suivi.   
+    - Elle réduit la charge sur la capacité dédiée. 
+- Pour accéder à la mise en cache des requêtes et la configurer, suivre ces étapes :
+    1. Accéder à un jeu de données dans l'espace de travail et ouvrir sa page **Paramètres**. 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/9-query-caching-settings-ssm.png)
+
+    2. Sélection de l’onglet **Jeux de données** et développer les options **Mise en cache des requêtes**. 
+
+    ![](https://learn.microsoft.com/fr-fr/training/modules/manage-datasets-power-bi/media/9-query-caching-options-ss.png)
+
+    3. Dans la page **Mise en cache des requêtes**, choisir une des options disponibles. 
+        - L’option par défaut est que la mise en cache des requêtes est désactivée ; cependant, on peut également sélectionner **Désactivé**, qui désactive la mise en cache des requêtes pour le jeu de données spécifique en question. 
+            - Si on sélectionne **Activé**, la mise en cache des requêtes est activée seulement pour ce jeu de données spécifique. 
+    ```
+       Passer de Activé à Désactivé efface tous les résultats des requêtes précédemment enregistrés. 
+       Lorsqu'on désactive la mise en cache des requêtes (via l’option par défaut ou via Désactivé), 
+       un petit retard de chargement des requêtes va se produire, car les requêtes de rapport s’exécutent
+       sur le jeu de données et celui-ci n’a pas de requêtes enregistrées sur lesquelles s’appuyer. 
+    ``` 
+    ```
+        Si la mise en cache des requêtes est activée pour de nombreux jeux de données et qu’une actualisation 
+        se produit, les performances peuvent diminuer, car un grand nombre de requêtes doivent être traitées 
+        simultanément.
+    ```
 
 
 
